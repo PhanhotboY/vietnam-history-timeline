@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { ArrayMinSize, IsArray, IsUUID } from 'class-validator';
 
 // DTO for bulk deleting users

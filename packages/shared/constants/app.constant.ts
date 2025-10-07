@@ -7,4 +7,5 @@ export const APP = {
   LOCK_PREFIX: 'lock_v1_',
   ORDER_RETRY_TIMES: 10,
   ORDER_LOCK_EXPIRED_TIME: 3000,
+  BYPASS_AUTHENTICATION: 'BypassAuthentication',
 };

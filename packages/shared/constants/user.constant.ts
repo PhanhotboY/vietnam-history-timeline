@@ -5,29 +5,29 @@ export const USER = {
   STATUS: {
     ACTIVE: {
       label: 'Hoạt động',
-      value: 'active',
+      value: 'ACTIVE',
     },
     PENDING: {
       label: 'Đang chờ',
-      value: 'pending',
+      value: 'PENDING',
     },
     DELETED: {
       label: 'Đã xóa',
-      value: 'deleted',
+      value: 'DELETED',
     },
   },
   SEX: {
     MALE: {
       label: 'Nam',
-      value: 'male',
+      value: 'MALE',
     },
     FEMALE: {
       label: 'Nữ',
-      value: 'female',
+      value: 'FEMALE',
     },
     OTHER: {
       label: 'Khác',
-      value: 'other',
+      value: 'OTHER',
     },
   },
 } as const;

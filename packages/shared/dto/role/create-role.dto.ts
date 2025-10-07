@@ -40,11 +40,14 @@ export class CreateRoleDto {
   grants!: GrantDto[];
 }
 
-class GrantDto {
+export class GrantDto {
   @IsUUID('4', { message: 'ID resource không hợp lệ' })
   resourceId!: string;
 
-  @IsArray({ message: 'Actions phải là một mảng các chuỗi' })
-  @IsString({ each: true, message: 'Mỗi action phải là một chuỗi' })
-  actions!: string[];
+  @IsString({ message: 'Action phải là một chuỗi' })
+  action!: string;
+
+  @IsOptional()
+  @IsString({ message: 'Attribute phải là một chuỗi' })
+  attribute?: string;
 }

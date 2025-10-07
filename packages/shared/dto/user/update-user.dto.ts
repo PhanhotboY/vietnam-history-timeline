@@ -6,11 +6,10 @@ import {
   IsOptional,
   IsDateString,
   IsEnum,
-  IsMongoId,
   MinLength,
   MaxLength,
   Matches,
-  isString,
+  IsUUID,
 } from 'class-validator';
 import { CreateUserDto } from './create-user.dto';
 
@@ -55,7 +54,7 @@ export class UpdateUserDto implements Partial<CreateUserDto> {
   salt?: string;
 
   @IsOptional()
-  @IsMongoId({ message: 'ID avatar không hợp lệ' })
+  @IsUUID('4', { message: 'ID avatar không hợp lệ' })
   avatar?: string;
 
   @IsOptional()

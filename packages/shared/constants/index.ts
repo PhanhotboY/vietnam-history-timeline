@@ -1,5 +1,4 @@
 export * from './app.constant';
-export * from './template.constant';
 export * from './user.constant';
 export * from './otp.constant';
 export * from './page.constant';

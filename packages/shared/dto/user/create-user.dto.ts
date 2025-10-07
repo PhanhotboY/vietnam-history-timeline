@@ -11,11 +11,10 @@ import {
   Matches,
   IsUUID,
 } from 'class-validator';
-import { RegisterUserDto } from './register-user.dto';
 import { PasswordUserDto } from './password-user.dto';
 
 // Base DTO for user creation
-export class CreateUserDto implements RegisterUserDto, PasswordUserDto {
+export class CreateUserDto implements PasswordUserDto {
   // Properties from RegisterUserDto and PasswordUserDto should be defined here
   @IsEmail({}, { message: 'Email không hợp lệ' })
   @Transform(({ value }) => value?.trim())
@@ -84,5 +83,5 @@ export class CreateUserDto implements RegisterUserDto, PasswordUserDto {
   status!: Values<typeof USER.STATUS>['value'];
 
   @IsUUID('4', { message: 'ID vai trò không hợp lệ' })
-  role!: string;
+  roleId!: string;
 }
