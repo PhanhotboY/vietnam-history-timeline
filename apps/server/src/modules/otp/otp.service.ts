@@ -11,11 +11,16 @@ export class OtpService {
 
     const token = randomBytes(16).toString('hex');
 
-    return await this.prismaService.oTP.create({ data: { token, email } });
+    // expires in 5 minutes
+    return await this.prismaService.oTP.create({
+      data: { token, email, expiresAt: new Date(Date.now() + 5 * 60 * 1000) },
+    });
   }
 
   async getOTPByEmail(email: string) {
-    return await this.prismaService.oTP.findFirst({ where: { email } });
+    return await this.prismaService.oTP.findFirst({
+      where: { email, expiresAt: { gte: new Date() } },
+    });
   }
 
   async deleteOTPByEmail(email: string) {
@@ -23,6 +28,8 @@ export class OtpService {
   }
 
   async getOTPByToken(token: string) {
-    return await this.prismaService.oTP.findFirst({ where: { token } });
+    return await this.prismaService.oTP.findFirst({
+      where: { token, expiresAt: { gte: new Date() } },
+    });
   }
 }

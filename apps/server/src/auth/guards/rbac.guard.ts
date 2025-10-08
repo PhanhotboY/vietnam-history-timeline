@@ -5,13 +5,13 @@ import {
   Inject,
   Injectable,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { AccessControl, Permission, Query } from 'accesscontrol';
 import { UserService } from '@/modules/user';
 import { RoleService } from '@/modules/role/role.service';
 import { Reflector } from '@nestjs/core';
-import { Permissions } from '@/common/decorators/permission.decorator';
+import { Permissions } from '@/common/decorators';
 import { Request } from 'express';
+import { APP } from '@shared/constants';
 
 @Injectable()
 export class RbacGuard implements CanActivate {
@@ -23,11 +23,21 @@ export class RbacGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext) {
+    const metadata =
+      this.reflector.getAllAndOverride<string[]>('AuthMetadata', [
+        context.getHandler(),
+        context.getClass(),
+      ]) || [];
+
+    if (metadata.includes(APP.BYPASS_AUTHENTICATION)) {
+      return true;
+    }
+
     const [resource, action] =
       this.reflector.get(Permissions, context.getHandler()) || [];
     if (!resource || !action) {
       // Nếu không có metadata, không cho phép truy cập
-      return true;
+      return false;
     }
 
     const req = context.switchToHttp().getRequest<Request>();
@@ -38,7 +48,10 @@ export class RbacGuard implements CanActivate {
 
   async checkPermission(userId: string, resource: string, action: keyof Query) {
     // Lấy thông tin user và populate roles
-    const user = await this.userService.findUserById(userId);
+    const user = await this.userService.findUserById(userId, {
+      withRole: true,
+    });
+
     if (!user) {
       throw new ForbiddenException('User not found');
     }
@@ -50,7 +63,6 @@ export class RbacGuard implements CanActivate {
       throw new ForbiddenException('Access denied');
     }
 
-    console.log(permissions);
     // Kiểm tra quyền truy cập
     this.ac.setGrants(permissions);
     const permission = this.ac

@@ -95,45 +95,6 @@ export class RoleService {
     return role;
   };
 
-  updateRoleGrants = async (roleId: string, grants: GrantDto[]) => {
-    // Lấy role hiện tại
-    const currentRole = await this.getRoleById(roleId);
-
-    // Cập nhật các grants
-    const updatedGrants = currentRole.grants!.map((currentGrant) => {
-      this.checkActionsFormat(currentGrant.actions);
-      // Tìm grant mới tương ứng trong danh sách cập nhật
-      const updateGrant = grants.find(
-        (g) => g.resourceId === currentGrant.resourceId,
-      );
-
-      if (updateGrant) {
-        // Nếu tìm thấy grant cần update, cập nhật actions mới
-        return {
-          resourceId: currentGrant.resourceId,
-          actions: updateGrant.actions,
-        };
-      }
-      // Nếu không tìm thấy, chuyển đổi grant hiện tại thành plain object
-      return {
-        resourceId: currentGrant.resourceId,
-        actions: currentGrant.actions,
-      };
-    });
-
-    // Cập nhật role với grants đã được xử lý
-    const role = await this.prisma.grant.updateMany({
-      where: {
-        roleId: roleId,
-        resourceId: { in: updatedGrants.map((g) => g.resourceId) },
-      },
-      data: { actions: { set: updatedGrants.flatMap((g) => g.actions) } },
-    });
-
-    if (!role) throw new NotFoundException('Role not found');
-    return role;
-  };
-
   addRoleGrants = async (roleId: string, newGrants: GrantDto[]) => {
     try {
       // Lấy role hiện tại
@@ -152,11 +113,12 @@ export class RoleService {
 
       // Chuyển đổi resourceId thành ObjectId
       const grantsToAdd = validNewGrants.map((grant) => {
-        this.checkActionsFormat(grant.actions);
+        this.checkActionFormat(grant.action);
 
         return {
           resourceId: grant.resourceId,
-          actions: grant.actions,
+          action: grant.action,
+          attribute: grant.attribute || '*',
         };
       });
 
@@ -231,32 +193,28 @@ export class RoleService {
         select: {
           role: { select: { slug: true } },
           resource: { select: { slug: true } },
-          actions: true,
+          action: true,
+          attribute: true,
         },
       });
 
       return permissions.map((perm) => ({
         role: perm.role.slug,
         resource: perm.resource.slug,
-        actions: perm.actions,
-        attributes: '*',
+        action: perm.action,
+        attributes: perm.attribute || '*',
       }));
     } catch (error) {
       throw error;
     }
   };
 
-  checkActionsFormat = (actions: string[]) => {
-    if (!Array.isArray(actions)) {
-      throw new BadRequestException('Actions must be an array');
+  checkActionFormat = (action: string) => {
+    if (typeof action !== 'string') {
+      throw new BadRequestException('Each action must be a string');
     }
-    for (const action of actions) {
-      if (typeof action !== 'string') {
-        throw new BadRequestException('Each action must be a string');
-      }
-      if (!action.match(/^(create|read|update|delete):(any|own)$/i)) {
-        throw new BadRequestException('Wrong action format!');
-      }
+    if (!action.match(/^(create|read|update|delete):(any|own)$/i)) {
+      throw new BadRequestException('Wrong action format!');
     }
     return true;
   };

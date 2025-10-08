@@ -24,5 +24,10 @@ export const config = {
   },
   serverUrl: process.env.SERVER_URL || 'http://localhost:3000',
   jwtSecret: process.env.JWT_SECRET,
-  jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+  clientUrl: process.env.CLIENT_URL || 'http://localhost:4200',
+  google: {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+  },
 };

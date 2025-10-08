@@ -6,16 +6,19 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { Role, User } from '@prisma-client/index';
 
 import { CreateKeyTokenDto } from '@shared/dto/keyToken/create-keyToken.dto';
-import { SignInDto, SignUpDto } from '@shared/dto/auth';
+import { JwtPayloadDto, SignUpDto } from '@shared/dto/auth';
 import { USER } from '@shared/constants';
-import { AuthUtilService, JwtHelperService, UtilService } from '@/common';
+import { AuthUtilService, UtilService } from '@/common';
 import { KeyTokenService } from '@/modules/key-token';
 import { MailService } from '../mail';
 import { UserService } from '@/modules/user';
 import { RoleService } from '@/modules/role';
 import { OtpService } from '@/modules/otp';
+import { instanceToPlain } from 'class-transformer';
 
 @Injectable()
 export class AuthService {
@@ -27,35 +30,24 @@ export class AuthService {
     private readonly mailService: MailService,
     private readonly utilService: UtilService,
     private readonly authUtilService: AuthUtilService,
-    private readonly jwtHelperService: JwtHelperService,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async signIn({
-    username,
-    password,
-    browserId,
-    refreshToken = null,
-  }: SignInDto) {
-    const foundUser = await this.userService.findUserById(username);
-    const isMatchPwd = foundUser?.password
-      ? bcrypt.compareSync(password, foundUser.password)
-      : false;
-
-    if (!foundUser || !isMatchPwd) {
-      throw new BadRequestException('Tên đăng nhập hoặc mật khẩu không đúng!');
-    }
-
+  async signIn(payload: JwtPayloadDto, refreshToken?: string) {
     const { privateKey, publicKey } = this.authUtilService.generateKeyPair();
 
     const tokens = this.authUtilService.createTokenPair({
-      payload: { userId: foundUser.id, email: foundUser.email!, browserId },
+      payload: {
+        userId: payload.userId,
+        email: payload.email!,
+        browserId: payload.browserId,
+      },
       privateKey,
-      publicKey,
     });
 
     const keyTokenCreate: CreateKeyTokenDto = {
-      userId: foundUser.id,
-      browserId,
+      userId: payload.userId,
+      browserId: payload.browserId,
       privateKey,
       publicKey,
       refreshToken: tokens.refreshToken,
@@ -66,12 +58,29 @@ export class AuthService {
 
     await this.keyTokenService.createKeyToken(keyTokenCreate);
 
+    const user = await this.userService.findUserById(payload.userId, {
+      withRole: true,
+    });
+
     return {
-      user: this.utilService.getReturnData(foundUser, {
-        fields: ['id', 'email', 'role'],
-      }),
+      user: instanceToPlain<{
+        id: string;
+        email: string;
+        role: { name: string; slug: string };
+      }>(user),
       tokens,
     };
+  }
+
+  async validateUser(username: string, password: string) {
+    const user = await this.userService.findUserById(username, {
+      withPassword: true,
+    });
+    if (user && bcrypt.compareSync(password, user.password!)) {
+      const { password, salt, ...result } = user;
+      return result;
+    }
+    return null;
   }
 
   async signUp({ email }: SignUpDto) {
@@ -158,7 +167,7 @@ export class AuthService {
     }
     // Check if refreshToken data is valid
     const { userId, browserId } =
-      this.jwtHelperService.parseAuthJwt(refreshToken);
+      this.jwtService.decode<JwtPayloadDto>(refreshToken);
     if (userId !== clientId) {
       throw new BadRequestException('Invalid request.');
     }
@@ -193,10 +202,9 @@ export class AuthService {
       throw new BadRequestException('Invalid request.');
 
     // Verify refreshToken
-    const { email } = this.jwtHelperService.verifyJwt(
-      refreshToken,
-      keyToken.publicKey,
-    );
+    const { email } = this.jwtService.verify<JwtPayloadDto>(refreshToken, {
+      publicKey: keyToken.publicKey,
+    });
     if (!email) {
       throw new BadRequestException('Invalid request.');
     }
@@ -204,7 +212,6 @@ export class AuthService {
     const tokens = this.authUtilService.createTokenPair({
       payload: { userId, email, browserId },
       privateKey: keyToken.privateKey,
-      publicKey: keyToken.publicKey,
     });
 
     await this.keyTokenService.updateRefreshToken(

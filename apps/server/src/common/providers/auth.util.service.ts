@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtPayloadDto } from '@shared/dto/auth/jwt-payload.dto';
 import { JwtService } from '@nestjs/jwt';
 
@@ -13,7 +13,6 @@ export class AuthUtilService {
   }: {
     payload: JwtPayloadDto;
     privateKey: string;
-    publicKey: string;
   }) {
     const accessToken = this.jwtService.sign(payload, {
       privateKey,
@@ -47,5 +46,21 @@ export class AuthUtilService {
     });
 
     return { privateKey, publicKey };
+  }
+
+  verifyAuthTokenOrThrow(token: string, publicKey: string) {
+    try {
+      return this.jwtService.verify<JwtPayloadDto>(token, { publicKey });
+    } catch (err) {
+      throw new UnauthorizedException('Invalid token');
+    }
+  }
+
+  decodeAuthToken(token: string) {
+    try {
+      return this.jwtService.decode<JwtPayloadDto>(token) || {};
+    } catch (err) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }

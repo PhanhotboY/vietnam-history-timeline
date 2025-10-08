@@ -9,30 +9,32 @@ import {
 } from '@nestjs/common';
 import { ResourceService } from './resource.service';
 import { CreateResourceDto } from '@shared/dto/resource';
-import { SetAuthMetadata } from '@/common/decorators/auth.metadata.decorator';
-import { APP } from '@shared/constants';
+import { Permissions } from '@/common/decorators';
 
 @Controller('resource')
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {}
 
   @Post()
+  @Permissions(['resource', 'createAny'])
   create(@Body() createResourceDto: CreateResourceDto) {
     return this.resourceService.create(createResourceDto);
   }
 
   @Get()
-  @SetAuthMetadata(APP.BYPASS_AUTHENTICATION)
+  @Permissions(['resource', 'readAny'])
   findAll() {
     return this.resourceService.findAll();
   }
 
   @Get(':id')
+  @Permissions(['resource', 'readAny'])
   findOne(@Param('id') id: string) {
     return this.resourceService.findOne(+id);
   }
 
   @Delete(':id')
+  @Permissions(['resource', 'deleteAny'])
   remove(@Param('id') id: string) {
     return this.resourceService.remove(+id);
   }

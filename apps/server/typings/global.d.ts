@@ -1,5 +1,5 @@
-import { ApiKey } from '@prisma-client/index';
-import { JwtPayloadDto } from '@shared/dto/auth/jwt-payload.dto';
+import { ApiKey, Role, UserModel } from '@prisma-client/index';
+import { JwtPayloadDto } from '@shared/dto/auth';
 
 export declare global {
   namespace NodeJS {

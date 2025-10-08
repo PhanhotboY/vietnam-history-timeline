@@ -1,14 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { RoleService } from './role.service';
-import { SetAuthMetadata } from '@/common/decorators/auth.metadata.decorator';
-import { APP } from '@shared/constants';
+import { Permissions } from '@/common/decorators';
 
 @Controller('role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
   @Get()
-  @SetAuthMetadata(APP.BYPASS_AUTHENTICATION)
+  @Permissions(['role', 'readAny'])
   getRoles() {
     return this.roleService.getRoles();
   }

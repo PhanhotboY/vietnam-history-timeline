@@ -1,33 +1,34 @@
-import {
-  Global,
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { LoggerContextMiddleware } from './middleware';
 import { ApiKeyGuard } from './guards';
 import * as providers from './providers';
 import { ApiKeyModule } from '@/modules/api-key';
-import { JwtService } from '@nestjs/jwt';
-import { KeyTokenService } from '@/modules/key-token/key-token.service';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { KeyTokenModule } from '@/modules/key-token';
 
 const services = Object.values(providers);
 
 @Global()
 @Module({
-  imports: [ApiKeyModule],
+  imports: [
+    ApiKeyModule,
+    JwtModule.registerAsync({
+      useFactory: async (configService: providers.ConfigService) => ({
+        secret: configService.get('jwtSecret'),
+      }),
+      inject: [providers.ConfigService],
+    }),
+  ],
   providers: [
     JwtService,
-    KeyTokenService,
     ...services,
     // {
     //   provide: APP_GUARD,
     //   useClass: ApiKeyGuard,
     // },
   ],
-  exports: [...services, JwtService, KeyTokenService],
+  exports: [...services, JwtService],
 })
 export class CommonModule implements NestModule {
   // Global Middleware

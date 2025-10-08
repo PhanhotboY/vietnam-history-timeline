@@ -1,11 +1,22 @@
-import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Headers,
+  Post,
+  Query,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
-import { SetAuthMetadata } from '@/common/decorators/auth.metadata.decorator';
-import { APP } from '@shared/constants';
-import { Response } from 'express';
-import { ConfigService } from '@nestjs/config';
+import { SetAuthMetadata } from '@/common/decorators';
+import { APP, HEADER } from '@shared/constants';
 import { SignInDto, SignUpDto } from '@shared/dto/auth';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { ConfigService } from '@/common';
 
 @Controller('auth')
 export class AuthController {
@@ -22,8 +33,12 @@ export class AuthController {
 
   @Post('signin')
   @SetAuthMetadata(APP.BYPASS_AUTHENTICATION)
-  async signIn(@Body() createUserDto: SignInDto) {
-    return await this.authService.signIn(createUserDto);
+  @UseGuards(LocalAuthGuard)
+  async signIn(
+    @Req() req: Request,
+    @Headers(HEADER.REFRESH_TOKEN) refreshToken?: string,
+  ) {
+    return await this.authService.signIn(req.user, refreshToken);
   }
 
   @Get('verify-email')

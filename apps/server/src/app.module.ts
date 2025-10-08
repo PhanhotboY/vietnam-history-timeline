@@ -1,5 +1,5 @@
 import { Module, Scope, ValidationPipe } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggerModule } from 'nestjs-pino';
 
@@ -14,11 +14,12 @@ import { PrismaModule } from './database';
 import { SerializeResponseInterceptor } from './common/interceptors';
 import { RoleModule } from './modules/role/role.module';
 import { RbacGuard } from './auth/guards/rbac.guard';
-import { AuthGuard } from './auth/guards/auth.guard';
 import { AccessControl } from 'accesscontrol';
 import { MailModule } from './mail/mail.module';
 import { OtpModule } from './modules/otp/otp.module';
 import { ResourceModule } from './modules/resource/resource.module';
+import { KeyTokenModule } from './modules/key-token';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ResourceModule } from './modules/resource/resource.module';
     MailModule,
     OtpModule,
     ResourceModule,
+    KeyTokenModule,
   ],
   providers: [
     {
@@ -44,7 +46,7 @@ import { ResourceModule } from './modules/resource/resource.module';
       useClass: AccessControl,
     },
     // Global Guard, Authentication check on all routers
-    { provide: APP_GUARD, useClass: AuthGuard, scope: Scope.REQUEST },
+    { provide: APP_GUARD, useClass: JwtAuthGuard, scope: Scope.REQUEST },
     { provide: APP_GUARD, useClass: RbacGuard, scope: Scope.REQUEST },
     // Global Filter, Exception check
     { provide: APP_FILTER, useClass: ExceptionsFilter },
