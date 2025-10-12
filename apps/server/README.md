@@ -12,35 +12,20 @@ API for Nien Su Viet
 
 ```mermaid
 erDiagram
+    User }o--|| Role : "has"
     User ||--o{ KeyToken : "has"
     User ||--o{ HistoricalEvent : "creates"
     User ||--o{ EventEdit : "edits"
     User ||--o{ BlogAuthor : "authors"
-    User }o--|| Role : "has"
 
     Role ||--o{ Grant : "has"
-    Role ||--o{ User : "assigned_to"
 
-    Resource ||--o{ Grant : "granted_in"
-
-    Grant }o--|| Role : "belongs_to"
     Grant }o--|| Resource : "grants_access_to"
 
     HistoricalEvent ||--o{ EventEdit : "has_edits"
     HistoricalEvent }o--o{ EventPeriod : "categorized_in"
-    HistoricalEvent }o--|| User : "created_by"
-
-    EventEdit }o--|| HistoricalEvent : "edits"
-    EventEdit }o--|| User : "edited_by"
-
-    EventPeriod }o--o{ HistoricalEvent : "contains"
 
     BlogPost ||--o{ BlogAuthor : "has_authors"
-
-    BlogAuthor }o--|| User : "is"
-    BlogAuthor }o--|| BlogPost : "authors"
-
-    KeyToken }o--|| User : "belongs_to"
 
     User {
         uuid id PK
