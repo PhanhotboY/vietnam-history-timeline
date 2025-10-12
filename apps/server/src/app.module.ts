@@ -1,5 +1,4 @@
 import { Module, Scope, ValidationPipe } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggerModule } from 'nestjs-pino';
 
@@ -7,7 +6,6 @@ import { ExceptionsFilter } from './common/filters';
 import { loggerOptions } from './config/logger.config';
 import { CommonModule } from './common';
 import { AuthModule } from './auth';
-import { configuration } from './config';
 import { UserModule } from './modules/user/user.module';
 import { ApiKeyModule } from './modules/api-key/api-key.module';
 import { PrismaModule } from './database';
@@ -20,15 +18,11 @@ import { OtpModule } from './modules/otp/otp.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { KeyTokenModule } from './modules/key-token';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
     LoggerModule.forRoot(loggerOptions),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
-      cache: true,
-    }),
     PrismaModule.forRoot(),
     CommonModule,
     AuthModule,
@@ -39,11 +33,26 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     OtpModule,
     ResourceModule,
     KeyTokenModule,
+    ThrottlerModule.forRoot({
+      throttlers: [
+        {
+          // Default, 100 requests per 60 seconds
+          name: 'default',
+          limit: 100,
+          ttl: 60,
+        },
+      ],
+    }),
   ],
   providers: [
     {
       provide: 'ACCESS_CONTROL',
       useClass: AccessControl,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+      scope: Scope.DEFAULT,
     },
     // Global Guard, Authentication check on all routers
     { provide: APP_GUARD, useClass: JwtAuthGuard, scope: Scope.REQUEST },

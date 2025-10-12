@@ -1,11 +1,13 @@
 import { Global, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { CacheModule } from '@nestjs/cache-manager';
 
 import { LoggerContextMiddleware } from './middleware';
-import { ApiKeyGuard } from './guards';
 import * as providers from './providers';
 import { ApiKeyModule } from '@/modules/api-key';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { KeyTokenModule } from '@/modules/key-token';
+import { ConfigModule } from '@nestjs/config';
+import { configuration } from '@/config';
+import KeyvRedis from '@keyv/redis';
 
 const services = Object.values(providers);
 
@@ -19,6 +21,16 @@ const services = Object.values(providers);
       }),
       inject: [providers.ConfigService],
     }),
+    ConfigModule.forRoot({
+      load: [configuration],
+      cache: true,
+    }),
+    CacheModule.registerAsync({
+      useFactory: async (configService: providers.ConfigService) => ({
+        stores: [new KeyvRedis(configService.get('redis.url'))],
+      }),
+      inject: [providers.ConfigService],
+    }),
   ],
   providers: [
     JwtService,
@@ -28,7 +40,7 @@ const services = Object.values(providers);
     //   useClass: ApiKeyGuard,
     // },
   ],
-  exports: [...services, JwtService],
+  exports: [...services, ConfigModule, JwtModule],
 })
 export class CommonModule implements NestModule {
   // Global Middleware

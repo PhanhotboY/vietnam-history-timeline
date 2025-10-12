@@ -135,7 +135,9 @@ exports.Prisma.UserScalarFieldEnum = {
   msisdn: 'msisdn',
   sex: 'sex',
   status: 'status',
-  roleId: 'roleId'
+  roleId: 'roleId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ResourceScalarFieldEnum = {
@@ -166,14 +168,18 @@ exports.Prisma.OTPScalarFieldEnum = {
   token: 'token',
   email: 'email',
   status: 'status',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ApiKeyScalarFieldEnum = {
   id: 'id',
   key: 'key',
   status: 'status',
-  permissions: 'permissions'
+  permissions: 'permissions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.KeyTokenScalarFieldEnum = {
@@ -183,7 +189,72 @@ exports.Prisma.KeyTokenScalarFieldEnum = {
   privateKey: 'privateKey',
   refreshTokensUsed: 'refreshTokensUsed',
   refreshToken: 'refreshToken',
-  userId: 'userId'
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HistoricalEventScalarFieldEnum = {
+  id: 'id',
+  fromDay: 'fromDay',
+  fromMonth: 'fromMonth',
+  fromYear: 'fromYear',
+  toDay: 'toDay',
+  toMonth: 'toMonth',
+  toYear: 'toYear',
+  content: 'content',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EventEditScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  editorId: 'editorId',
+  editedAt: 'editedAt',
+  prevContent: 'prevContent',
+  newContent: 'newContent',
+  prevFromDay: 'prevFromDay',
+  prevFromMonth: 'prevFromMonth',
+  prevFromYear: 'prevFromYear',
+  prevToDay: 'prevToDay',
+  prevToMonth: 'prevToMonth',
+  prevToYear: 'prevToYear',
+  newFromDay: 'newFromDay',
+  newFromMonth: 'newFromMonth',
+  newFromYear: 'newFromYear',
+  newToDay: 'newToDay',
+  newToMonth: 'newToMonth',
+  newToYear: 'newToYear'
+};
+
+exports.Prisma.EventPeriodScalarFieldEnum = {
+  id: 'id',
+  fromDay: 'fromDay',
+  fromMonth: 'fromMonth',
+  fromYear: 'fromYear',
+  toDay: 'toDay',
+  toMonth: 'toMonth',
+  toYear: 'toYear',
+  name: 'name',
+  slug: 'slug',
+  description: 'description'
+};
+
+exports.Prisma.BlogPostScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BlogAuthorScalarFieldEnum = {
+  authorId: 'authorId',
+  postId: 'postId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -237,7 +308,12 @@ exports.Prisma.ModelName = {
   Grant: 'Grant',
   OTP: 'OTP',
   ApiKey: 'ApiKey',
-  KeyToken: 'KeyToken'
+  KeyToken: 'KeyToken',
+  HistoricalEvent: 'HistoricalEvent',
+  EventEdit: 'EventEdit',
+  EventPeriod: 'EventPeriod',
+  BlogPost: 'BlogPost',
+  BlogAuthor: 'BlogAuthor'
 };
 
 /**

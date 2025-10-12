@@ -48,6 +48,31 @@ export type ApiKey = $Result.DefaultSelection<Prisma.$ApiKeyPayload>
  * 
  */
 export type KeyToken = $Result.DefaultSelection<Prisma.$KeyTokenPayload>
+/**
+ * Model HistoricalEvent
+ * 
+ */
+export type HistoricalEvent = $Result.DefaultSelection<Prisma.$HistoricalEventPayload>
+/**
+ * Model EventEdit
+ * 
+ */
+export type EventEdit = $Result.DefaultSelection<Prisma.$EventEditPayload>
+/**
+ * Model EventPeriod
+ * 
+ */
+export type EventPeriod = $Result.DefaultSelection<Prisma.$EventPeriodPayload>
+/**
+ * Model BlogPost
+ * 
+ */
+export type BlogPost = $Result.DefaultSelection<Prisma.$BlogPostPayload>
+/**
+ * Model BlogAuthor
+ * 
+ */
+export type BlogAuthor = $Result.DefaultSelection<Prisma.$BlogAuthorPayload>
 
 /**
  * Enums
@@ -306,6 +331,56 @@ export class PrismaClient<
     * ```
     */
   get keyToken(): Prisma.KeyTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.historicalEvent`: Exposes CRUD operations for the **HistoricalEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HistoricalEvents
+    * const historicalEvents = await prisma.historicalEvent.findMany()
+    * ```
+    */
+  get historicalEvent(): Prisma.HistoricalEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.eventEdit`: Exposes CRUD operations for the **EventEdit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EventEdits
+    * const eventEdits = await prisma.eventEdit.findMany()
+    * ```
+    */
+  get eventEdit(): Prisma.EventEditDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.eventPeriod`: Exposes CRUD operations for the **EventPeriod** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EventPeriods
+    * const eventPeriods = await prisma.eventPeriod.findMany()
+    * ```
+    */
+  get eventPeriod(): Prisma.EventPeriodDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.blogPost`: Exposes CRUD operations for the **BlogPost** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BlogPosts
+    * const blogPosts = await prisma.blogPost.findMany()
+    * ```
+    */
+  get blogPost(): Prisma.BlogPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.blogAuthor`: Exposes CRUD operations for the **BlogAuthor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BlogAuthors
+    * const blogAuthors = await prisma.blogAuthor.findMany()
+    * ```
+    */
+  get blogAuthor(): Prisma.BlogAuthorDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -752,7 +827,12 @@ export namespace Prisma {
     Grant: 'Grant',
     OTP: 'OTP',
     ApiKey: 'ApiKey',
-    KeyToken: 'KeyToken'
+    KeyToken: 'KeyToken',
+    HistoricalEvent: 'HistoricalEvent',
+    EventEdit: 'EventEdit',
+    EventPeriod: 'EventPeriod',
+    BlogPost: 'BlogPost',
+    BlogAuthor: 'BlogAuthor'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -771,7 +851,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "resource" | "role" | "grant" | "oTP" | "apiKey" | "keyToken"
+      modelProps: "user" | "resource" | "role" | "grant" | "oTP" | "apiKey" | "keyToken" | "historicalEvent" | "eventEdit" | "eventPeriod" | "blogPost" | "blogAuthor"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1293,6 +1373,376 @@ export namespace Prisma {
           }
         }
       }
+      HistoricalEvent: {
+        payload: Prisma.$HistoricalEventPayload<ExtArgs>
+        fields: Prisma.HistoricalEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HistoricalEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HistoricalEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          findFirst: {
+            args: Prisma.HistoricalEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HistoricalEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          findMany: {
+            args: Prisma.HistoricalEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>[]
+          }
+          create: {
+            args: Prisma.HistoricalEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          createMany: {
+            args: Prisma.HistoricalEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HistoricalEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>[]
+          }
+          delete: {
+            args: Prisma.HistoricalEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          update: {
+            args: Prisma.HistoricalEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.HistoricalEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HistoricalEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HistoricalEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.HistoricalEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HistoricalEventPayload>
+          }
+          aggregate: {
+            args: Prisma.HistoricalEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHistoricalEvent>
+          }
+          groupBy: {
+            args: Prisma.HistoricalEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HistoricalEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HistoricalEventCountArgs<ExtArgs>
+            result: $Utils.Optional<HistoricalEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      EventEdit: {
+        payload: Prisma.$EventEditPayload<ExtArgs>
+        fields: Prisma.EventEditFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventEditFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventEditFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          findFirst: {
+            args: Prisma.EventEditFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventEditFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          findMany: {
+            args: Prisma.EventEditFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>[]
+          }
+          create: {
+            args: Prisma.EventEditCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          createMany: {
+            args: Prisma.EventEditCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventEditCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>[]
+          }
+          delete: {
+            args: Prisma.EventEditDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          update: {
+            args: Prisma.EventEditUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventEditDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventEditUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventEditUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventEditUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventEditPayload>
+          }
+          aggregate: {
+            args: Prisma.EventEditAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEventEdit>
+          }
+          groupBy: {
+            args: Prisma.EventEditGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventEditGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventEditCountArgs<ExtArgs>
+            result: $Utils.Optional<EventEditCountAggregateOutputType> | number
+          }
+        }
+      }
+      EventPeriod: {
+        payload: Prisma.$EventPeriodPayload<ExtArgs>
+        fields: Prisma.EventPeriodFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventPeriodFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventPeriodFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          findFirst: {
+            args: Prisma.EventPeriodFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventPeriodFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          findMany: {
+            args: Prisma.EventPeriodFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>[]
+          }
+          create: {
+            args: Prisma.EventPeriodCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          createMany: {
+            args: Prisma.EventPeriodCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventPeriodCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>[]
+          }
+          delete: {
+            args: Prisma.EventPeriodDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          update: {
+            args: Prisma.EventPeriodUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventPeriodDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventPeriodUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventPeriodUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventPeriodUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventPeriodPayload>
+          }
+          aggregate: {
+            args: Prisma.EventPeriodAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEventPeriod>
+          }
+          groupBy: {
+            args: Prisma.EventPeriodGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventPeriodGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventPeriodCountArgs<ExtArgs>
+            result: $Utils.Optional<EventPeriodCountAggregateOutputType> | number
+          }
+        }
+      }
+      BlogPost: {
+        payload: Prisma.$BlogPostPayload<ExtArgs>
+        fields: Prisma.BlogPostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BlogPostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BlogPostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          findFirst: {
+            args: Prisma.BlogPostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BlogPostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          findMany: {
+            args: Prisma.BlogPostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>[]
+          }
+          create: {
+            args: Prisma.BlogPostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          createMany: {
+            args: Prisma.BlogPostCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BlogPostCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>[]
+          }
+          delete: {
+            args: Prisma.BlogPostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          update: {
+            args: Prisma.BlogPostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          deleteMany: {
+            args: Prisma.BlogPostDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BlogPostUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BlogPostUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>[]
+          }
+          upsert: {
+            args: Prisma.BlogPostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          aggregate: {
+            args: Prisma.BlogPostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlogPost>
+          }
+          groupBy: {
+            args: Prisma.BlogPostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BlogPostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BlogPostCountArgs<ExtArgs>
+            result: $Utils.Optional<BlogPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      BlogAuthor: {
+        payload: Prisma.$BlogAuthorPayload<ExtArgs>
+        fields: Prisma.BlogAuthorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BlogAuthorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BlogAuthorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          findFirst: {
+            args: Prisma.BlogAuthorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BlogAuthorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          findMany: {
+            args: Prisma.BlogAuthorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>[]
+          }
+          create: {
+            args: Prisma.BlogAuthorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          createMany: {
+            args: Prisma.BlogAuthorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BlogAuthorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>[]
+          }
+          delete: {
+            args: Prisma.BlogAuthorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          update: {
+            args: Prisma.BlogAuthorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          deleteMany: {
+            args: Prisma.BlogAuthorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BlogAuthorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BlogAuthorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>[]
+          }
+          upsert: {
+            args: Prisma.BlogAuthorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogAuthorPayload>
+          }
+          aggregate: {
+            args: Prisma.BlogAuthorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlogAuthor>
+          }
+          groupBy: {
+            args: Prisma.BlogAuthorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BlogAuthorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BlogAuthorCountArgs<ExtArgs>
+            result: $Utils.Optional<BlogAuthorCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1396,6 +1846,11 @@ export namespace Prisma {
     oTP?: OTPOmit
     apiKey?: ApiKeyOmit
     keyToken?: KeyTokenOmit
+    historicalEvent?: HistoricalEventOmit
+    eventEdit?: EventEditOmit
+    eventPeriod?: EventPeriodOmit
+    blogPost?: BlogPostOmit
+    blogAuthor?: BlogAuthorOmit
   }
 
   /* Types for Logging */
@@ -1477,10 +1932,16 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     keyToken: number
+    createdEvents: number
+    editedEvents: number
+    blogPosts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     keyToken?: boolean | UserCountOutputTypeCountKeyTokenArgs
+    createdEvents?: boolean | UserCountOutputTypeCountCreatedEventsArgs
+    editedEvents?: boolean | UserCountOutputTypeCountEditedEventsArgs
+    blogPosts?: boolean | UserCountOutputTypeCountBlogPostsArgs
   }
 
   // Custom InputTypes
@@ -1499,6 +1960,27 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountKeyTokenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: KeyTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCreatedEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HistoricalEventWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEditedEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventEditWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBlogPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogAuthorWhereInput
   }
 
 
@@ -1574,6 +2056,108 @@ export namespace Prisma {
 
 
   /**
+   * Count Type HistoricalEventCountOutputType
+   */
+
+  export type HistoricalEventCountOutputType = {
+    editors: number
+    categories: number
+  }
+
+  export type HistoricalEventCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    editors?: boolean | HistoricalEventCountOutputTypeCountEditorsArgs
+    categories?: boolean | HistoricalEventCountOutputTypeCountCategoriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HistoricalEventCountOutputType without action
+   */
+  export type HistoricalEventCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEventCountOutputType
+     */
+    select?: HistoricalEventCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HistoricalEventCountOutputType without action
+   */
+  export type HistoricalEventCountOutputTypeCountEditorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventEditWhereInput
+  }
+
+  /**
+   * HistoricalEventCountOutputType without action
+   */
+  export type HistoricalEventCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventPeriodWhereInput
+  }
+
+
+  /**
+   * Count Type EventPeriodCountOutputType
+   */
+
+  export type EventPeriodCountOutputType = {
+    events: number
+  }
+
+  export type EventPeriodCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | EventPeriodCountOutputTypeCountEventsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EventPeriodCountOutputType without action
+   */
+  export type EventPeriodCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriodCountOutputType
+     */
+    select?: EventPeriodCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EventPeriodCountOutputType without action
+   */
+  export type EventPeriodCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HistoricalEventWhereInput
+  }
+
+
+  /**
+   * Count Type BlogPostCountOutputType
+   */
+
+  export type BlogPostCountOutputType = {
+    authors: number
+  }
+
+  export type BlogPostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    authors?: boolean | BlogPostCountOutputTypeCountAuthorsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BlogPostCountOutputType without action
+   */
+  export type BlogPostCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPostCountOutputType
+     */
+    select?: BlogPostCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BlogPostCountOutputType without action
+   */
+  export type BlogPostCountOutputTypeCountAuthorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogAuthorWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1603,6 +2187,8 @@ export namespace Prisma {
     sex: $Enums.UserSex | null
     status: $Enums.UserStatus | null
     roleId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1621,6 +2207,8 @@ export namespace Prisma {
     sex: $Enums.UserSex | null
     status: $Enums.UserStatus | null
     roleId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1639,6 +2227,8 @@ export namespace Prisma {
     sex: number
     status: number
     roleId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -1659,6 +2249,8 @@ export namespace Prisma {
     sex?: true
     status?: true
     roleId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1677,6 +2269,8 @@ export namespace Prisma {
     sex?: true
     status?: true
     roleId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1695,6 +2289,8 @@ export namespace Prisma {
     sex?: true
     status?: true
     roleId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1786,6 +2382,8 @@ export namespace Prisma {
     sex: $Enums.UserSex | null
     status: $Enums.UserStatus
     roleId: string
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1821,8 +2419,13 @@ export namespace Prisma {
     sex?: boolean
     status?: boolean
     roleId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
     keyToken?: boolean | User$keyTokenArgs<ExtArgs>
+    createdEvents?: boolean | User$createdEventsArgs<ExtArgs>
+    editedEvents?: boolean | User$editedEventsArgs<ExtArgs>
+    blogPosts?: boolean | User$blogPostsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1842,6 +2445,8 @@ export namespace Prisma {
     sex?: boolean
     status?: boolean
     roleId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1861,6 +2466,8 @@ export namespace Prisma {
     sex?: boolean
     status?: boolean
     roleId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1880,12 +2487,17 @@ export namespace Prisma {
     sex?: boolean
     status?: boolean
     roleId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "firstName" | "lastName" | "slug" | "password" | "salt" | "avatar" | "address" | "birthdate" | "msisdn" | "sex" | "status" | "roleId", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "firstName" | "lastName" | "slug" | "password" | "salt" | "avatar" | "address" | "birthdate" | "msisdn" | "sex" | "status" | "roleId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | RoleDefaultArgs<ExtArgs>
     keyToken?: boolean | User$keyTokenArgs<ExtArgs>
+    createdEvents?: boolean | User$createdEventsArgs<ExtArgs>
+    editedEvents?: boolean | User$editedEventsArgs<ExtArgs>
+    blogPosts?: boolean | User$blogPostsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1900,6 +2512,9 @@ export namespace Prisma {
     objects: {
       role: Prisma.$RolePayload<ExtArgs>
       keyToken: Prisma.$KeyTokenPayload<ExtArgs>[]
+      createdEvents: Prisma.$HistoricalEventPayload<ExtArgs>[]
+      editedEvents: Prisma.$EventEditPayload<ExtArgs>[]
+      blogPosts: Prisma.$BlogAuthorPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1917,6 +2532,8 @@ export namespace Prisma {
       sex: $Enums.UserSex | null
       status: $Enums.UserStatus
       roleId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2313,6 +2930,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     keyToken<T extends User$keyTokenArgs<ExtArgs> = {}>(args?: Subset<T, User$keyTokenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KeyTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    createdEvents<T extends User$createdEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$createdEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    editedEvents<T extends User$editedEventsArgs<ExtArgs> = {}>(args?: Subset<T, User$editedEventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    blogPosts<T extends User$blogPostsArgs<ExtArgs> = {}>(args?: Subset<T, User$blogPostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2357,6 +2977,8 @@ export namespace Prisma {
     readonly sex: FieldRef<"User", 'UserSex'>
     readonly status: FieldRef<"User", 'UserStatus'>
     readonly roleId: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -2774,6 +3396,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: KeyTokenScalarFieldEnum | KeyTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.createdEvents
+   */
+  export type User$createdEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    where?: HistoricalEventWhereInput
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    cursor?: HistoricalEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HistoricalEventScalarFieldEnum | HistoricalEventScalarFieldEnum[]
+  }
+
+  /**
+   * User.editedEvents
+   */
+  export type User$editedEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    where?: EventEditWhereInput
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    cursor?: EventEditWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventEditScalarFieldEnum | EventEditScalarFieldEnum[]
+  }
+
+  /**
+   * User.blogPosts
+   */
+  export type User$blogPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    where?: BlogAuthorWhereInput
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    cursor?: BlogAuthorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlogAuthorScalarFieldEnum | BlogAuthorScalarFieldEnum[]
   }
 
   /**
@@ -6032,6 +6726,8 @@ export namespace Prisma {
     email: string | null
     status: $Enums.OTPStatus | null
     expiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type OTPMaxAggregateOutputType = {
@@ -6040,6 +6736,8 @@ export namespace Prisma {
     email: string | null
     status: $Enums.OTPStatus | null
     expiresAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type OTPCountAggregateOutputType = {
@@ -6048,6 +6746,8 @@ export namespace Prisma {
     email: number
     status: number
     expiresAt: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -6058,6 +6758,8 @@ export namespace Prisma {
     email?: true
     status?: true
     expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type OTPMaxAggregateInputType = {
@@ -6066,6 +6768,8 @@ export namespace Prisma {
     email?: true
     status?: true
     expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type OTPCountAggregateInputType = {
@@ -6074,6 +6778,8 @@ export namespace Prisma {
     email?: true
     status?: true
     expiresAt?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6155,6 +6861,8 @@ export namespace Prisma {
     email: string
     status: $Enums.OTPStatus
     expiresAt: Date
+    createdAt: Date
+    updatedAt: Date
     _count: OTPCountAggregateOutputType | null
     _min: OTPMinAggregateOutputType | null
     _max: OTPMaxAggregateOutputType | null
@@ -6180,6 +6888,8 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["oTP"]>
 
   export type OTPSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6188,6 +6898,8 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["oTP"]>
 
   export type OTPSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6196,6 +6908,8 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["oTP"]>
 
   export type OTPSelectScalar = {
@@ -6204,9 +6918,11 @@ export namespace Prisma {
     email?: boolean
     status?: boolean
     expiresAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type OTPOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "email" | "status" | "expiresAt", ExtArgs["result"]["oTP"]>
+  export type OTPOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "email" | "status" | "expiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["oTP"]>
 
   export type $OTPPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OTP"
@@ -6217,6 +6933,8 @@ export namespace Prisma {
       email: string
       status: $Enums.OTPStatus
       expiresAt: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["oTP"]>
     composites: {}
   }
@@ -6645,6 +7363,8 @@ export namespace Prisma {
     readonly email: FieldRef<"OTP", 'String'>
     readonly status: FieldRef<"OTP", 'OTPStatus'>
     readonly expiresAt: FieldRef<"OTP", 'DateTime'>
+    readonly createdAt: FieldRef<"OTP", 'DateTime'>
+    readonly updatedAt: FieldRef<"OTP", 'DateTime'>
   }
     
 
@@ -7025,12 +7745,16 @@ export namespace Prisma {
     id: string | null
     key: string | null
     status: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ApiKeyMaxAggregateOutputType = {
     id: string | null
     key: string | null
     status: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ApiKeyCountAggregateOutputType = {
@@ -7038,6 +7762,8 @@ export namespace Prisma {
     key: number
     status: number
     permissions: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -7046,12 +7772,16 @@ export namespace Prisma {
     id?: true
     key?: true
     status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ApiKeyMaxAggregateInputType = {
     id?: true
     key?: true
     status?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ApiKeyCountAggregateInputType = {
@@ -7059,6 +7789,8 @@ export namespace Prisma {
     key?: true
     status?: true
     permissions?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7139,6 +7871,8 @@ export namespace Prisma {
     key: string
     status: boolean
     permissions: $Enums.ApiKeyPermission[]
+    createdAt: Date
+    updatedAt: Date
     _count: ApiKeyCountAggregateOutputType | null
     _min: ApiKeyMinAggregateOutputType | null
     _max: ApiKeyMaxAggregateOutputType | null
@@ -7163,6 +7897,8 @@ export namespace Prisma {
     key?: boolean
     status?: boolean
     permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["apiKey"]>
 
   export type ApiKeySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7170,6 +7906,8 @@ export namespace Prisma {
     key?: boolean
     status?: boolean
     permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["apiKey"]>
 
   export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7177,6 +7915,8 @@ export namespace Prisma {
     key?: boolean
     status?: boolean
     permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["apiKey"]>
 
   export type ApiKeySelectScalar = {
@@ -7184,9 +7924,11 @@ export namespace Prisma {
     key?: boolean
     status?: boolean
     permissions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "status" | "permissions", ExtArgs["result"]["apiKey"]>
+  export type ApiKeyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "status" | "permissions" | "createdAt" | "updatedAt", ExtArgs["result"]["apiKey"]>
 
   export type $ApiKeyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ApiKey"
@@ -7196,6 +7938,8 @@ export namespace Prisma {
       key: string
       status: boolean
       permissions: $Enums.ApiKeyPermission[]
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["apiKey"]>
     composites: {}
   }
@@ -7623,6 +8367,8 @@ export namespace Prisma {
     readonly key: FieldRef<"ApiKey", 'String'>
     readonly status: FieldRef<"ApiKey", 'Boolean'>
     readonly permissions: FieldRef<"ApiKey", 'ApiKeyPermission[]'>
+    readonly createdAt: FieldRef<"ApiKey", 'DateTime'>
+    readonly updatedAt: FieldRef<"ApiKey", 'DateTime'>
   }
     
 
@@ -8006,6 +8752,8 @@ export namespace Prisma {
     privateKey: string | null
     refreshToken: string | null
     userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type KeyTokenMaxAggregateOutputType = {
@@ -8015,6 +8763,8 @@ export namespace Prisma {
     privateKey: string | null
     refreshToken: string | null
     userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type KeyTokenCountAggregateOutputType = {
@@ -8025,6 +8775,8 @@ export namespace Prisma {
     refreshTokensUsed: number
     refreshToken: number
     userId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8036,6 +8788,8 @@ export namespace Prisma {
     privateKey?: true
     refreshToken?: true
     userId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type KeyTokenMaxAggregateInputType = {
@@ -8045,6 +8799,8 @@ export namespace Prisma {
     privateKey?: true
     refreshToken?: true
     userId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type KeyTokenCountAggregateInputType = {
@@ -8055,6 +8811,8 @@ export namespace Prisma {
     refreshTokensUsed?: true
     refreshToken?: true
     userId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8138,6 +8896,8 @@ export namespace Prisma {
     refreshTokensUsed: string[]
     refreshToken: string
     userId: string
+    createdAt: Date
+    updatedAt: Date
     _count: KeyTokenCountAggregateOutputType | null
     _min: KeyTokenMinAggregateOutputType | null
     _max: KeyTokenMaxAggregateOutputType | null
@@ -8165,6 +8925,8 @@ export namespace Prisma {
     refreshTokensUsed?: boolean
     refreshToken?: boolean
     userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["keyToken"]>
 
@@ -8176,6 +8938,8 @@ export namespace Prisma {
     refreshTokensUsed?: boolean
     refreshToken?: boolean
     userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["keyToken"]>
 
@@ -8187,6 +8951,8 @@ export namespace Prisma {
     refreshTokensUsed?: boolean
     refreshToken?: boolean
     userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["keyToken"]>
 
@@ -8198,9 +8964,11 @@ export namespace Prisma {
     refreshTokensUsed?: boolean
     refreshToken?: boolean
     userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type KeyTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "browserId" | "publicKey" | "privateKey" | "refreshTokensUsed" | "refreshToken" | "userId", ExtArgs["result"]["keyToken"]>
+  export type KeyTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "browserId" | "publicKey" | "privateKey" | "refreshTokensUsed" | "refreshToken" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["keyToken"]>
   export type KeyTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -8224,6 +8992,8 @@ export namespace Prisma {
       refreshTokensUsed: string[]
       refreshToken: string
       userId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["keyToken"]>
     composites: {}
   }
@@ -8655,6 +9425,8 @@ export namespace Prisma {
     readonly refreshTokensUsed: FieldRef<"KeyToken", 'String[]'>
     readonly refreshToken: FieldRef<"KeyToken", 'String'>
     readonly userId: FieldRef<"KeyToken", 'String'>
+    readonly createdAt: FieldRef<"KeyToken", 'DateTime'>
+    readonly updatedAt: FieldRef<"KeyToken", 'DateTime'>
   }
     
 
@@ -9070,6 +9842,5879 @@ export namespace Prisma {
 
 
   /**
+   * Model HistoricalEvent
+   */
+
+  export type AggregateHistoricalEvent = {
+    _count: HistoricalEventCountAggregateOutputType | null
+    _avg: HistoricalEventAvgAggregateOutputType | null
+    _sum: HistoricalEventSumAggregateOutputType | null
+    _min: HistoricalEventMinAggregateOutputType | null
+    _max: HistoricalEventMaxAggregateOutputType | null
+  }
+
+  export type HistoricalEventAvgAggregateOutputType = {
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+  }
+
+  export type HistoricalEventSumAggregateOutputType = {
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+  }
+
+  export type HistoricalEventMinAggregateOutputType = {
+    id: string | null
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+    content: string | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HistoricalEventMaxAggregateOutputType = {
+    id: string | null
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+    content: string | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HistoricalEventCountAggregateOutputType = {
+    id: number
+    fromDay: number
+    fromMonth: number
+    fromYear: number
+    toDay: number
+    toMonth: number
+    toYear: number
+    content: number
+    authorId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HistoricalEventAvgAggregateInputType = {
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+  }
+
+  export type HistoricalEventSumAggregateInputType = {
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+  }
+
+  export type HistoricalEventMinAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    content?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HistoricalEventMaxAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    content?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HistoricalEventCountAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    content?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HistoricalEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HistoricalEvent to aggregate.
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HistoricalEvents to fetch.
+     */
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HistoricalEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HistoricalEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HistoricalEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HistoricalEvents
+    **/
+    _count?: true | HistoricalEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HistoricalEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HistoricalEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HistoricalEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HistoricalEventMaxAggregateInputType
+  }
+
+  export type GetHistoricalEventAggregateType<T extends HistoricalEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateHistoricalEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHistoricalEvent[P]>
+      : GetScalarType<T[P], AggregateHistoricalEvent[P]>
+  }
+
+
+
+
+  export type HistoricalEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HistoricalEventWhereInput
+    orderBy?: HistoricalEventOrderByWithAggregationInput | HistoricalEventOrderByWithAggregationInput[]
+    by: HistoricalEventScalarFieldEnum[] | HistoricalEventScalarFieldEnum
+    having?: HistoricalEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HistoricalEventCountAggregateInputType | true
+    _avg?: HistoricalEventAvgAggregateInputType
+    _sum?: HistoricalEventSumAggregateInputType
+    _min?: HistoricalEventMinAggregateInputType
+    _max?: HistoricalEventMaxAggregateInputType
+  }
+
+  export type HistoricalEventGroupByOutputType = {
+    id: string
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number
+    toDay: number | null
+    toMonth: number | null
+    toYear: number
+    content: string
+    authorId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: HistoricalEventCountAggregateOutputType | null
+    _avg: HistoricalEventAvgAggregateOutputType | null
+    _sum: HistoricalEventSumAggregateOutputType | null
+    _min: HistoricalEventMinAggregateOutputType | null
+    _max: HistoricalEventMaxAggregateOutputType | null
+  }
+
+  type GetHistoricalEventGroupByPayload<T extends HistoricalEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HistoricalEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HistoricalEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HistoricalEventGroupByOutputType[P]>
+            : GetScalarType<T[P], HistoricalEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HistoricalEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    content?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    editors?: boolean | HistoricalEvent$editorsArgs<ExtArgs>
+    categories?: boolean | HistoricalEvent$categoriesArgs<ExtArgs>
+    _count?: boolean | HistoricalEventCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["historicalEvent"]>
+
+  export type HistoricalEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    content?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["historicalEvent"]>
+
+  export type HistoricalEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    content?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["historicalEvent"]>
+
+  export type HistoricalEventSelectScalar = {
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    content?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HistoricalEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDay" | "fromMonth" | "fromYear" | "toDay" | "toMonth" | "toYear" | "content" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["historicalEvent"]>
+  export type HistoricalEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    editors?: boolean | HistoricalEvent$editorsArgs<ExtArgs>
+    categories?: boolean | HistoricalEvent$categoriesArgs<ExtArgs>
+    _count?: boolean | HistoricalEventCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HistoricalEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type HistoricalEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $HistoricalEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HistoricalEvent"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+      editors: Prisma.$EventEditPayload<ExtArgs>[]
+      categories: Prisma.$EventPeriodPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fromDay: number | null
+      fromMonth: number | null
+      fromYear: number
+      toDay: number | null
+      toMonth: number | null
+      toYear: number
+      content: string
+      authorId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["historicalEvent"]>
+    composites: {}
+  }
+
+  type HistoricalEventGetPayload<S extends boolean | null | undefined | HistoricalEventDefaultArgs> = $Result.GetResult<Prisma.$HistoricalEventPayload, S>
+
+  type HistoricalEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HistoricalEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HistoricalEventCountAggregateInputType | true
+    }
+
+  export interface HistoricalEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HistoricalEvent'], meta: { name: 'HistoricalEvent' } }
+    /**
+     * Find zero or one HistoricalEvent that matches the filter.
+     * @param {HistoricalEventFindUniqueArgs} args - Arguments to find a HistoricalEvent
+     * @example
+     * // Get one HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HistoricalEventFindUniqueArgs>(args: SelectSubset<T, HistoricalEventFindUniqueArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HistoricalEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HistoricalEventFindUniqueOrThrowArgs} args - Arguments to find a HistoricalEvent
+     * @example
+     * // Get one HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HistoricalEventFindUniqueOrThrowArgs>(args: SelectSubset<T, HistoricalEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HistoricalEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventFindFirstArgs} args - Arguments to find a HistoricalEvent
+     * @example
+     * // Get one HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HistoricalEventFindFirstArgs>(args?: SelectSubset<T, HistoricalEventFindFirstArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HistoricalEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventFindFirstOrThrowArgs} args - Arguments to find a HistoricalEvent
+     * @example
+     * // Get one HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HistoricalEventFindFirstOrThrowArgs>(args?: SelectSubset<T, HistoricalEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HistoricalEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HistoricalEvents
+     * const historicalEvents = await prisma.historicalEvent.findMany()
+     * 
+     * // Get first 10 HistoricalEvents
+     * const historicalEvents = await prisma.historicalEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const historicalEventWithIdOnly = await prisma.historicalEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HistoricalEventFindManyArgs>(args?: SelectSubset<T, HistoricalEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HistoricalEvent.
+     * @param {HistoricalEventCreateArgs} args - Arguments to create a HistoricalEvent.
+     * @example
+     * // Create one HistoricalEvent
+     * const HistoricalEvent = await prisma.historicalEvent.create({
+     *   data: {
+     *     // ... data to create a HistoricalEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends HistoricalEventCreateArgs>(args: SelectSubset<T, HistoricalEventCreateArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HistoricalEvents.
+     * @param {HistoricalEventCreateManyArgs} args - Arguments to create many HistoricalEvents.
+     * @example
+     * // Create many HistoricalEvents
+     * const historicalEvent = await prisma.historicalEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HistoricalEventCreateManyArgs>(args?: SelectSubset<T, HistoricalEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HistoricalEvents and returns the data saved in the database.
+     * @param {HistoricalEventCreateManyAndReturnArgs} args - Arguments to create many HistoricalEvents.
+     * @example
+     * // Create many HistoricalEvents
+     * const historicalEvent = await prisma.historicalEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HistoricalEvents and only return the `id`
+     * const historicalEventWithIdOnly = await prisma.historicalEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HistoricalEventCreateManyAndReturnArgs>(args?: SelectSubset<T, HistoricalEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HistoricalEvent.
+     * @param {HistoricalEventDeleteArgs} args - Arguments to delete one HistoricalEvent.
+     * @example
+     * // Delete one HistoricalEvent
+     * const HistoricalEvent = await prisma.historicalEvent.delete({
+     *   where: {
+     *     // ... filter to delete one HistoricalEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HistoricalEventDeleteArgs>(args: SelectSubset<T, HistoricalEventDeleteArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HistoricalEvent.
+     * @param {HistoricalEventUpdateArgs} args - Arguments to update one HistoricalEvent.
+     * @example
+     * // Update one HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HistoricalEventUpdateArgs>(args: SelectSubset<T, HistoricalEventUpdateArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HistoricalEvents.
+     * @param {HistoricalEventDeleteManyArgs} args - Arguments to filter HistoricalEvents to delete.
+     * @example
+     * // Delete a few HistoricalEvents
+     * const { count } = await prisma.historicalEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HistoricalEventDeleteManyArgs>(args?: SelectSubset<T, HistoricalEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HistoricalEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HistoricalEvents
+     * const historicalEvent = await prisma.historicalEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HistoricalEventUpdateManyArgs>(args: SelectSubset<T, HistoricalEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HistoricalEvents and returns the data updated in the database.
+     * @param {HistoricalEventUpdateManyAndReturnArgs} args - Arguments to update many HistoricalEvents.
+     * @example
+     * // Update many HistoricalEvents
+     * const historicalEvent = await prisma.historicalEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HistoricalEvents and only return the `id`
+     * const historicalEventWithIdOnly = await prisma.historicalEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HistoricalEventUpdateManyAndReturnArgs>(args: SelectSubset<T, HistoricalEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HistoricalEvent.
+     * @param {HistoricalEventUpsertArgs} args - Arguments to update or create a HistoricalEvent.
+     * @example
+     * // Update or create a HistoricalEvent
+     * const historicalEvent = await prisma.historicalEvent.upsert({
+     *   create: {
+     *     // ... data to create a HistoricalEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HistoricalEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HistoricalEventUpsertArgs>(args: SelectSubset<T, HistoricalEventUpsertArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HistoricalEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventCountArgs} args - Arguments to filter HistoricalEvents to count.
+     * @example
+     * // Count the number of HistoricalEvents
+     * const count = await prisma.historicalEvent.count({
+     *   where: {
+     *     // ... the filter for the HistoricalEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends HistoricalEventCountArgs>(
+      args?: Subset<T, HistoricalEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HistoricalEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HistoricalEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HistoricalEventAggregateArgs>(args: Subset<T, HistoricalEventAggregateArgs>): Prisma.PrismaPromise<GetHistoricalEventAggregateType<T>>
+
+    /**
+     * Group by HistoricalEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HistoricalEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HistoricalEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HistoricalEventGroupByArgs['orderBy'] }
+        : { orderBy?: HistoricalEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HistoricalEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHistoricalEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HistoricalEvent model
+   */
+  readonly fields: HistoricalEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HistoricalEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HistoricalEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    editors<T extends HistoricalEvent$editorsArgs<ExtArgs> = {}>(args?: Subset<T, HistoricalEvent$editorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    categories<T extends HistoricalEvent$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, HistoricalEvent$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HistoricalEvent model
+   */
+  interface HistoricalEventFieldRefs {
+    readonly id: FieldRef<"HistoricalEvent", 'String'>
+    readonly fromDay: FieldRef<"HistoricalEvent", 'Int'>
+    readonly fromMonth: FieldRef<"HistoricalEvent", 'Int'>
+    readonly fromYear: FieldRef<"HistoricalEvent", 'Int'>
+    readonly toDay: FieldRef<"HistoricalEvent", 'Int'>
+    readonly toMonth: FieldRef<"HistoricalEvent", 'Int'>
+    readonly toYear: FieldRef<"HistoricalEvent", 'Int'>
+    readonly content: FieldRef<"HistoricalEvent", 'String'>
+    readonly authorId: FieldRef<"HistoricalEvent", 'String'>
+    readonly createdAt: FieldRef<"HistoricalEvent", 'DateTime'>
+    readonly updatedAt: FieldRef<"HistoricalEvent", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HistoricalEvent findUnique
+   */
+  export type HistoricalEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter, which HistoricalEvent to fetch.
+     */
+    where: HistoricalEventWhereUniqueInput
+  }
+
+  /**
+   * HistoricalEvent findUniqueOrThrow
+   */
+  export type HistoricalEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter, which HistoricalEvent to fetch.
+     */
+    where: HistoricalEventWhereUniqueInput
+  }
+
+  /**
+   * HistoricalEvent findFirst
+   */
+  export type HistoricalEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter, which HistoricalEvent to fetch.
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HistoricalEvents to fetch.
+     */
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HistoricalEvents.
+     */
+    cursor?: HistoricalEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HistoricalEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HistoricalEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HistoricalEvents.
+     */
+    distinct?: HistoricalEventScalarFieldEnum | HistoricalEventScalarFieldEnum[]
+  }
+
+  /**
+   * HistoricalEvent findFirstOrThrow
+   */
+  export type HistoricalEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter, which HistoricalEvent to fetch.
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HistoricalEvents to fetch.
+     */
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HistoricalEvents.
+     */
+    cursor?: HistoricalEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HistoricalEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HistoricalEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HistoricalEvents.
+     */
+    distinct?: HistoricalEventScalarFieldEnum | HistoricalEventScalarFieldEnum[]
+  }
+
+  /**
+   * HistoricalEvent findMany
+   */
+  export type HistoricalEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter, which HistoricalEvents to fetch.
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HistoricalEvents to fetch.
+     */
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HistoricalEvents.
+     */
+    cursor?: HistoricalEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HistoricalEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HistoricalEvents.
+     */
+    skip?: number
+    distinct?: HistoricalEventScalarFieldEnum | HistoricalEventScalarFieldEnum[]
+  }
+
+  /**
+   * HistoricalEvent create
+   */
+  export type HistoricalEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HistoricalEvent.
+     */
+    data: XOR<HistoricalEventCreateInput, HistoricalEventUncheckedCreateInput>
+  }
+
+  /**
+   * HistoricalEvent createMany
+   */
+  export type HistoricalEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HistoricalEvents.
+     */
+    data: HistoricalEventCreateManyInput | HistoricalEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HistoricalEvent createManyAndReturn
+   */
+  export type HistoricalEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many HistoricalEvents.
+     */
+    data: HistoricalEventCreateManyInput | HistoricalEventCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HistoricalEvent update
+   */
+  export type HistoricalEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HistoricalEvent.
+     */
+    data: XOR<HistoricalEventUpdateInput, HistoricalEventUncheckedUpdateInput>
+    /**
+     * Choose, which HistoricalEvent to update.
+     */
+    where: HistoricalEventWhereUniqueInput
+  }
+
+  /**
+   * HistoricalEvent updateMany
+   */
+  export type HistoricalEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HistoricalEvents.
+     */
+    data: XOR<HistoricalEventUpdateManyMutationInput, HistoricalEventUncheckedUpdateManyInput>
+    /**
+     * Filter which HistoricalEvents to update
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * Limit how many HistoricalEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HistoricalEvent updateManyAndReturn
+   */
+  export type HistoricalEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * The data used to update HistoricalEvents.
+     */
+    data: XOR<HistoricalEventUpdateManyMutationInput, HistoricalEventUncheckedUpdateManyInput>
+    /**
+     * Filter which HistoricalEvents to update
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * Limit how many HistoricalEvents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HistoricalEvent upsert
+   */
+  export type HistoricalEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HistoricalEvent to update in case it exists.
+     */
+    where: HistoricalEventWhereUniqueInput
+    /**
+     * In case the HistoricalEvent found by the `where` argument doesn't exist, create a new HistoricalEvent with this data.
+     */
+    create: XOR<HistoricalEventCreateInput, HistoricalEventUncheckedCreateInput>
+    /**
+     * In case the HistoricalEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HistoricalEventUpdateInput, HistoricalEventUncheckedUpdateInput>
+  }
+
+  /**
+   * HistoricalEvent delete
+   */
+  export type HistoricalEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    /**
+     * Filter which HistoricalEvent to delete.
+     */
+    where: HistoricalEventWhereUniqueInput
+  }
+
+  /**
+   * HistoricalEvent deleteMany
+   */
+  export type HistoricalEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HistoricalEvents to delete
+     */
+    where?: HistoricalEventWhereInput
+    /**
+     * Limit how many HistoricalEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HistoricalEvent.editors
+   */
+  export type HistoricalEvent$editorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    where?: EventEditWhereInput
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    cursor?: EventEditWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventEditScalarFieldEnum | EventEditScalarFieldEnum[]
+  }
+
+  /**
+   * HistoricalEvent.categories
+   */
+  export type HistoricalEvent$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    where?: EventPeriodWhereInput
+    orderBy?: EventPeriodOrderByWithRelationInput | EventPeriodOrderByWithRelationInput[]
+    cursor?: EventPeriodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventPeriodScalarFieldEnum | EventPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * HistoricalEvent without action
+   */
+  export type HistoricalEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EventEdit
+   */
+
+  export type AggregateEventEdit = {
+    _count: EventEditCountAggregateOutputType | null
+    _avg: EventEditAvgAggregateOutputType | null
+    _sum: EventEditSumAggregateOutputType | null
+    _min: EventEditMinAggregateOutputType | null
+    _max: EventEditMaxAggregateOutputType | null
+  }
+
+  export type EventEditAvgAggregateOutputType = {
+    prevFromDay: number | null
+    prevFromMonth: number | null
+    prevFromYear: number | null
+    prevToDay: number | null
+    prevToMonth: number | null
+    prevToYear: number | null
+    newFromDay: number | null
+    newFromMonth: number | null
+    newFromYear: number | null
+    newToDay: number | null
+    newToMonth: number | null
+    newToYear: number | null
+  }
+
+  export type EventEditSumAggregateOutputType = {
+    prevFromDay: number | null
+    prevFromMonth: number | null
+    prevFromYear: number | null
+    prevToDay: number | null
+    prevToMonth: number | null
+    prevToYear: number | null
+    newFromDay: number | null
+    newFromMonth: number | null
+    newFromYear: number | null
+    newToDay: number | null
+    newToMonth: number | null
+    newToYear: number | null
+  }
+
+  export type EventEditMinAggregateOutputType = {
+    id: string | null
+    eventId: string | null
+    editorId: string | null
+    editedAt: Date | null
+    prevContent: string | null
+    newContent: string | null
+    prevFromDay: number | null
+    prevFromMonth: number | null
+    prevFromYear: number | null
+    prevToDay: number | null
+    prevToMonth: number | null
+    prevToYear: number | null
+    newFromDay: number | null
+    newFromMonth: number | null
+    newFromYear: number | null
+    newToDay: number | null
+    newToMonth: number | null
+    newToYear: number | null
+  }
+
+  export type EventEditMaxAggregateOutputType = {
+    id: string | null
+    eventId: string | null
+    editorId: string | null
+    editedAt: Date | null
+    prevContent: string | null
+    newContent: string | null
+    prevFromDay: number | null
+    prevFromMonth: number | null
+    prevFromYear: number | null
+    prevToDay: number | null
+    prevToMonth: number | null
+    prevToYear: number | null
+    newFromDay: number | null
+    newFromMonth: number | null
+    newFromYear: number | null
+    newToDay: number | null
+    newToMonth: number | null
+    newToYear: number | null
+  }
+
+  export type EventEditCountAggregateOutputType = {
+    id: number
+    eventId: number
+    editorId: number
+    editedAt: number
+    prevContent: number
+    newContent: number
+    prevFromDay: number
+    prevFromMonth: number
+    prevFromYear: number
+    prevToDay: number
+    prevToMonth: number
+    prevToYear: number
+    newFromDay: number
+    newFromMonth: number
+    newFromYear: number
+    newToDay: number
+    newToMonth: number
+    newToYear: number
+    _all: number
+  }
+
+
+  export type EventEditAvgAggregateInputType = {
+    prevFromDay?: true
+    prevFromMonth?: true
+    prevFromYear?: true
+    prevToDay?: true
+    prevToMonth?: true
+    prevToYear?: true
+    newFromDay?: true
+    newFromMonth?: true
+    newFromYear?: true
+    newToDay?: true
+    newToMonth?: true
+    newToYear?: true
+  }
+
+  export type EventEditSumAggregateInputType = {
+    prevFromDay?: true
+    prevFromMonth?: true
+    prevFromYear?: true
+    prevToDay?: true
+    prevToMonth?: true
+    prevToYear?: true
+    newFromDay?: true
+    newFromMonth?: true
+    newFromYear?: true
+    newToDay?: true
+    newToMonth?: true
+    newToYear?: true
+  }
+
+  export type EventEditMinAggregateInputType = {
+    id?: true
+    eventId?: true
+    editorId?: true
+    editedAt?: true
+    prevContent?: true
+    newContent?: true
+    prevFromDay?: true
+    prevFromMonth?: true
+    prevFromYear?: true
+    prevToDay?: true
+    prevToMonth?: true
+    prevToYear?: true
+    newFromDay?: true
+    newFromMonth?: true
+    newFromYear?: true
+    newToDay?: true
+    newToMonth?: true
+    newToYear?: true
+  }
+
+  export type EventEditMaxAggregateInputType = {
+    id?: true
+    eventId?: true
+    editorId?: true
+    editedAt?: true
+    prevContent?: true
+    newContent?: true
+    prevFromDay?: true
+    prevFromMonth?: true
+    prevFromYear?: true
+    prevToDay?: true
+    prevToMonth?: true
+    prevToYear?: true
+    newFromDay?: true
+    newFromMonth?: true
+    newFromYear?: true
+    newToDay?: true
+    newToMonth?: true
+    newToYear?: true
+  }
+
+  export type EventEditCountAggregateInputType = {
+    id?: true
+    eventId?: true
+    editorId?: true
+    editedAt?: true
+    prevContent?: true
+    newContent?: true
+    prevFromDay?: true
+    prevFromMonth?: true
+    prevFromYear?: true
+    prevToDay?: true
+    prevToMonth?: true
+    prevToYear?: true
+    newFromDay?: true
+    newFromMonth?: true
+    newFromYear?: true
+    newToDay?: true
+    newToMonth?: true
+    newToYear?: true
+    _all?: true
+  }
+
+  export type EventEditAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventEdit to aggregate.
+     */
+    where?: EventEditWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventEdits to fetch.
+     */
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventEditWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventEdits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventEdits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EventEdits
+    **/
+    _count?: true | EventEditCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EventEditAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EventEditSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventEditMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventEditMaxAggregateInputType
+  }
+
+  export type GetEventEditAggregateType<T extends EventEditAggregateArgs> = {
+        [P in keyof T & keyof AggregateEventEdit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEventEdit[P]>
+      : GetScalarType<T[P], AggregateEventEdit[P]>
+  }
+
+
+
+
+  export type EventEditGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventEditWhereInput
+    orderBy?: EventEditOrderByWithAggregationInput | EventEditOrderByWithAggregationInput[]
+    by: EventEditScalarFieldEnum[] | EventEditScalarFieldEnum
+    having?: EventEditScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventEditCountAggregateInputType | true
+    _avg?: EventEditAvgAggregateInputType
+    _sum?: EventEditSumAggregateInputType
+    _min?: EventEditMinAggregateInputType
+    _max?: EventEditMaxAggregateInputType
+  }
+
+  export type EventEditGroupByOutputType = {
+    id: string
+    eventId: string
+    editorId: string
+    editedAt: Date
+    prevContent: string
+    newContent: string
+    prevFromDay: number | null
+    prevFromMonth: number | null
+    prevFromYear: number
+    prevToDay: number | null
+    prevToMonth: number | null
+    prevToYear: number
+    newFromDay: number | null
+    newFromMonth: number | null
+    newFromYear: number
+    newToDay: number | null
+    newToMonth: number | null
+    newToYear: number
+    _count: EventEditCountAggregateOutputType | null
+    _avg: EventEditAvgAggregateOutputType | null
+    _sum: EventEditSumAggregateOutputType | null
+    _min: EventEditMinAggregateOutputType | null
+    _max: EventEditMaxAggregateOutputType | null
+  }
+
+  type GetEventEditGroupByPayload<T extends EventEditGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventEditGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventEditGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventEditGroupByOutputType[P]>
+            : GetScalarType<T[P], EventEditGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventEditSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    editorId?: boolean
+    editedAt?: boolean
+    prevContent?: boolean
+    newContent?: boolean
+    prevFromDay?: boolean
+    prevFromMonth?: boolean
+    prevFromYear?: boolean
+    prevToDay?: boolean
+    prevToMonth?: boolean
+    prevToYear?: boolean
+    newFromDay?: boolean
+    newFromMonth?: boolean
+    newFromYear?: boolean
+    newToDay?: boolean
+    newToMonth?: boolean
+    newToYear?: boolean
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventEdit"]>
+
+  export type EventEditSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    editorId?: boolean
+    editedAt?: boolean
+    prevContent?: boolean
+    newContent?: boolean
+    prevFromDay?: boolean
+    prevFromMonth?: boolean
+    prevFromYear?: boolean
+    prevToDay?: boolean
+    prevToMonth?: boolean
+    prevToYear?: boolean
+    newFromDay?: boolean
+    newFromMonth?: boolean
+    newFromYear?: boolean
+    newToDay?: boolean
+    newToMonth?: boolean
+    newToYear?: boolean
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventEdit"]>
+
+  export type EventEditSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    editorId?: boolean
+    editedAt?: boolean
+    prevContent?: boolean
+    newContent?: boolean
+    prevFromDay?: boolean
+    prevFromMonth?: boolean
+    prevFromYear?: boolean
+    prevToDay?: boolean
+    prevToMonth?: boolean
+    prevToYear?: boolean
+    newFromDay?: boolean
+    newFromMonth?: boolean
+    newFromYear?: boolean
+    newToDay?: boolean
+    newToMonth?: boolean
+    newToYear?: boolean
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventEdit"]>
+
+  export type EventEditSelectScalar = {
+    id?: boolean
+    eventId?: boolean
+    editorId?: boolean
+    editedAt?: boolean
+    prevContent?: boolean
+    newContent?: boolean
+    prevFromDay?: boolean
+    prevFromMonth?: boolean
+    prevFromYear?: boolean
+    prevToDay?: boolean
+    prevToMonth?: boolean
+    prevToYear?: boolean
+    newFromDay?: boolean
+    newFromMonth?: boolean
+    newFromYear?: boolean
+    newToDay?: boolean
+    newToMonth?: boolean
+    newToYear?: boolean
+  }
+
+  export type EventEditOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "editorId" | "editedAt" | "prevContent" | "newContent" | "prevFromDay" | "prevFromMonth" | "prevFromYear" | "prevToDay" | "prevToMonth" | "prevToYear" | "newFromDay" | "newFromMonth" | "newFromYear" | "newToDay" | "newToMonth" | "newToYear", ExtArgs["result"]["eventEdit"]>
+  export type EventEditInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type EventEditIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type EventEditIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    event?: boolean | HistoricalEventDefaultArgs<ExtArgs>
+    editor?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $EventEditPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EventEdit"
+    objects: {
+      event: Prisma.$HistoricalEventPayload<ExtArgs>
+      editor: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      eventId: string
+      editorId: string
+      editedAt: Date
+      prevContent: string
+      newContent: string
+      prevFromDay: number | null
+      prevFromMonth: number | null
+      prevFromYear: number
+      prevToDay: number | null
+      prevToMonth: number | null
+      prevToYear: number
+      newFromDay: number | null
+      newFromMonth: number | null
+      newFromYear: number
+      newToDay: number | null
+      newToMonth: number | null
+      newToYear: number
+    }, ExtArgs["result"]["eventEdit"]>
+    composites: {}
+  }
+
+  type EventEditGetPayload<S extends boolean | null | undefined | EventEditDefaultArgs> = $Result.GetResult<Prisma.$EventEditPayload, S>
+
+  type EventEditCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventEditFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventEditCountAggregateInputType | true
+    }
+
+  export interface EventEditDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EventEdit'], meta: { name: 'EventEdit' } }
+    /**
+     * Find zero or one EventEdit that matches the filter.
+     * @param {EventEditFindUniqueArgs} args - Arguments to find a EventEdit
+     * @example
+     * // Get one EventEdit
+     * const eventEdit = await prisma.eventEdit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventEditFindUniqueArgs>(args: SelectSubset<T, EventEditFindUniqueArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EventEdit that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventEditFindUniqueOrThrowArgs} args - Arguments to find a EventEdit
+     * @example
+     * // Get one EventEdit
+     * const eventEdit = await prisma.eventEdit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventEditFindUniqueOrThrowArgs>(args: SelectSubset<T, EventEditFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventEdit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditFindFirstArgs} args - Arguments to find a EventEdit
+     * @example
+     * // Get one EventEdit
+     * const eventEdit = await prisma.eventEdit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventEditFindFirstArgs>(args?: SelectSubset<T, EventEditFindFirstArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventEdit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditFindFirstOrThrowArgs} args - Arguments to find a EventEdit
+     * @example
+     * // Get one EventEdit
+     * const eventEdit = await prisma.eventEdit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventEditFindFirstOrThrowArgs>(args?: SelectSubset<T, EventEditFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EventEdits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EventEdits
+     * const eventEdits = await prisma.eventEdit.findMany()
+     * 
+     * // Get first 10 EventEdits
+     * const eventEdits = await prisma.eventEdit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventEditWithIdOnly = await prisma.eventEdit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventEditFindManyArgs>(args?: SelectSubset<T, EventEditFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EventEdit.
+     * @param {EventEditCreateArgs} args - Arguments to create a EventEdit.
+     * @example
+     * // Create one EventEdit
+     * const EventEdit = await prisma.eventEdit.create({
+     *   data: {
+     *     // ... data to create a EventEdit
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventEditCreateArgs>(args: SelectSubset<T, EventEditCreateArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EventEdits.
+     * @param {EventEditCreateManyArgs} args - Arguments to create many EventEdits.
+     * @example
+     * // Create many EventEdits
+     * const eventEdit = await prisma.eventEdit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventEditCreateManyArgs>(args?: SelectSubset<T, EventEditCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EventEdits and returns the data saved in the database.
+     * @param {EventEditCreateManyAndReturnArgs} args - Arguments to create many EventEdits.
+     * @example
+     * // Create many EventEdits
+     * const eventEdit = await prisma.eventEdit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EventEdits and only return the `id`
+     * const eventEditWithIdOnly = await prisma.eventEdit.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventEditCreateManyAndReturnArgs>(args?: SelectSubset<T, EventEditCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EventEdit.
+     * @param {EventEditDeleteArgs} args - Arguments to delete one EventEdit.
+     * @example
+     * // Delete one EventEdit
+     * const EventEdit = await prisma.eventEdit.delete({
+     *   where: {
+     *     // ... filter to delete one EventEdit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventEditDeleteArgs>(args: SelectSubset<T, EventEditDeleteArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EventEdit.
+     * @param {EventEditUpdateArgs} args - Arguments to update one EventEdit.
+     * @example
+     * // Update one EventEdit
+     * const eventEdit = await prisma.eventEdit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventEditUpdateArgs>(args: SelectSubset<T, EventEditUpdateArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EventEdits.
+     * @param {EventEditDeleteManyArgs} args - Arguments to filter EventEdits to delete.
+     * @example
+     * // Delete a few EventEdits
+     * const { count } = await prisma.eventEdit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventEditDeleteManyArgs>(args?: SelectSubset<T, EventEditDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventEdits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EventEdits
+     * const eventEdit = await prisma.eventEdit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventEditUpdateManyArgs>(args: SelectSubset<T, EventEditUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventEdits and returns the data updated in the database.
+     * @param {EventEditUpdateManyAndReturnArgs} args - Arguments to update many EventEdits.
+     * @example
+     * // Update many EventEdits
+     * const eventEdit = await prisma.eventEdit.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EventEdits and only return the `id`
+     * const eventEditWithIdOnly = await prisma.eventEdit.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventEditUpdateManyAndReturnArgs>(args: SelectSubset<T, EventEditUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EventEdit.
+     * @param {EventEditUpsertArgs} args - Arguments to update or create a EventEdit.
+     * @example
+     * // Update or create a EventEdit
+     * const eventEdit = await prisma.eventEdit.upsert({
+     *   create: {
+     *     // ... data to create a EventEdit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EventEdit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventEditUpsertArgs>(args: SelectSubset<T, EventEditUpsertArgs<ExtArgs>>): Prisma__EventEditClient<$Result.GetResult<Prisma.$EventEditPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EventEdits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditCountArgs} args - Arguments to filter EventEdits to count.
+     * @example
+     * // Count the number of EventEdits
+     * const count = await prisma.eventEdit.count({
+     *   where: {
+     *     // ... the filter for the EventEdits we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventEditCountArgs>(
+      args?: Subset<T, EventEditCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventEditCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EventEdit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventEditAggregateArgs>(args: Subset<T, EventEditAggregateArgs>): Prisma.PrismaPromise<GetEventEditAggregateType<T>>
+
+    /**
+     * Group by EventEdit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventEditGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventEditGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventEditGroupByArgs['orderBy'] }
+        : { orderBy?: EventEditGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventEditGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventEditGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EventEdit model
+   */
+  readonly fields: EventEditFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EventEdit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventEditClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    event<T extends HistoricalEventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HistoricalEventDefaultArgs<ExtArgs>>): Prisma__HistoricalEventClient<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    editor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EventEdit model
+   */
+  interface EventEditFieldRefs {
+    readonly id: FieldRef<"EventEdit", 'String'>
+    readonly eventId: FieldRef<"EventEdit", 'String'>
+    readonly editorId: FieldRef<"EventEdit", 'String'>
+    readonly editedAt: FieldRef<"EventEdit", 'DateTime'>
+    readonly prevContent: FieldRef<"EventEdit", 'String'>
+    readonly newContent: FieldRef<"EventEdit", 'String'>
+    readonly prevFromDay: FieldRef<"EventEdit", 'Int'>
+    readonly prevFromMonth: FieldRef<"EventEdit", 'Int'>
+    readonly prevFromYear: FieldRef<"EventEdit", 'Int'>
+    readonly prevToDay: FieldRef<"EventEdit", 'Int'>
+    readonly prevToMonth: FieldRef<"EventEdit", 'Int'>
+    readonly prevToYear: FieldRef<"EventEdit", 'Int'>
+    readonly newFromDay: FieldRef<"EventEdit", 'Int'>
+    readonly newFromMonth: FieldRef<"EventEdit", 'Int'>
+    readonly newFromYear: FieldRef<"EventEdit", 'Int'>
+    readonly newToDay: FieldRef<"EventEdit", 'Int'>
+    readonly newToMonth: FieldRef<"EventEdit", 'Int'>
+    readonly newToYear: FieldRef<"EventEdit", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EventEdit findUnique
+   */
+  export type EventEditFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter, which EventEdit to fetch.
+     */
+    where: EventEditWhereUniqueInput
+  }
+
+  /**
+   * EventEdit findUniqueOrThrow
+   */
+  export type EventEditFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter, which EventEdit to fetch.
+     */
+    where: EventEditWhereUniqueInput
+  }
+
+  /**
+   * EventEdit findFirst
+   */
+  export type EventEditFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter, which EventEdit to fetch.
+     */
+    where?: EventEditWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventEdits to fetch.
+     */
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventEdits.
+     */
+    cursor?: EventEditWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventEdits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventEdits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventEdits.
+     */
+    distinct?: EventEditScalarFieldEnum | EventEditScalarFieldEnum[]
+  }
+
+  /**
+   * EventEdit findFirstOrThrow
+   */
+  export type EventEditFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter, which EventEdit to fetch.
+     */
+    where?: EventEditWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventEdits to fetch.
+     */
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventEdits.
+     */
+    cursor?: EventEditWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventEdits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventEdits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventEdits.
+     */
+    distinct?: EventEditScalarFieldEnum | EventEditScalarFieldEnum[]
+  }
+
+  /**
+   * EventEdit findMany
+   */
+  export type EventEditFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter, which EventEdits to fetch.
+     */
+    where?: EventEditWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventEdits to fetch.
+     */
+    orderBy?: EventEditOrderByWithRelationInput | EventEditOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EventEdits.
+     */
+    cursor?: EventEditWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventEdits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventEdits.
+     */
+    skip?: number
+    distinct?: EventEditScalarFieldEnum | EventEditScalarFieldEnum[]
+  }
+
+  /**
+   * EventEdit create
+   */
+  export type EventEditCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EventEdit.
+     */
+    data: XOR<EventEditCreateInput, EventEditUncheckedCreateInput>
+  }
+
+  /**
+   * EventEdit createMany
+   */
+  export type EventEditCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EventEdits.
+     */
+    data: EventEditCreateManyInput | EventEditCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventEdit createManyAndReturn
+   */
+  export type EventEditCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * The data used to create many EventEdits.
+     */
+    data: EventEditCreateManyInput | EventEditCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventEdit update
+   */
+  export type EventEditUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EventEdit.
+     */
+    data: XOR<EventEditUpdateInput, EventEditUncheckedUpdateInput>
+    /**
+     * Choose, which EventEdit to update.
+     */
+    where: EventEditWhereUniqueInput
+  }
+
+  /**
+   * EventEdit updateMany
+   */
+  export type EventEditUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EventEdits.
+     */
+    data: XOR<EventEditUpdateManyMutationInput, EventEditUncheckedUpdateManyInput>
+    /**
+     * Filter which EventEdits to update
+     */
+    where?: EventEditWhereInput
+    /**
+     * Limit how many EventEdits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventEdit updateManyAndReturn
+   */
+  export type EventEditUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * The data used to update EventEdits.
+     */
+    data: XOR<EventEditUpdateManyMutationInput, EventEditUncheckedUpdateManyInput>
+    /**
+     * Filter which EventEdits to update
+     */
+    where?: EventEditWhereInput
+    /**
+     * Limit how many EventEdits to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventEdit upsert
+   */
+  export type EventEditUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EventEdit to update in case it exists.
+     */
+    where: EventEditWhereUniqueInput
+    /**
+     * In case the EventEdit found by the `where` argument doesn't exist, create a new EventEdit with this data.
+     */
+    create: XOR<EventEditCreateInput, EventEditUncheckedCreateInput>
+    /**
+     * In case the EventEdit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventEditUpdateInput, EventEditUncheckedUpdateInput>
+  }
+
+  /**
+   * EventEdit delete
+   */
+  export type EventEditDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+    /**
+     * Filter which EventEdit to delete.
+     */
+    where: EventEditWhereUniqueInput
+  }
+
+  /**
+   * EventEdit deleteMany
+   */
+  export type EventEditDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventEdits to delete
+     */
+    where?: EventEditWhereInput
+    /**
+     * Limit how many EventEdits to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventEdit without action
+   */
+  export type EventEditDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventEdit
+     */
+    select?: EventEditSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventEdit
+     */
+    omit?: EventEditOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventEditInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EventPeriod
+   */
+
+  export type AggregateEventPeriod = {
+    _count: EventPeriodCountAggregateOutputType | null
+    _avg: EventPeriodAvgAggregateOutputType | null
+    _sum: EventPeriodSumAggregateOutputType | null
+    _min: EventPeriodMinAggregateOutputType | null
+    _max: EventPeriodMaxAggregateOutputType | null
+  }
+
+  export type EventPeriodAvgAggregateOutputType = {
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+  }
+
+  export type EventPeriodSumAggregateOutputType = {
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+  }
+
+  export type EventPeriodMinAggregateOutputType = {
+    id: string | null
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type EventPeriodMaxAggregateOutputType = {
+    id: string | null
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number | null
+    toDay: number | null
+    toMonth: number | null
+    toYear: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type EventPeriodCountAggregateOutputType = {
+    id: number
+    fromDay: number
+    fromMonth: number
+    fromYear: number
+    toDay: number
+    toMonth: number
+    toYear: number
+    name: number
+    slug: number
+    description: number
+    _all: number
+  }
+
+
+  export type EventPeriodAvgAggregateInputType = {
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+  }
+
+  export type EventPeriodSumAggregateInputType = {
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+  }
+
+  export type EventPeriodMinAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type EventPeriodMaxAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type EventPeriodCountAggregateInputType = {
+    id?: true
+    fromDay?: true
+    fromMonth?: true
+    fromYear?: true
+    toDay?: true
+    toMonth?: true
+    toYear?: true
+    name?: true
+    slug?: true
+    description?: true
+    _all?: true
+  }
+
+  export type EventPeriodAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventPeriod to aggregate.
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventPeriods to fetch.
+     */
+    orderBy?: EventPeriodOrderByWithRelationInput | EventPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EventPeriods
+    **/
+    _count?: true | EventPeriodCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EventPeriodAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EventPeriodSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventPeriodMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventPeriodMaxAggregateInputType
+  }
+
+  export type GetEventPeriodAggregateType<T extends EventPeriodAggregateArgs> = {
+        [P in keyof T & keyof AggregateEventPeriod]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEventPeriod[P]>
+      : GetScalarType<T[P], AggregateEventPeriod[P]>
+  }
+
+
+
+
+  export type EventPeriodGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventPeriodWhereInput
+    orderBy?: EventPeriodOrderByWithAggregationInput | EventPeriodOrderByWithAggregationInput[]
+    by: EventPeriodScalarFieldEnum[] | EventPeriodScalarFieldEnum
+    having?: EventPeriodScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventPeriodCountAggregateInputType | true
+    _avg?: EventPeriodAvgAggregateInputType
+    _sum?: EventPeriodSumAggregateInputType
+    _min?: EventPeriodMinAggregateInputType
+    _max?: EventPeriodMaxAggregateInputType
+  }
+
+  export type EventPeriodGroupByOutputType = {
+    id: string
+    fromDay: number | null
+    fromMonth: number | null
+    fromYear: number
+    toDay: number | null
+    toMonth: number | null
+    toYear: number
+    name: string
+    slug: string
+    description: string | null
+    _count: EventPeriodCountAggregateOutputType | null
+    _avg: EventPeriodAvgAggregateOutputType | null
+    _sum: EventPeriodSumAggregateOutputType | null
+    _min: EventPeriodMinAggregateOutputType | null
+    _max: EventPeriodMaxAggregateOutputType | null
+  }
+
+  type GetEventPeriodGroupByPayload<T extends EventPeriodGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventPeriodGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventPeriodGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventPeriodGroupByOutputType[P]>
+            : GetScalarType<T[P], EventPeriodGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventPeriodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    events?: boolean | EventPeriod$eventsArgs<ExtArgs>
+    _count?: boolean | EventPeriodCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventPeriod"]>
+
+  export type EventPeriodSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["eventPeriod"]>
+
+  export type EventPeriodSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["eventPeriod"]>
+
+  export type EventPeriodSelectScalar = {
+    id?: boolean
+    fromDay?: boolean
+    fromMonth?: boolean
+    fromYear?: boolean
+    toDay?: boolean
+    toMonth?: boolean
+    toYear?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }
+
+  export type EventPeriodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fromDay" | "fromMonth" | "fromYear" | "toDay" | "toMonth" | "toYear" | "name" | "slug" | "description", ExtArgs["result"]["eventPeriod"]>
+  export type EventPeriodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | EventPeriod$eventsArgs<ExtArgs>
+    _count?: boolean | EventPeriodCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EventPeriodIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EventPeriodIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $EventPeriodPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EventPeriod"
+    objects: {
+      events: Prisma.$HistoricalEventPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fromDay: number | null
+      fromMonth: number | null
+      fromYear: number
+      toDay: number | null
+      toMonth: number | null
+      toYear: number
+      name: string
+      slug: string
+      description: string | null
+    }, ExtArgs["result"]["eventPeriod"]>
+    composites: {}
+  }
+
+  type EventPeriodGetPayload<S extends boolean | null | undefined | EventPeriodDefaultArgs> = $Result.GetResult<Prisma.$EventPeriodPayload, S>
+
+  type EventPeriodCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventPeriodFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventPeriodCountAggregateInputType | true
+    }
+
+  export interface EventPeriodDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EventPeriod'], meta: { name: 'EventPeriod' } }
+    /**
+     * Find zero or one EventPeriod that matches the filter.
+     * @param {EventPeriodFindUniqueArgs} args - Arguments to find a EventPeriod
+     * @example
+     * // Get one EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventPeriodFindUniqueArgs>(args: SelectSubset<T, EventPeriodFindUniqueArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EventPeriod that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventPeriodFindUniqueOrThrowArgs} args - Arguments to find a EventPeriod
+     * @example
+     * // Get one EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventPeriodFindUniqueOrThrowArgs>(args: SelectSubset<T, EventPeriodFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventPeriod that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodFindFirstArgs} args - Arguments to find a EventPeriod
+     * @example
+     * // Get one EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventPeriodFindFirstArgs>(args?: SelectSubset<T, EventPeriodFindFirstArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventPeriod that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodFindFirstOrThrowArgs} args - Arguments to find a EventPeriod
+     * @example
+     * // Get one EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventPeriodFindFirstOrThrowArgs>(args?: SelectSubset<T, EventPeriodFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EventPeriods that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EventPeriods
+     * const eventPeriods = await prisma.eventPeriod.findMany()
+     * 
+     * // Get first 10 EventPeriods
+     * const eventPeriods = await prisma.eventPeriod.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventPeriodWithIdOnly = await prisma.eventPeriod.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventPeriodFindManyArgs>(args?: SelectSubset<T, EventPeriodFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EventPeriod.
+     * @param {EventPeriodCreateArgs} args - Arguments to create a EventPeriod.
+     * @example
+     * // Create one EventPeriod
+     * const EventPeriod = await prisma.eventPeriod.create({
+     *   data: {
+     *     // ... data to create a EventPeriod
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventPeriodCreateArgs>(args: SelectSubset<T, EventPeriodCreateArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EventPeriods.
+     * @param {EventPeriodCreateManyArgs} args - Arguments to create many EventPeriods.
+     * @example
+     * // Create many EventPeriods
+     * const eventPeriod = await prisma.eventPeriod.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventPeriodCreateManyArgs>(args?: SelectSubset<T, EventPeriodCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EventPeriods and returns the data saved in the database.
+     * @param {EventPeriodCreateManyAndReturnArgs} args - Arguments to create many EventPeriods.
+     * @example
+     * // Create many EventPeriods
+     * const eventPeriod = await prisma.eventPeriod.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EventPeriods and only return the `id`
+     * const eventPeriodWithIdOnly = await prisma.eventPeriod.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventPeriodCreateManyAndReturnArgs>(args?: SelectSubset<T, EventPeriodCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EventPeriod.
+     * @param {EventPeriodDeleteArgs} args - Arguments to delete one EventPeriod.
+     * @example
+     * // Delete one EventPeriod
+     * const EventPeriod = await prisma.eventPeriod.delete({
+     *   where: {
+     *     // ... filter to delete one EventPeriod
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventPeriodDeleteArgs>(args: SelectSubset<T, EventPeriodDeleteArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EventPeriod.
+     * @param {EventPeriodUpdateArgs} args - Arguments to update one EventPeriod.
+     * @example
+     * // Update one EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventPeriodUpdateArgs>(args: SelectSubset<T, EventPeriodUpdateArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EventPeriods.
+     * @param {EventPeriodDeleteManyArgs} args - Arguments to filter EventPeriods to delete.
+     * @example
+     * // Delete a few EventPeriods
+     * const { count } = await prisma.eventPeriod.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventPeriodDeleteManyArgs>(args?: SelectSubset<T, EventPeriodDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventPeriods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EventPeriods
+     * const eventPeriod = await prisma.eventPeriod.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventPeriodUpdateManyArgs>(args: SelectSubset<T, EventPeriodUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventPeriods and returns the data updated in the database.
+     * @param {EventPeriodUpdateManyAndReturnArgs} args - Arguments to update many EventPeriods.
+     * @example
+     * // Update many EventPeriods
+     * const eventPeriod = await prisma.eventPeriod.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EventPeriods and only return the `id`
+     * const eventPeriodWithIdOnly = await prisma.eventPeriod.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventPeriodUpdateManyAndReturnArgs>(args: SelectSubset<T, EventPeriodUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EventPeriod.
+     * @param {EventPeriodUpsertArgs} args - Arguments to update or create a EventPeriod.
+     * @example
+     * // Update or create a EventPeriod
+     * const eventPeriod = await prisma.eventPeriod.upsert({
+     *   create: {
+     *     // ... data to create a EventPeriod
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EventPeriod we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventPeriodUpsertArgs>(args: SelectSubset<T, EventPeriodUpsertArgs<ExtArgs>>): Prisma__EventPeriodClient<$Result.GetResult<Prisma.$EventPeriodPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EventPeriods.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodCountArgs} args - Arguments to filter EventPeriods to count.
+     * @example
+     * // Count the number of EventPeriods
+     * const count = await prisma.eventPeriod.count({
+     *   where: {
+     *     // ... the filter for the EventPeriods we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventPeriodCountArgs>(
+      args?: Subset<T, EventPeriodCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventPeriodCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EventPeriod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventPeriodAggregateArgs>(args: Subset<T, EventPeriodAggregateArgs>): Prisma.PrismaPromise<GetEventPeriodAggregateType<T>>
+
+    /**
+     * Group by EventPeriod.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventPeriodGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventPeriodGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventPeriodGroupByArgs['orderBy'] }
+        : { orderBy?: EventPeriodGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventPeriodGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventPeriodGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EventPeriod model
+   */
+  readonly fields: EventPeriodFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EventPeriod.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventPeriodClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    events<T extends EventPeriod$eventsArgs<ExtArgs> = {}>(args?: Subset<T, EventPeriod$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoricalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EventPeriod model
+   */
+  interface EventPeriodFieldRefs {
+    readonly id: FieldRef<"EventPeriod", 'String'>
+    readonly fromDay: FieldRef<"EventPeriod", 'Int'>
+    readonly fromMonth: FieldRef<"EventPeriod", 'Int'>
+    readonly fromYear: FieldRef<"EventPeriod", 'Int'>
+    readonly toDay: FieldRef<"EventPeriod", 'Int'>
+    readonly toMonth: FieldRef<"EventPeriod", 'Int'>
+    readonly toYear: FieldRef<"EventPeriod", 'Int'>
+    readonly name: FieldRef<"EventPeriod", 'String'>
+    readonly slug: FieldRef<"EventPeriod", 'String'>
+    readonly description: FieldRef<"EventPeriod", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EventPeriod findUnique
+   */
+  export type EventPeriodFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which EventPeriod to fetch.
+     */
+    where: EventPeriodWhereUniqueInput
+  }
+
+  /**
+   * EventPeriod findUniqueOrThrow
+   */
+  export type EventPeriodFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which EventPeriod to fetch.
+     */
+    where: EventPeriodWhereUniqueInput
+  }
+
+  /**
+   * EventPeriod findFirst
+   */
+  export type EventPeriodFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which EventPeriod to fetch.
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventPeriods to fetch.
+     */
+    orderBy?: EventPeriodOrderByWithRelationInput | EventPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventPeriods.
+     */
+    cursor?: EventPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventPeriods.
+     */
+    distinct?: EventPeriodScalarFieldEnum | EventPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * EventPeriod findFirstOrThrow
+   */
+  export type EventPeriodFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which EventPeriod to fetch.
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventPeriods to fetch.
+     */
+    orderBy?: EventPeriodOrderByWithRelationInput | EventPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventPeriods.
+     */
+    cursor?: EventPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventPeriods.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventPeriods.
+     */
+    distinct?: EventPeriodScalarFieldEnum | EventPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * EventPeriod findMany
+   */
+  export type EventPeriodFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter, which EventPeriods to fetch.
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventPeriods to fetch.
+     */
+    orderBy?: EventPeriodOrderByWithRelationInput | EventPeriodOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EventPeriods.
+     */
+    cursor?: EventPeriodWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventPeriods from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventPeriods.
+     */
+    skip?: number
+    distinct?: EventPeriodScalarFieldEnum | EventPeriodScalarFieldEnum[]
+  }
+
+  /**
+   * EventPeriod create
+   */
+  export type EventPeriodCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EventPeriod.
+     */
+    data: XOR<EventPeriodCreateInput, EventPeriodUncheckedCreateInput>
+  }
+
+  /**
+   * EventPeriod createMany
+   */
+  export type EventPeriodCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EventPeriods.
+     */
+    data: EventPeriodCreateManyInput | EventPeriodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventPeriod createManyAndReturn
+   */
+  export type EventPeriodCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * The data used to create many EventPeriods.
+     */
+    data: EventPeriodCreateManyInput | EventPeriodCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventPeriod update
+   */
+  export type EventPeriodUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EventPeriod.
+     */
+    data: XOR<EventPeriodUpdateInput, EventPeriodUncheckedUpdateInput>
+    /**
+     * Choose, which EventPeriod to update.
+     */
+    where: EventPeriodWhereUniqueInput
+  }
+
+  /**
+   * EventPeriod updateMany
+   */
+  export type EventPeriodUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EventPeriods.
+     */
+    data: XOR<EventPeriodUpdateManyMutationInput, EventPeriodUncheckedUpdateManyInput>
+    /**
+     * Filter which EventPeriods to update
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * Limit how many EventPeriods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventPeriod updateManyAndReturn
+   */
+  export type EventPeriodUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * The data used to update EventPeriods.
+     */
+    data: XOR<EventPeriodUpdateManyMutationInput, EventPeriodUncheckedUpdateManyInput>
+    /**
+     * Filter which EventPeriods to update
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * Limit how many EventPeriods to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventPeriod upsert
+   */
+  export type EventPeriodUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EventPeriod to update in case it exists.
+     */
+    where: EventPeriodWhereUniqueInput
+    /**
+     * In case the EventPeriod found by the `where` argument doesn't exist, create a new EventPeriod with this data.
+     */
+    create: XOR<EventPeriodCreateInput, EventPeriodUncheckedCreateInput>
+    /**
+     * In case the EventPeriod was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventPeriodUpdateInput, EventPeriodUncheckedUpdateInput>
+  }
+
+  /**
+   * EventPeriod delete
+   */
+  export type EventPeriodDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+    /**
+     * Filter which EventPeriod to delete.
+     */
+    where: EventPeriodWhereUniqueInput
+  }
+
+  /**
+   * EventPeriod deleteMany
+   */
+  export type EventPeriodDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventPeriods to delete
+     */
+    where?: EventPeriodWhereInput
+    /**
+     * Limit how many EventPeriods to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventPeriod.events
+   */
+  export type EventPeriod$eventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HistoricalEvent
+     */
+    select?: HistoricalEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HistoricalEvent
+     */
+    omit?: HistoricalEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HistoricalEventInclude<ExtArgs> | null
+    where?: HistoricalEventWhereInput
+    orderBy?: HistoricalEventOrderByWithRelationInput | HistoricalEventOrderByWithRelationInput[]
+    cursor?: HistoricalEventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HistoricalEventScalarFieldEnum | HistoricalEventScalarFieldEnum[]
+  }
+
+  /**
+   * EventPeriod without action
+   */
+  export type EventPeriodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventPeriod
+     */
+    select?: EventPeriodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventPeriod
+     */
+    omit?: EventPeriodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventPeriodInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BlogPost
+   */
+
+  export type AggregateBlogPost = {
+    _count: BlogPostCountAggregateOutputType | null
+    _min: BlogPostMinAggregateOutputType | null
+    _max: BlogPostMaxAggregateOutputType | null
+  }
+
+  export type BlogPostMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlogPostMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlogPostCountAggregateOutputType = {
+    id: number
+    title: number
+    slug: number
+    content: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BlogPostMinAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlogPostMaxAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlogPostCountAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BlogPostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogPost to aggregate.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BlogPosts
+    **/
+    _count?: true | BlogPostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlogPostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlogPostMaxAggregateInputType
+  }
+
+  export type GetBlogPostAggregateType<T extends BlogPostAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlogPost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlogPost[P]>
+      : GetScalarType<T[P], AggregateBlogPost[P]>
+  }
+
+
+
+
+  export type BlogPostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogPostWhereInput
+    orderBy?: BlogPostOrderByWithAggregationInput | BlogPostOrderByWithAggregationInput[]
+    by: BlogPostScalarFieldEnum[] | BlogPostScalarFieldEnum
+    having?: BlogPostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlogPostCountAggregateInputType | true
+    _min?: BlogPostMinAggregateInputType
+    _max?: BlogPostMaxAggregateInputType
+  }
+
+  export type BlogPostGroupByOutputType = {
+    id: string
+    title: string
+    slug: string
+    content: string
+    createdAt: Date
+    updatedAt: Date
+    _count: BlogPostCountAggregateOutputType | null
+    _min: BlogPostMinAggregateOutputType | null
+    _max: BlogPostMaxAggregateOutputType | null
+  }
+
+  type GetBlogPostGroupByPayload<T extends BlogPostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BlogPostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlogPostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlogPostGroupByOutputType[P]>
+            : GetScalarType<T[P], BlogPostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlogPostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    authors?: boolean | BlogPost$authorsArgs<ExtArgs>
+    _count?: boolean | BlogPostCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blogPost"]>
+
+  export type BlogPostSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["blogPost"]>
+
+  export type BlogPostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["blogPost"]>
+
+  export type BlogPostSelectScalar = {
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BlogPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "content" | "createdAt" | "updatedAt", ExtArgs["result"]["blogPost"]>
+  export type BlogPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    authors?: boolean | BlogPost$authorsArgs<ExtArgs>
+    _count?: boolean | BlogPostCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BlogPostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BlogPostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $BlogPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BlogPost"
+    objects: {
+      authors: Prisma.$BlogAuthorPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      slug: string
+      content: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["blogPost"]>
+    composites: {}
+  }
+
+  type BlogPostGetPayload<S extends boolean | null | undefined | BlogPostDefaultArgs> = $Result.GetResult<Prisma.$BlogPostPayload, S>
+
+  type BlogPostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BlogPostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BlogPostCountAggregateInputType | true
+    }
+
+  export interface BlogPostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BlogPost'], meta: { name: 'BlogPost' } }
+    /**
+     * Find zero or one BlogPost that matches the filter.
+     * @param {BlogPostFindUniqueArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BlogPostFindUniqueArgs>(args: SelectSubset<T, BlogPostFindUniqueArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BlogPost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BlogPostFindUniqueOrThrowArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BlogPostFindUniqueOrThrowArgs>(args: SelectSubset<T, BlogPostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogPost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindFirstArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BlogPostFindFirstArgs>(args?: SelectSubset<T, BlogPostFindFirstArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogPost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindFirstOrThrowArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BlogPostFindFirstOrThrowArgs>(args?: SelectSubset<T, BlogPostFindFirstOrThrowArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BlogPosts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BlogPosts
+     * const blogPosts = await prisma.blogPost.findMany()
+     * 
+     * // Get first 10 BlogPosts
+     * const blogPosts = await prisma.blogPost.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const blogPostWithIdOnly = await prisma.blogPost.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BlogPostFindManyArgs>(args?: SelectSubset<T, BlogPostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BlogPost.
+     * @param {BlogPostCreateArgs} args - Arguments to create a BlogPost.
+     * @example
+     * // Create one BlogPost
+     * const BlogPost = await prisma.blogPost.create({
+     *   data: {
+     *     // ... data to create a BlogPost
+     *   }
+     * })
+     * 
+     */
+    create<T extends BlogPostCreateArgs>(args: SelectSubset<T, BlogPostCreateArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BlogPosts.
+     * @param {BlogPostCreateManyArgs} args - Arguments to create many BlogPosts.
+     * @example
+     * // Create many BlogPosts
+     * const blogPost = await prisma.blogPost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BlogPostCreateManyArgs>(args?: SelectSubset<T, BlogPostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BlogPosts and returns the data saved in the database.
+     * @param {BlogPostCreateManyAndReturnArgs} args - Arguments to create many BlogPosts.
+     * @example
+     * // Create many BlogPosts
+     * const blogPost = await prisma.blogPost.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BlogPosts and only return the `id`
+     * const blogPostWithIdOnly = await prisma.blogPost.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BlogPostCreateManyAndReturnArgs>(args?: SelectSubset<T, BlogPostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BlogPost.
+     * @param {BlogPostDeleteArgs} args - Arguments to delete one BlogPost.
+     * @example
+     * // Delete one BlogPost
+     * const BlogPost = await prisma.blogPost.delete({
+     *   where: {
+     *     // ... filter to delete one BlogPost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BlogPostDeleteArgs>(args: SelectSubset<T, BlogPostDeleteArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BlogPost.
+     * @param {BlogPostUpdateArgs} args - Arguments to update one BlogPost.
+     * @example
+     * // Update one BlogPost
+     * const blogPost = await prisma.blogPost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BlogPostUpdateArgs>(args: SelectSubset<T, BlogPostUpdateArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BlogPosts.
+     * @param {BlogPostDeleteManyArgs} args - Arguments to filter BlogPosts to delete.
+     * @example
+     * // Delete a few BlogPosts
+     * const { count } = await prisma.blogPost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BlogPostDeleteManyArgs>(args?: SelectSubset<T, BlogPostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlogPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BlogPosts
+     * const blogPost = await prisma.blogPost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BlogPostUpdateManyArgs>(args: SelectSubset<T, BlogPostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlogPosts and returns the data updated in the database.
+     * @param {BlogPostUpdateManyAndReturnArgs} args - Arguments to update many BlogPosts.
+     * @example
+     * // Update many BlogPosts
+     * const blogPost = await prisma.blogPost.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BlogPosts and only return the `id`
+     * const blogPostWithIdOnly = await prisma.blogPost.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BlogPostUpdateManyAndReturnArgs>(args: SelectSubset<T, BlogPostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BlogPost.
+     * @param {BlogPostUpsertArgs} args - Arguments to update or create a BlogPost.
+     * @example
+     * // Update or create a BlogPost
+     * const blogPost = await prisma.blogPost.upsert({
+     *   create: {
+     *     // ... data to create a BlogPost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BlogPost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BlogPostUpsertArgs>(args: SelectSubset<T, BlogPostUpsertArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BlogPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostCountArgs} args - Arguments to filter BlogPosts to count.
+     * @example
+     * // Count the number of BlogPosts
+     * const count = await prisma.blogPost.count({
+     *   where: {
+     *     // ... the filter for the BlogPosts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlogPostCountArgs>(
+      args?: Subset<T, BlogPostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlogPostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BlogPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlogPostAggregateArgs>(args: Subset<T, BlogPostAggregateArgs>): Prisma.PrismaPromise<GetBlogPostAggregateType<T>>
+
+    /**
+     * Group by BlogPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlogPostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlogPostGroupByArgs['orderBy'] }
+        : { orderBy?: BlogPostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlogPostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlogPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BlogPost model
+   */
+  readonly fields: BlogPostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BlogPost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BlogPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    authors<T extends BlogPost$authorsArgs<ExtArgs> = {}>(args?: Subset<T, BlogPost$authorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BlogPost model
+   */
+  interface BlogPostFieldRefs {
+    readonly id: FieldRef<"BlogPost", 'String'>
+    readonly title: FieldRef<"BlogPost", 'String'>
+    readonly slug: FieldRef<"BlogPost", 'String'>
+    readonly content: FieldRef<"BlogPost", 'String'>
+    readonly createdAt: FieldRef<"BlogPost", 'DateTime'>
+    readonly updatedAt: FieldRef<"BlogPost", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BlogPost findUnique
+   */
+  export type BlogPostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost findUniqueOrThrow
+   */
+  export type BlogPostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost findFirst
+   */
+  export type BlogPostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogPosts.
+     */
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost findFirstOrThrow
+   */
+  export type BlogPostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogPosts.
+     */
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost findMany
+   */
+  export type BlogPostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogPosts to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost create
+   */
+  export type BlogPostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BlogPost.
+     */
+    data: XOR<BlogPostCreateInput, BlogPostUncheckedCreateInput>
+  }
+
+  /**
+   * BlogPost createMany
+   */
+  export type BlogPostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BlogPosts.
+     */
+    data: BlogPostCreateManyInput | BlogPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BlogPost createManyAndReturn
+   */
+  export type BlogPostCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * The data used to create many BlogPosts.
+     */
+    data: BlogPostCreateManyInput | BlogPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BlogPost update
+   */
+  export type BlogPostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BlogPost.
+     */
+    data: XOR<BlogPostUpdateInput, BlogPostUncheckedUpdateInput>
+    /**
+     * Choose, which BlogPost to update.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost updateMany
+   */
+  export type BlogPostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BlogPosts.
+     */
+    data: XOR<BlogPostUpdateManyMutationInput, BlogPostUncheckedUpdateManyInput>
+    /**
+     * Filter which BlogPosts to update
+     */
+    where?: BlogPostWhereInput
+    /**
+     * Limit how many BlogPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogPost updateManyAndReturn
+   */
+  export type BlogPostUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * The data used to update BlogPosts.
+     */
+    data: XOR<BlogPostUpdateManyMutationInput, BlogPostUncheckedUpdateManyInput>
+    /**
+     * Filter which BlogPosts to update
+     */
+    where?: BlogPostWhereInput
+    /**
+     * Limit how many BlogPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogPost upsert
+   */
+  export type BlogPostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BlogPost to update in case it exists.
+     */
+    where: BlogPostWhereUniqueInput
+    /**
+     * In case the BlogPost found by the `where` argument doesn't exist, create a new BlogPost with this data.
+     */
+    create: XOR<BlogPostCreateInput, BlogPostUncheckedCreateInput>
+    /**
+     * In case the BlogPost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlogPostUpdateInput, BlogPostUncheckedUpdateInput>
+  }
+
+  /**
+   * BlogPost delete
+   */
+  export type BlogPostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
+     * Filter which BlogPost to delete.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost deleteMany
+   */
+  export type BlogPostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogPosts to delete
+     */
+    where?: BlogPostWhereInput
+    /**
+     * Limit how many BlogPosts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogPost.authors
+   */
+  export type BlogPost$authorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    where?: BlogAuthorWhereInput
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    cursor?: BlogAuthorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlogAuthorScalarFieldEnum | BlogAuthorScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost without action
+   */
+  export type BlogPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BlogAuthor
+   */
+
+  export type AggregateBlogAuthor = {
+    _count: BlogAuthorCountAggregateOutputType | null
+    _min: BlogAuthorMinAggregateOutputType | null
+    _max: BlogAuthorMaxAggregateOutputType | null
+  }
+
+  export type BlogAuthorMinAggregateOutputType = {
+    authorId: string | null
+    postId: string | null
+    createdAt: Date | null
+  }
+
+  export type BlogAuthorMaxAggregateOutputType = {
+    authorId: string | null
+    postId: string | null
+    createdAt: Date | null
+  }
+
+  export type BlogAuthorCountAggregateOutputType = {
+    authorId: number
+    postId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BlogAuthorMinAggregateInputType = {
+    authorId?: true
+    postId?: true
+    createdAt?: true
+  }
+
+  export type BlogAuthorMaxAggregateInputType = {
+    authorId?: true
+    postId?: true
+    createdAt?: true
+  }
+
+  export type BlogAuthorCountAggregateInputType = {
+    authorId?: true
+    postId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BlogAuthorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogAuthor to aggregate.
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogAuthors to fetch.
+     */
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlogAuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogAuthors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogAuthors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BlogAuthors
+    **/
+    _count?: true | BlogAuthorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlogAuthorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlogAuthorMaxAggregateInputType
+  }
+
+  export type GetBlogAuthorAggregateType<T extends BlogAuthorAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlogAuthor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlogAuthor[P]>
+      : GetScalarType<T[P], AggregateBlogAuthor[P]>
+  }
+
+
+
+
+  export type BlogAuthorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogAuthorWhereInput
+    orderBy?: BlogAuthorOrderByWithAggregationInput | BlogAuthorOrderByWithAggregationInput[]
+    by: BlogAuthorScalarFieldEnum[] | BlogAuthorScalarFieldEnum
+    having?: BlogAuthorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlogAuthorCountAggregateInputType | true
+    _min?: BlogAuthorMinAggregateInputType
+    _max?: BlogAuthorMaxAggregateInputType
+  }
+
+  export type BlogAuthorGroupByOutputType = {
+    authorId: string
+    postId: string
+    createdAt: Date
+    _count: BlogAuthorCountAggregateOutputType | null
+    _min: BlogAuthorMinAggregateOutputType | null
+    _max: BlogAuthorMaxAggregateOutputType | null
+  }
+
+  type GetBlogAuthorGroupByPayload<T extends BlogAuthorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BlogAuthorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlogAuthorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlogAuthorGroupByOutputType[P]>
+            : GetScalarType<T[P], BlogAuthorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlogAuthorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    authorId?: boolean
+    postId?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blogAuthor"]>
+
+  export type BlogAuthorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    authorId?: boolean
+    postId?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blogAuthor"]>
+
+  export type BlogAuthorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    authorId?: boolean
+    postId?: boolean
+    createdAt?: boolean
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blogAuthor"]>
+
+  export type BlogAuthorSelectScalar = {
+    authorId?: boolean
+    postId?: boolean
+    createdAt?: boolean
+  }
+
+  export type BlogAuthorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"authorId" | "postId" | "createdAt", ExtArgs["result"]["blogAuthor"]>
+  export type BlogAuthorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }
+  export type BlogAuthorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }
+  export type BlogAuthorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }
+
+  export type $BlogAuthorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BlogAuthor"
+    objects: {
+      author: Prisma.$UserPayload<ExtArgs>
+      post: Prisma.$BlogPostPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      authorId: string
+      postId: string
+      createdAt: Date
+    }, ExtArgs["result"]["blogAuthor"]>
+    composites: {}
+  }
+
+  type BlogAuthorGetPayload<S extends boolean | null | undefined | BlogAuthorDefaultArgs> = $Result.GetResult<Prisma.$BlogAuthorPayload, S>
+
+  type BlogAuthorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BlogAuthorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BlogAuthorCountAggregateInputType | true
+    }
+
+  export interface BlogAuthorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BlogAuthor'], meta: { name: 'BlogAuthor' } }
+    /**
+     * Find zero or one BlogAuthor that matches the filter.
+     * @param {BlogAuthorFindUniqueArgs} args - Arguments to find a BlogAuthor
+     * @example
+     * // Get one BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BlogAuthorFindUniqueArgs>(args: SelectSubset<T, BlogAuthorFindUniqueArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BlogAuthor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BlogAuthorFindUniqueOrThrowArgs} args - Arguments to find a BlogAuthor
+     * @example
+     * // Get one BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BlogAuthorFindUniqueOrThrowArgs>(args: SelectSubset<T, BlogAuthorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogAuthor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorFindFirstArgs} args - Arguments to find a BlogAuthor
+     * @example
+     * // Get one BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BlogAuthorFindFirstArgs>(args?: SelectSubset<T, BlogAuthorFindFirstArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogAuthor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorFindFirstOrThrowArgs} args - Arguments to find a BlogAuthor
+     * @example
+     * // Get one BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BlogAuthorFindFirstOrThrowArgs>(args?: SelectSubset<T, BlogAuthorFindFirstOrThrowArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BlogAuthors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BlogAuthors
+     * const blogAuthors = await prisma.blogAuthor.findMany()
+     * 
+     * // Get first 10 BlogAuthors
+     * const blogAuthors = await prisma.blogAuthor.findMany({ take: 10 })
+     * 
+     * // Only select the `authorId`
+     * const blogAuthorWithAuthorIdOnly = await prisma.blogAuthor.findMany({ select: { authorId: true } })
+     * 
+     */
+    findMany<T extends BlogAuthorFindManyArgs>(args?: SelectSubset<T, BlogAuthorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BlogAuthor.
+     * @param {BlogAuthorCreateArgs} args - Arguments to create a BlogAuthor.
+     * @example
+     * // Create one BlogAuthor
+     * const BlogAuthor = await prisma.blogAuthor.create({
+     *   data: {
+     *     // ... data to create a BlogAuthor
+     *   }
+     * })
+     * 
+     */
+    create<T extends BlogAuthorCreateArgs>(args: SelectSubset<T, BlogAuthorCreateArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BlogAuthors.
+     * @param {BlogAuthorCreateManyArgs} args - Arguments to create many BlogAuthors.
+     * @example
+     * // Create many BlogAuthors
+     * const blogAuthor = await prisma.blogAuthor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BlogAuthorCreateManyArgs>(args?: SelectSubset<T, BlogAuthorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BlogAuthors and returns the data saved in the database.
+     * @param {BlogAuthorCreateManyAndReturnArgs} args - Arguments to create many BlogAuthors.
+     * @example
+     * // Create many BlogAuthors
+     * const blogAuthor = await prisma.blogAuthor.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BlogAuthors and only return the `authorId`
+     * const blogAuthorWithAuthorIdOnly = await prisma.blogAuthor.createManyAndReturn({
+     *   select: { authorId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BlogAuthorCreateManyAndReturnArgs>(args?: SelectSubset<T, BlogAuthorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BlogAuthor.
+     * @param {BlogAuthorDeleteArgs} args - Arguments to delete one BlogAuthor.
+     * @example
+     * // Delete one BlogAuthor
+     * const BlogAuthor = await prisma.blogAuthor.delete({
+     *   where: {
+     *     // ... filter to delete one BlogAuthor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BlogAuthorDeleteArgs>(args: SelectSubset<T, BlogAuthorDeleteArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BlogAuthor.
+     * @param {BlogAuthorUpdateArgs} args - Arguments to update one BlogAuthor.
+     * @example
+     * // Update one BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BlogAuthorUpdateArgs>(args: SelectSubset<T, BlogAuthorUpdateArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BlogAuthors.
+     * @param {BlogAuthorDeleteManyArgs} args - Arguments to filter BlogAuthors to delete.
+     * @example
+     * // Delete a few BlogAuthors
+     * const { count } = await prisma.blogAuthor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BlogAuthorDeleteManyArgs>(args?: SelectSubset<T, BlogAuthorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlogAuthors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BlogAuthors
+     * const blogAuthor = await prisma.blogAuthor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BlogAuthorUpdateManyArgs>(args: SelectSubset<T, BlogAuthorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlogAuthors and returns the data updated in the database.
+     * @param {BlogAuthorUpdateManyAndReturnArgs} args - Arguments to update many BlogAuthors.
+     * @example
+     * // Update many BlogAuthors
+     * const blogAuthor = await prisma.blogAuthor.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BlogAuthors and only return the `authorId`
+     * const blogAuthorWithAuthorIdOnly = await prisma.blogAuthor.updateManyAndReturn({
+     *   select: { authorId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BlogAuthorUpdateManyAndReturnArgs>(args: SelectSubset<T, BlogAuthorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BlogAuthor.
+     * @param {BlogAuthorUpsertArgs} args - Arguments to update or create a BlogAuthor.
+     * @example
+     * // Update or create a BlogAuthor
+     * const blogAuthor = await prisma.blogAuthor.upsert({
+     *   create: {
+     *     // ... data to create a BlogAuthor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BlogAuthor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BlogAuthorUpsertArgs>(args: SelectSubset<T, BlogAuthorUpsertArgs<ExtArgs>>): Prisma__BlogAuthorClient<$Result.GetResult<Prisma.$BlogAuthorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BlogAuthors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorCountArgs} args - Arguments to filter BlogAuthors to count.
+     * @example
+     * // Count the number of BlogAuthors
+     * const count = await prisma.blogAuthor.count({
+     *   where: {
+     *     // ... the filter for the BlogAuthors we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlogAuthorCountArgs>(
+      args?: Subset<T, BlogAuthorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlogAuthorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BlogAuthor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlogAuthorAggregateArgs>(args: Subset<T, BlogAuthorAggregateArgs>): Prisma.PrismaPromise<GetBlogAuthorAggregateType<T>>
+
+    /**
+     * Group by BlogAuthor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAuthorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlogAuthorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlogAuthorGroupByArgs['orderBy'] }
+        : { orderBy?: BlogAuthorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlogAuthorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlogAuthorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BlogAuthor model
+   */
+  readonly fields: BlogAuthorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BlogAuthor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BlogAuthorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    post<T extends BlogPostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BlogPostDefaultArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BlogAuthor model
+   */
+  interface BlogAuthorFieldRefs {
+    readonly authorId: FieldRef<"BlogAuthor", 'String'>
+    readonly postId: FieldRef<"BlogAuthor", 'String'>
+    readonly createdAt: FieldRef<"BlogAuthor", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BlogAuthor findUnique
+   */
+  export type BlogAuthorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogAuthor to fetch.
+     */
+    where: BlogAuthorWhereUniqueInput
+  }
+
+  /**
+   * BlogAuthor findUniqueOrThrow
+   */
+  export type BlogAuthorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogAuthor to fetch.
+     */
+    where: BlogAuthorWhereUniqueInput
+  }
+
+  /**
+   * BlogAuthor findFirst
+   */
+  export type BlogAuthorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogAuthor to fetch.
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogAuthors to fetch.
+     */
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogAuthors.
+     */
+    cursor?: BlogAuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogAuthors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogAuthors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogAuthors.
+     */
+    distinct?: BlogAuthorScalarFieldEnum | BlogAuthorScalarFieldEnum[]
+  }
+
+  /**
+   * BlogAuthor findFirstOrThrow
+   */
+  export type BlogAuthorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogAuthor to fetch.
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogAuthors to fetch.
+     */
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogAuthors.
+     */
+    cursor?: BlogAuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogAuthors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogAuthors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogAuthors.
+     */
+    distinct?: BlogAuthorScalarFieldEnum | BlogAuthorScalarFieldEnum[]
+  }
+
+  /**
+   * BlogAuthor findMany
+   */
+  export type BlogAuthorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which BlogAuthors to fetch.
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogAuthors to fetch.
+     */
+    orderBy?: BlogAuthorOrderByWithRelationInput | BlogAuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BlogAuthors.
+     */
+    cursor?: BlogAuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogAuthors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogAuthors.
+     */
+    skip?: number
+    distinct?: BlogAuthorScalarFieldEnum | BlogAuthorScalarFieldEnum[]
+  }
+
+  /**
+   * BlogAuthor create
+   */
+  export type BlogAuthorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BlogAuthor.
+     */
+    data: XOR<BlogAuthorCreateInput, BlogAuthorUncheckedCreateInput>
+  }
+
+  /**
+   * BlogAuthor createMany
+   */
+  export type BlogAuthorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BlogAuthors.
+     */
+    data: BlogAuthorCreateManyInput | BlogAuthorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BlogAuthor createManyAndReturn
+   */
+  export type BlogAuthorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * The data used to create many BlogAuthors.
+     */
+    data: BlogAuthorCreateManyInput | BlogAuthorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BlogAuthor update
+   */
+  export type BlogAuthorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BlogAuthor.
+     */
+    data: XOR<BlogAuthorUpdateInput, BlogAuthorUncheckedUpdateInput>
+    /**
+     * Choose, which BlogAuthor to update.
+     */
+    where: BlogAuthorWhereUniqueInput
+  }
+
+  /**
+   * BlogAuthor updateMany
+   */
+  export type BlogAuthorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BlogAuthors.
+     */
+    data: XOR<BlogAuthorUpdateManyMutationInput, BlogAuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which BlogAuthors to update
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * Limit how many BlogAuthors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogAuthor updateManyAndReturn
+   */
+  export type BlogAuthorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * The data used to update BlogAuthors.
+     */
+    data: XOR<BlogAuthorUpdateManyMutationInput, BlogAuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which BlogAuthors to update
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * Limit how many BlogAuthors to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BlogAuthor upsert
+   */
+  export type BlogAuthorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BlogAuthor to update in case it exists.
+     */
+    where: BlogAuthorWhereUniqueInput
+    /**
+     * In case the BlogAuthor found by the `where` argument doesn't exist, create a new BlogAuthor with this data.
+     */
+    create: XOR<BlogAuthorCreateInput, BlogAuthorUncheckedCreateInput>
+    /**
+     * In case the BlogAuthor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlogAuthorUpdateInput, BlogAuthorUncheckedUpdateInput>
+  }
+
+  /**
+   * BlogAuthor delete
+   */
+  export type BlogAuthorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+    /**
+     * Filter which BlogAuthor to delete.
+     */
+    where: BlogAuthorWhereUniqueInput
+  }
+
+  /**
+   * BlogAuthor deleteMany
+   */
+  export type BlogAuthorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogAuthors to delete
+     */
+    where?: BlogAuthorWhereInput
+    /**
+     * Limit how many BlogAuthors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogAuthor without action
+   */
+  export type BlogAuthorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogAuthor
+     */
+    select?: BlogAuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogAuthor
+     */
+    omit?: BlogAuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogAuthorInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9098,7 +15743,9 @@ export namespace Prisma {
     msisdn: 'msisdn',
     sex: 'sex',
     status: 'status',
-    roleId: 'roleId'
+    roleId: 'roleId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -9141,7 +15788,9 @@ export namespace Prisma {
     token: 'token',
     email: 'email',
     status: 'status',
-    expiresAt: 'expiresAt'
+    expiresAt: 'expiresAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type OTPScalarFieldEnum = (typeof OTPScalarFieldEnum)[keyof typeof OTPScalarFieldEnum]
@@ -9151,7 +15800,9 @@ export namespace Prisma {
     id: 'id',
     key: 'key',
     status: 'status',
-    permissions: 'permissions'
+    permissions: 'permissions',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ApiKeyScalarFieldEnum = (typeof ApiKeyScalarFieldEnum)[keyof typeof ApiKeyScalarFieldEnum]
@@ -9164,10 +15815,90 @@ export namespace Prisma {
     privateKey: 'privateKey',
     refreshTokensUsed: 'refreshTokensUsed',
     refreshToken: 'refreshToken',
-    userId: 'userId'
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type KeyTokenScalarFieldEnum = (typeof KeyTokenScalarFieldEnum)[keyof typeof KeyTokenScalarFieldEnum]
+
+
+  export const HistoricalEventScalarFieldEnum: {
+    id: 'id',
+    fromDay: 'fromDay',
+    fromMonth: 'fromMonth',
+    fromYear: 'fromYear',
+    toDay: 'toDay',
+    toMonth: 'toMonth',
+    toYear: 'toYear',
+    content: 'content',
+    authorId: 'authorId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HistoricalEventScalarFieldEnum = (typeof HistoricalEventScalarFieldEnum)[keyof typeof HistoricalEventScalarFieldEnum]
+
+
+  export const EventEditScalarFieldEnum: {
+    id: 'id',
+    eventId: 'eventId',
+    editorId: 'editorId',
+    editedAt: 'editedAt',
+    prevContent: 'prevContent',
+    newContent: 'newContent',
+    prevFromDay: 'prevFromDay',
+    prevFromMonth: 'prevFromMonth',
+    prevFromYear: 'prevFromYear',
+    prevToDay: 'prevToDay',
+    prevToMonth: 'prevToMonth',
+    prevToYear: 'prevToYear',
+    newFromDay: 'newFromDay',
+    newFromMonth: 'newFromMonth',
+    newFromYear: 'newFromYear',
+    newToDay: 'newToDay',
+    newToMonth: 'newToMonth',
+    newToYear: 'newToYear'
+  };
+
+  export type EventEditScalarFieldEnum = (typeof EventEditScalarFieldEnum)[keyof typeof EventEditScalarFieldEnum]
+
+
+  export const EventPeriodScalarFieldEnum: {
+    id: 'id',
+    fromDay: 'fromDay',
+    fromMonth: 'fromMonth',
+    fromYear: 'fromYear',
+    toDay: 'toDay',
+    toMonth: 'toMonth',
+    toYear: 'toYear',
+    name: 'name',
+    slug: 'slug',
+    description: 'description'
+  };
+
+  export type EventPeriodScalarFieldEnum = (typeof EventPeriodScalarFieldEnum)[keyof typeof EventPeriodScalarFieldEnum]
+
+
+  export const BlogPostScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    slug: 'slug',
+    content: 'content',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
+
+
+  export const BlogAuthorScalarFieldEnum: {
+    authorId: 'authorId',
+    postId: 'postId',
+    createdAt: 'createdAt'
+  };
+
+  export type BlogAuthorScalarFieldEnum = (typeof BlogAuthorScalarFieldEnum)[keyof typeof BlogAuthorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9316,6 +16047,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -9325,7 +16070,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: StringFilter<"User"> | string
+    id?: UuidFilter<"User"> | string
     username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     firstName?: StringFilter<"User"> | string
@@ -9339,9 +16084,14 @@ export namespace Prisma {
     msisdn?: StringNullableFilter<"User"> | string | null
     sex?: EnumUserSexNullableFilter<"User"> | $Enums.UserSex | null
     status?: EnumUserStatusFilter<"User"> | $Enums.UserStatus
-    roleId?: StringFilter<"User"> | string
+    roleId?: UuidFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     keyToken?: KeyTokenListRelationFilter
+    createdEvents?: HistoricalEventListRelationFilter
+    editedEvents?: EventEditListRelationFilter
+    blogPosts?: BlogAuthorListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9360,8 +16110,13 @@ export namespace Prisma {
     sex?: SortOrderInput | SortOrder
     status?: SortOrder
     roleId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     role?: RoleOrderByWithRelationInput
     keyToken?: KeyTokenOrderByRelationAggregateInput
+    createdEvents?: HistoricalEventOrderByRelationAggregateInput
+    editedEvents?: EventEditOrderByRelationAggregateInput
+    blogPosts?: BlogAuthorOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9382,9 +16137,14 @@ export namespace Prisma {
     msisdn?: StringNullableFilter<"User"> | string | null
     sex?: EnumUserSexNullableFilter<"User"> | $Enums.UserSex | null
     status?: EnumUserStatusFilter<"User"> | $Enums.UserStatus
-    roleId?: StringFilter<"User"> | string
+    roleId?: UuidFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     keyToken?: KeyTokenListRelationFilter
+    createdEvents?: HistoricalEventListRelationFilter
+    editedEvents?: EventEditListRelationFilter
+    blogPosts?: BlogAuthorListRelationFilter
   }, "id" | "username" | "email" | "slug">
 
   export type UserOrderByWithAggregationInput = {
@@ -9403,6 +16163,8 @@ export namespace Prisma {
     sex?: SortOrderInput | SortOrder
     status?: SortOrder
     roleId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -9412,7 +16174,7 @@ export namespace Prisma {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"User"> | string
+    id?: UuidWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     firstName?: StringWithAggregatesFilter<"User"> | string
@@ -9426,14 +16188,16 @@ export namespace Prisma {
     msisdn?: StringNullableWithAggregatesFilter<"User"> | string | null
     sex?: EnumUserSexNullableWithAggregatesFilter<"User"> | $Enums.UserSex | null
     status?: EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
-    roleId?: StringWithAggregatesFilter<"User"> | string
+    roleId?: UuidWithAggregatesFilter<"User"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type ResourceWhereInput = {
     AND?: ResourceWhereInput | ResourceWhereInput[]
     OR?: ResourceWhereInput[]
     NOT?: ResourceWhereInput | ResourceWhereInput[]
-    id?: StringFilter<"Resource"> | string
+    id?: UuidFilter<"Resource"> | string
     name?: StringFilter<"Resource"> | string
     slug?: StringFilter<"Resource"> | string
     description?: StringNullableFilter<"Resource"> | string | null
@@ -9473,7 +16237,7 @@ export namespace Prisma {
     AND?: ResourceScalarWhereWithAggregatesInput | ResourceScalarWhereWithAggregatesInput[]
     OR?: ResourceScalarWhereWithAggregatesInput[]
     NOT?: ResourceScalarWhereWithAggregatesInput | ResourceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Resource"> | string
+    id?: UuidWithAggregatesFilter<"Resource"> | string
     name?: StringWithAggregatesFilter<"Resource"> | string
     slug?: StringWithAggregatesFilter<"Resource"> | string
     description?: StringNullableWithAggregatesFilter<"Resource"> | string | null
@@ -9483,7 +16247,7 @@ export namespace Prisma {
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
-    id?: StringFilter<"Role"> | string
+    id?: UuidFilter<"Role"> | string
     name?: StringFilter<"Role"> | string
     slug?: StringFilter<"Role"> | string
     status?: EnumRoleStatusFilter<"Role"> | $Enums.RoleStatus
@@ -9530,7 +16294,7 @@ export namespace Prisma {
     AND?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
     OR?: RoleScalarWhereWithAggregatesInput[]
     NOT?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Role"> | string
+    id?: UuidWithAggregatesFilter<"Role"> | string
     name?: StringWithAggregatesFilter<"Role"> | string
     slug?: StringWithAggregatesFilter<"Role"> | string
     status?: EnumRoleStatusWithAggregatesFilter<"Role"> | $Enums.RoleStatus
@@ -9541,9 +16305,9 @@ export namespace Prisma {
     AND?: GrantWhereInput | GrantWhereInput[]
     OR?: GrantWhereInput[]
     NOT?: GrantWhereInput | GrantWhereInput[]
-    id?: StringFilter<"Grant"> | string
-    roleId?: StringFilter<"Grant"> | string
-    resourceId?: StringFilter<"Grant"> | string
+    id?: UuidFilter<"Grant"> | string
+    roleId?: UuidFilter<"Grant"> | string
+    resourceId?: UuidFilter<"Grant"> | string
     action?: StringFilter<"Grant"> | string
     attribute?: StringFilter<"Grant"> | string
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
@@ -9566,8 +16330,8 @@ export namespace Prisma {
     AND?: GrantWhereInput | GrantWhereInput[]
     OR?: GrantWhereInput[]
     NOT?: GrantWhereInput | GrantWhereInput[]
-    roleId?: StringFilter<"Grant"> | string
-    resourceId?: StringFilter<"Grant"> | string
+    roleId?: UuidFilter<"Grant"> | string
+    resourceId?: UuidFilter<"Grant"> | string
     action?: StringFilter<"Grant"> | string
     attribute?: StringFilter<"Grant"> | string
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
@@ -9589,9 +16353,9 @@ export namespace Prisma {
     AND?: GrantScalarWhereWithAggregatesInput | GrantScalarWhereWithAggregatesInput[]
     OR?: GrantScalarWhereWithAggregatesInput[]
     NOT?: GrantScalarWhereWithAggregatesInput | GrantScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Grant"> | string
-    roleId?: StringWithAggregatesFilter<"Grant"> | string
-    resourceId?: StringWithAggregatesFilter<"Grant"> | string
+    id?: UuidWithAggregatesFilter<"Grant"> | string
+    roleId?: UuidWithAggregatesFilter<"Grant"> | string
+    resourceId?: UuidWithAggregatesFilter<"Grant"> | string
     action?: StringWithAggregatesFilter<"Grant"> | string
     attribute?: StringWithAggregatesFilter<"Grant"> | string
   }
@@ -9600,11 +16364,13 @@ export namespace Prisma {
     AND?: OTPWhereInput | OTPWhereInput[]
     OR?: OTPWhereInput[]
     NOT?: OTPWhereInput | OTPWhereInput[]
-    id?: StringFilter<"OTP"> | string
+    id?: UuidFilter<"OTP"> | string
     token?: StringFilter<"OTP"> | string
     email?: StringFilter<"OTP"> | string
     status?: EnumOTPStatusFilter<"OTP"> | $Enums.OTPStatus
     expiresAt?: DateTimeFilter<"OTP"> | Date | string
+    createdAt?: DateTimeFilter<"OTP"> | Date | string
+    updatedAt?: DateTimeFilter<"OTP"> | Date | string
   }
 
   export type OTPOrderByWithRelationInput = {
@@ -9613,6 +16379,8 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OTPWhereUniqueInput = Prisma.AtLeast<{
@@ -9624,6 +16392,8 @@ export namespace Prisma {
     email?: StringFilter<"OTP"> | string
     status?: EnumOTPStatusFilter<"OTP"> | $Enums.OTPStatus
     expiresAt?: DateTimeFilter<"OTP"> | Date | string
+    createdAt?: DateTimeFilter<"OTP"> | Date | string
+    updatedAt?: DateTimeFilter<"OTP"> | Date | string
   }, "id" | "token">
 
   export type OTPOrderByWithAggregationInput = {
@@ -9632,6 +16402,8 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: OTPCountOrderByAggregateInput
     _max?: OTPMaxOrderByAggregateInput
     _min?: OTPMinOrderByAggregateInput
@@ -9641,21 +16413,25 @@ export namespace Prisma {
     AND?: OTPScalarWhereWithAggregatesInput | OTPScalarWhereWithAggregatesInput[]
     OR?: OTPScalarWhereWithAggregatesInput[]
     NOT?: OTPScalarWhereWithAggregatesInput | OTPScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"OTP"> | string
+    id?: UuidWithAggregatesFilter<"OTP"> | string
     token?: StringWithAggregatesFilter<"OTP"> | string
     email?: StringWithAggregatesFilter<"OTP"> | string
     status?: EnumOTPStatusWithAggregatesFilter<"OTP"> | $Enums.OTPStatus
     expiresAt?: DateTimeWithAggregatesFilter<"OTP"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"OTP"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"OTP"> | Date | string
   }
 
   export type ApiKeyWhereInput = {
     AND?: ApiKeyWhereInput | ApiKeyWhereInput[]
     OR?: ApiKeyWhereInput[]
     NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
-    id?: StringFilter<"ApiKey"> | string
+    id?: UuidFilter<"ApiKey"> | string
     key?: StringFilter<"ApiKey"> | string
     status?: BoolFilter<"ApiKey"> | boolean
     permissions?: EnumApiKeyPermissionNullableListFilter<"ApiKey">
+    createdAt?: DateTimeFilter<"ApiKey"> | Date | string
+    updatedAt?: DateTimeFilter<"ApiKey"> | Date | string
   }
 
   export type ApiKeyOrderByWithRelationInput = {
@@ -9663,6 +16439,8 @@ export namespace Prisma {
     key?: SortOrder
     status?: SortOrder
     permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
@@ -9673,6 +16451,8 @@ export namespace Prisma {
     NOT?: ApiKeyWhereInput | ApiKeyWhereInput[]
     status?: BoolFilter<"ApiKey"> | boolean
     permissions?: EnumApiKeyPermissionNullableListFilter<"ApiKey">
+    createdAt?: DateTimeFilter<"ApiKey"> | Date | string
+    updatedAt?: DateTimeFilter<"ApiKey"> | Date | string
   }, "id" | "key">
 
   export type ApiKeyOrderByWithAggregationInput = {
@@ -9680,6 +16460,8 @@ export namespace Prisma {
     key?: SortOrder
     status?: SortOrder
     permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ApiKeyCountOrderByAggregateInput
     _max?: ApiKeyMaxOrderByAggregateInput
     _min?: ApiKeyMinOrderByAggregateInput
@@ -9689,23 +16471,27 @@ export namespace Prisma {
     AND?: ApiKeyScalarWhereWithAggregatesInput | ApiKeyScalarWhereWithAggregatesInput[]
     OR?: ApiKeyScalarWhereWithAggregatesInput[]
     NOT?: ApiKeyScalarWhereWithAggregatesInput | ApiKeyScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ApiKey"> | string
+    id?: UuidWithAggregatesFilter<"ApiKey"> | string
     key?: StringWithAggregatesFilter<"ApiKey"> | string
     status?: BoolWithAggregatesFilter<"ApiKey"> | boolean
     permissions?: EnumApiKeyPermissionNullableListFilter<"ApiKey">
+    createdAt?: DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
   }
 
   export type KeyTokenWhereInput = {
     AND?: KeyTokenWhereInput | KeyTokenWhereInput[]
     OR?: KeyTokenWhereInput[]
     NOT?: KeyTokenWhereInput | KeyTokenWhereInput[]
-    id?: StringFilter<"KeyToken"> | string
+    id?: UuidFilter<"KeyToken"> | string
     browserId?: StringFilter<"KeyToken"> | string
     publicKey?: StringFilter<"KeyToken"> | string
     privateKey?: StringFilter<"KeyToken"> | string
     refreshTokensUsed?: StringNullableListFilter<"KeyToken">
     refreshToken?: StringFilter<"KeyToken"> | string
-    userId?: StringFilter<"KeyToken"> | string
+    userId?: UuidFilter<"KeyToken"> | string
+    createdAt?: DateTimeFilter<"KeyToken"> | Date | string
+    updatedAt?: DateTimeFilter<"KeyToken"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -9717,6 +16503,8 @@ export namespace Prisma {
     refreshTokensUsed?: SortOrder
     refreshToken?: SortOrder
     userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -9731,7 +16519,9 @@ export namespace Prisma {
     privateKey?: StringFilter<"KeyToken"> | string
     refreshTokensUsed?: StringNullableListFilter<"KeyToken">
     refreshToken?: StringFilter<"KeyToken"> | string
-    userId?: StringFilter<"KeyToken"> | string
+    userId?: UuidFilter<"KeyToken"> | string
+    createdAt?: DateTimeFilter<"KeyToken"> | Date | string
+    updatedAt?: DateTimeFilter<"KeyToken"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "unique_user_browser">
 
@@ -9743,6 +16533,8 @@ export namespace Prisma {
     refreshTokensUsed?: SortOrder
     refreshToken?: SortOrder
     userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: KeyTokenCountOrderByAggregateInput
     _max?: KeyTokenMaxOrderByAggregateInput
     _min?: KeyTokenMinOrderByAggregateInput
@@ -9752,13 +16544,424 @@ export namespace Prisma {
     AND?: KeyTokenScalarWhereWithAggregatesInput | KeyTokenScalarWhereWithAggregatesInput[]
     OR?: KeyTokenScalarWhereWithAggregatesInput[]
     NOT?: KeyTokenScalarWhereWithAggregatesInput | KeyTokenScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"KeyToken"> | string
+    id?: UuidWithAggregatesFilter<"KeyToken"> | string
     browserId?: StringWithAggregatesFilter<"KeyToken"> | string
     publicKey?: StringWithAggregatesFilter<"KeyToken"> | string
     privateKey?: StringWithAggregatesFilter<"KeyToken"> | string
     refreshTokensUsed?: StringNullableListFilter<"KeyToken">
     refreshToken?: StringWithAggregatesFilter<"KeyToken"> | string
-    userId?: StringWithAggregatesFilter<"KeyToken"> | string
+    userId?: UuidWithAggregatesFilter<"KeyToken"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"KeyToken"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"KeyToken"> | Date | string
+  }
+
+  export type HistoricalEventWhereInput = {
+    AND?: HistoricalEventWhereInput | HistoricalEventWhereInput[]
+    OR?: HistoricalEventWhereInput[]
+    NOT?: HistoricalEventWhereInput | HistoricalEventWhereInput[]
+    id?: UuidFilter<"HistoricalEvent"> | string
+    fromDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromYear?: IntFilter<"HistoricalEvent"> | number
+    toDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toYear?: IntFilter<"HistoricalEvent"> | number
+    content?: StringFilter<"HistoricalEvent"> | string
+    authorId?: UuidFilter<"HistoricalEvent"> | string
+    createdAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    editors?: EventEditListRelationFilter
+    categories?: EventPeriodListRelationFilter
+  }
+
+  export type HistoricalEventOrderByWithRelationInput = {
+    id?: SortOrder
+    fromDay?: SortOrderInput | SortOrder
+    fromMonth?: SortOrderInput | SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrderInput | SortOrder
+    toMonth?: SortOrderInput | SortOrder
+    toYear?: SortOrder
+    content?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    author?: UserOrderByWithRelationInput
+    editors?: EventEditOrderByRelationAggregateInput
+    categories?: EventPeriodOrderByRelationAggregateInput
+  }
+
+  export type HistoricalEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HistoricalEventWhereInput | HistoricalEventWhereInput[]
+    OR?: HistoricalEventWhereInput[]
+    NOT?: HistoricalEventWhereInput | HistoricalEventWhereInput[]
+    fromDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromYear?: IntFilter<"HistoricalEvent"> | number
+    toDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toYear?: IntFilter<"HistoricalEvent"> | number
+    content?: StringFilter<"HistoricalEvent"> | string
+    authorId?: UuidFilter<"HistoricalEvent"> | string
+    createdAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    editors?: EventEditListRelationFilter
+    categories?: EventPeriodListRelationFilter
+  }, "id">
+
+  export type HistoricalEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    fromDay?: SortOrderInput | SortOrder
+    fromMonth?: SortOrderInput | SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrderInput | SortOrder
+    toMonth?: SortOrderInput | SortOrder
+    toYear?: SortOrder
+    content?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HistoricalEventCountOrderByAggregateInput
+    _avg?: HistoricalEventAvgOrderByAggregateInput
+    _max?: HistoricalEventMaxOrderByAggregateInput
+    _min?: HistoricalEventMinOrderByAggregateInput
+    _sum?: HistoricalEventSumOrderByAggregateInput
+  }
+
+  export type HistoricalEventScalarWhereWithAggregatesInput = {
+    AND?: HistoricalEventScalarWhereWithAggregatesInput | HistoricalEventScalarWhereWithAggregatesInput[]
+    OR?: HistoricalEventScalarWhereWithAggregatesInput[]
+    NOT?: HistoricalEventScalarWhereWithAggregatesInput | HistoricalEventScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"HistoricalEvent"> | string
+    fromDay?: IntNullableWithAggregatesFilter<"HistoricalEvent"> | number | null
+    fromMonth?: IntNullableWithAggregatesFilter<"HistoricalEvent"> | number | null
+    fromYear?: IntWithAggregatesFilter<"HistoricalEvent"> | number
+    toDay?: IntNullableWithAggregatesFilter<"HistoricalEvent"> | number | null
+    toMonth?: IntNullableWithAggregatesFilter<"HistoricalEvent"> | number | null
+    toYear?: IntWithAggregatesFilter<"HistoricalEvent"> | number
+    content?: StringWithAggregatesFilter<"HistoricalEvent"> | string
+    authorId?: UuidWithAggregatesFilter<"HistoricalEvent"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"HistoricalEvent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HistoricalEvent"> | Date | string
+  }
+
+  export type EventEditWhereInput = {
+    AND?: EventEditWhereInput | EventEditWhereInput[]
+    OR?: EventEditWhereInput[]
+    NOT?: EventEditWhereInput | EventEditWhereInput[]
+    id?: UuidFilter<"EventEdit"> | string
+    eventId?: UuidFilter<"EventEdit"> | string
+    editorId?: UuidFilter<"EventEdit"> | string
+    editedAt?: DateTimeFilter<"EventEdit"> | Date | string
+    prevContent?: StringFilter<"EventEdit"> | string
+    newContent?: StringFilter<"EventEdit"> | string
+    prevFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromYear?: IntFilter<"EventEdit"> | number
+    prevToDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevToYear?: IntFilter<"EventEdit"> | number
+    newFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    newFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newFromYear?: IntFilter<"EventEdit"> | number
+    newToDay?: IntNullableFilter<"EventEdit"> | number | null
+    newToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newToYear?: IntFilter<"EventEdit"> | number
+    event?: XOR<HistoricalEventScalarRelationFilter, HistoricalEventWhereInput>
+    editor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type EventEditOrderByWithRelationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    editorId?: SortOrder
+    editedAt?: SortOrder
+    prevContent?: SortOrder
+    newContent?: SortOrder
+    prevFromDay?: SortOrderInput | SortOrder
+    prevFromMonth?: SortOrderInput | SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrderInput | SortOrder
+    prevToMonth?: SortOrderInput | SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrderInput | SortOrder
+    newFromMonth?: SortOrderInput | SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrderInput | SortOrder
+    newToMonth?: SortOrderInput | SortOrder
+    newToYear?: SortOrder
+    event?: HistoricalEventOrderByWithRelationInput
+    editor?: UserOrderByWithRelationInput
+  }
+
+  export type EventEditWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EventEditWhereInput | EventEditWhereInput[]
+    OR?: EventEditWhereInput[]
+    NOT?: EventEditWhereInput | EventEditWhereInput[]
+    eventId?: UuidFilter<"EventEdit"> | string
+    editorId?: UuidFilter<"EventEdit"> | string
+    editedAt?: DateTimeFilter<"EventEdit"> | Date | string
+    prevContent?: StringFilter<"EventEdit"> | string
+    newContent?: StringFilter<"EventEdit"> | string
+    prevFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromYear?: IntFilter<"EventEdit"> | number
+    prevToDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevToYear?: IntFilter<"EventEdit"> | number
+    newFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    newFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newFromYear?: IntFilter<"EventEdit"> | number
+    newToDay?: IntNullableFilter<"EventEdit"> | number | null
+    newToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newToYear?: IntFilter<"EventEdit"> | number
+    event?: XOR<HistoricalEventScalarRelationFilter, HistoricalEventWhereInput>
+    editor?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type EventEditOrderByWithAggregationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    editorId?: SortOrder
+    editedAt?: SortOrder
+    prevContent?: SortOrder
+    newContent?: SortOrder
+    prevFromDay?: SortOrderInput | SortOrder
+    prevFromMonth?: SortOrderInput | SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrderInput | SortOrder
+    prevToMonth?: SortOrderInput | SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrderInput | SortOrder
+    newFromMonth?: SortOrderInput | SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrderInput | SortOrder
+    newToMonth?: SortOrderInput | SortOrder
+    newToYear?: SortOrder
+    _count?: EventEditCountOrderByAggregateInput
+    _avg?: EventEditAvgOrderByAggregateInput
+    _max?: EventEditMaxOrderByAggregateInput
+    _min?: EventEditMinOrderByAggregateInput
+    _sum?: EventEditSumOrderByAggregateInput
+  }
+
+  export type EventEditScalarWhereWithAggregatesInput = {
+    AND?: EventEditScalarWhereWithAggregatesInput | EventEditScalarWhereWithAggregatesInput[]
+    OR?: EventEditScalarWhereWithAggregatesInput[]
+    NOT?: EventEditScalarWhereWithAggregatesInput | EventEditScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"EventEdit"> | string
+    eventId?: UuidWithAggregatesFilter<"EventEdit"> | string
+    editorId?: UuidWithAggregatesFilter<"EventEdit"> | string
+    editedAt?: DateTimeWithAggregatesFilter<"EventEdit"> | Date | string
+    prevContent?: StringWithAggregatesFilter<"EventEdit"> | string
+    newContent?: StringWithAggregatesFilter<"EventEdit"> | string
+    prevFromDay?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    prevFromMonth?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    prevFromYear?: IntWithAggregatesFilter<"EventEdit"> | number
+    prevToDay?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    prevToMonth?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    prevToYear?: IntWithAggregatesFilter<"EventEdit"> | number
+    newFromDay?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    newFromMonth?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    newFromYear?: IntWithAggregatesFilter<"EventEdit"> | number
+    newToDay?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    newToMonth?: IntNullableWithAggregatesFilter<"EventEdit"> | number | null
+    newToYear?: IntWithAggregatesFilter<"EventEdit"> | number
+  }
+
+  export type EventPeriodWhereInput = {
+    AND?: EventPeriodWhereInput | EventPeriodWhereInput[]
+    OR?: EventPeriodWhereInput[]
+    NOT?: EventPeriodWhereInput | EventPeriodWhereInput[]
+    id?: UuidFilter<"EventPeriod"> | string
+    fromDay?: IntNullableFilter<"EventPeriod"> | number | null
+    fromMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    fromYear?: IntFilter<"EventPeriod"> | number
+    toDay?: IntNullableFilter<"EventPeriod"> | number | null
+    toMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    toYear?: IntFilter<"EventPeriod"> | number
+    name?: StringFilter<"EventPeriod"> | string
+    slug?: StringFilter<"EventPeriod"> | string
+    description?: StringNullableFilter<"EventPeriod"> | string | null
+    events?: HistoricalEventListRelationFilter
+  }
+
+  export type EventPeriodOrderByWithRelationInput = {
+    id?: SortOrder
+    fromDay?: SortOrderInput | SortOrder
+    fromMonth?: SortOrderInput | SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrderInput | SortOrder
+    toMonth?: SortOrderInput | SortOrder
+    toYear?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    events?: HistoricalEventOrderByRelationAggregateInput
+  }
+
+  export type EventPeriodWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    slug?: string
+    AND?: EventPeriodWhereInput | EventPeriodWhereInput[]
+    OR?: EventPeriodWhereInput[]
+    NOT?: EventPeriodWhereInput | EventPeriodWhereInput[]
+    fromDay?: IntNullableFilter<"EventPeriod"> | number | null
+    fromMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    fromYear?: IntFilter<"EventPeriod"> | number
+    toDay?: IntNullableFilter<"EventPeriod"> | number | null
+    toMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    toYear?: IntFilter<"EventPeriod"> | number
+    description?: StringNullableFilter<"EventPeriod"> | string | null
+    events?: HistoricalEventListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type EventPeriodOrderByWithAggregationInput = {
+    id?: SortOrder
+    fromDay?: SortOrderInput | SortOrder
+    fromMonth?: SortOrderInput | SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrderInput | SortOrder
+    toMonth?: SortOrderInput | SortOrder
+    toYear?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    _count?: EventPeriodCountOrderByAggregateInput
+    _avg?: EventPeriodAvgOrderByAggregateInput
+    _max?: EventPeriodMaxOrderByAggregateInput
+    _min?: EventPeriodMinOrderByAggregateInput
+    _sum?: EventPeriodSumOrderByAggregateInput
+  }
+
+  export type EventPeriodScalarWhereWithAggregatesInput = {
+    AND?: EventPeriodScalarWhereWithAggregatesInput | EventPeriodScalarWhereWithAggregatesInput[]
+    OR?: EventPeriodScalarWhereWithAggregatesInput[]
+    NOT?: EventPeriodScalarWhereWithAggregatesInput | EventPeriodScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"EventPeriod"> | string
+    fromDay?: IntNullableWithAggregatesFilter<"EventPeriod"> | number | null
+    fromMonth?: IntNullableWithAggregatesFilter<"EventPeriod"> | number | null
+    fromYear?: IntWithAggregatesFilter<"EventPeriod"> | number
+    toDay?: IntNullableWithAggregatesFilter<"EventPeriod"> | number | null
+    toMonth?: IntNullableWithAggregatesFilter<"EventPeriod"> | number | null
+    toYear?: IntWithAggregatesFilter<"EventPeriod"> | number
+    name?: StringWithAggregatesFilter<"EventPeriod"> | string
+    slug?: StringWithAggregatesFilter<"EventPeriod"> | string
+    description?: StringNullableWithAggregatesFilter<"EventPeriod"> | string | null
+  }
+
+  export type BlogPostWhereInput = {
+    AND?: BlogPostWhereInput | BlogPostWhereInput[]
+    OR?: BlogPostWhereInput[]
+    NOT?: BlogPostWhereInput | BlogPostWhereInput[]
+    id?: UuidFilter<"BlogPost"> | string
+    title?: StringFilter<"BlogPost"> | string
+    slug?: StringFilter<"BlogPost"> | string
+    content?: StringFilter<"BlogPost"> | string
+    createdAt?: DateTimeFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+    authors?: BlogAuthorListRelationFilter
+  }
+
+  export type BlogPostOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    authors?: BlogAuthorOrderByRelationAggregateInput
+  }
+
+  export type BlogPostWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: BlogPostWhereInput | BlogPostWhereInput[]
+    OR?: BlogPostWhereInput[]
+    NOT?: BlogPostWhereInput | BlogPostWhereInput[]
+    title?: StringFilter<"BlogPost"> | string
+    content?: StringFilter<"BlogPost"> | string
+    createdAt?: DateTimeFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+    authors?: BlogAuthorListRelationFilter
+  }, "id" | "slug">
+
+  export type BlogPostOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BlogPostCountOrderByAggregateInput
+    _max?: BlogPostMaxOrderByAggregateInput
+    _min?: BlogPostMinOrderByAggregateInput
+  }
+
+  export type BlogPostScalarWhereWithAggregatesInput = {
+    AND?: BlogPostScalarWhereWithAggregatesInput | BlogPostScalarWhereWithAggregatesInput[]
+    OR?: BlogPostScalarWhereWithAggregatesInput[]
+    NOT?: BlogPostScalarWhereWithAggregatesInput | BlogPostScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"BlogPost"> | string
+    title?: StringWithAggregatesFilter<"BlogPost"> | string
+    slug?: StringWithAggregatesFilter<"BlogPost"> | string
+    content?: StringWithAggregatesFilter<"BlogPost"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+  }
+
+  export type BlogAuthorWhereInput = {
+    AND?: BlogAuthorWhereInput | BlogAuthorWhereInput[]
+    OR?: BlogAuthorWhereInput[]
+    NOT?: BlogAuthorWhereInput | BlogAuthorWhereInput[]
+    authorId?: UuidFilter<"BlogAuthor"> | string
+    postId?: UuidFilter<"BlogAuthor"> | string
+    createdAt?: DateTimeFilter<"BlogAuthor"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    post?: XOR<BlogPostScalarRelationFilter, BlogPostWhereInput>
+  }
+
+  export type BlogAuthorOrderByWithRelationInput = {
+    authorId?: SortOrder
+    postId?: SortOrder
+    createdAt?: SortOrder
+    author?: UserOrderByWithRelationInput
+    post?: BlogPostOrderByWithRelationInput
+  }
+
+  export type BlogAuthorWhereUniqueInput = Prisma.AtLeast<{
+    authorId_postId?: BlogAuthorAuthorIdPostIdCompoundUniqueInput
+    AND?: BlogAuthorWhereInput | BlogAuthorWhereInput[]
+    OR?: BlogAuthorWhereInput[]
+    NOT?: BlogAuthorWhereInput | BlogAuthorWhereInput[]
+    authorId?: UuidFilter<"BlogAuthor"> | string
+    postId?: UuidFilter<"BlogAuthor"> | string
+    createdAt?: DateTimeFilter<"BlogAuthor"> | Date | string
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
+    post?: XOR<BlogPostScalarRelationFilter, BlogPostWhereInput>
+  }, "authorId_postId">
+
+  export type BlogAuthorOrderByWithAggregationInput = {
+    authorId?: SortOrder
+    postId?: SortOrder
+    createdAt?: SortOrder
+    _count?: BlogAuthorCountOrderByAggregateInput
+    _max?: BlogAuthorMaxOrderByAggregateInput
+    _min?: BlogAuthorMinOrderByAggregateInput
+  }
+
+  export type BlogAuthorScalarWhereWithAggregatesInput = {
+    AND?: BlogAuthorScalarWhereWithAggregatesInput | BlogAuthorScalarWhereWithAggregatesInput[]
+    OR?: BlogAuthorScalarWhereWithAggregatesInput[]
+    NOT?: BlogAuthorScalarWhereWithAggregatesInput | BlogAuthorScalarWhereWithAggregatesInput[]
+    authorId?: UuidWithAggregatesFilter<"BlogAuthor"> | string
+    postId?: UuidWithAggregatesFilter<"BlogAuthor"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"BlogAuthor"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -9776,8 +16979,13 @@ export namespace Prisma {
     msisdn?: string | null
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     role: RoleCreateNestedOneWithoutUsersInput
     keyToken?: KeyTokenCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9796,7 +17004,12 @@ export namespace Prisma {
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
     roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     keyToken?: KeyTokenUncheckedCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditUncheckedCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
@@ -9814,8 +17027,13 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
     keyToken?: KeyTokenUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9834,7 +17052,12 @@ export namespace Prisma {
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     keyToken?: KeyTokenUncheckedUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUncheckedUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9853,6 +17076,8 @@ export namespace Prisma {
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
     roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -9870,6 +17095,8 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -9888,6 +17115,8 @@ export namespace Prisma {
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceCreateInput = {
@@ -10067,6 +17296,8 @@ export namespace Prisma {
     email: string
     status?: $Enums.OTPStatus
     expiresAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OTPUncheckedCreateInput = {
@@ -10075,6 +17306,8 @@ export namespace Prisma {
     email: string
     status?: $Enums.OTPStatus
     expiresAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OTPUpdateInput = {
@@ -10083,6 +17316,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: EnumOTPStatusFieldUpdateOperationsInput | $Enums.OTPStatus
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OTPUncheckedUpdateInput = {
@@ -10091,6 +17326,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: EnumOTPStatusFieldUpdateOperationsInput | $Enums.OTPStatus
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OTPCreateManyInput = {
@@ -10099,6 +17336,8 @@ export namespace Prisma {
     email: string
     status?: $Enums.OTPStatus
     expiresAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type OTPUpdateManyMutationInput = {
@@ -10107,6 +17346,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: EnumOTPStatusFieldUpdateOperationsInput | $Enums.OTPStatus
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OTPUncheckedUpdateManyInput = {
@@ -10115,6 +17356,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     status?: EnumOTPStatusFieldUpdateOperationsInput | $Enums.OTPStatus
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiKeyCreateInput = {
@@ -10122,6 +17365,8 @@ export namespace Prisma {
     key: string
     status?: boolean
     permissions?: ApiKeyCreatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ApiKeyUncheckedCreateInput = {
@@ -10129,6 +17374,8 @@ export namespace Prisma {
     key: string
     status?: boolean
     permissions?: ApiKeyCreatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ApiKeyUpdateInput = {
@@ -10136,6 +17383,8 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     permissions?: ApiKeyUpdatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiKeyUncheckedUpdateInput = {
@@ -10143,6 +17392,8 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     permissions?: ApiKeyUpdatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiKeyCreateManyInput = {
@@ -10150,6 +17401,8 @@ export namespace Prisma {
     key: string
     status?: boolean
     permissions?: ApiKeyCreatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ApiKeyUpdateManyMutationInput = {
@@ -10157,6 +17410,8 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     permissions?: ApiKeyUpdatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ApiKeyUncheckedUpdateManyInput = {
@@ -10164,6 +17419,8 @@ export namespace Prisma {
     key?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
     permissions?: ApiKeyUpdatepermissionsInput | $Enums.ApiKeyPermission[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenCreateInput = {
@@ -10173,6 +17430,8 @@ export namespace Prisma {
     privateKey: string
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutKeyTokenInput
   }
 
@@ -10184,6 +17443,8 @@ export namespace Prisma {
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
     userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type KeyTokenUpdateInput = {
@@ -10193,6 +17454,8 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutKeyTokenNestedInput
   }
 
@@ -10204,6 +17467,8 @@ export namespace Prisma {
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenCreateManyInput = {
@@ -10214,6 +17479,8 @@ export namespace Prisma {
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
     userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type KeyTokenUpdateManyMutationInput = {
@@ -10223,6 +17490,8 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenUncheckedUpdateManyInput = {
@@ -10233,6 +17502,472 @@ export namespace Prisma {
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoricalEventCreateInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: UserCreateNestedOneWithoutCreatedEventsInput
+    editors?: EventEditCreateNestedManyWithoutEventInput
+    categories?: EventPeriodCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventUncheckedCreateInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    editors?: EventEditUncheckedCreateNestedManyWithoutEventInput
+    categories?: EventPeriodUncheckedCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCreatedEventsNestedInput
+    editors?: EventEditUpdateManyWithoutEventNestedInput
+    categories?: EventPeriodUpdateManyWithoutEventsNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editors?: EventEditUncheckedUpdateManyWithoutEventNestedInput
+    categories?: EventPeriodUncheckedUpdateManyWithoutEventsNestedInput
+  }
+
+  export type HistoricalEventCreateManyInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HistoricalEventUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoricalEventUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventEditCreateInput = {
+    id?: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+    event: HistoricalEventCreateNestedOneWithoutEditorsInput
+    editor: UserCreateNestedOneWithoutEditedEventsInput
+  }
+
+  export type EventEditUncheckedCreateInput = {
+    id?: string
+    eventId: string
+    editorId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type EventEditUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+    event?: HistoricalEventUpdateOneRequiredWithoutEditorsNestedInput
+    editor?: UserUpdateOneRequiredWithoutEditedEventsNestedInput
+  }
+
+  export type EventEditUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    editorId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventEditCreateManyInput = {
+    id?: string
+    eventId: string
+    editorId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type EventEditUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventEditUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    editorId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventPeriodCreateInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    name: string
+    slug: string
+    description?: string | null
+    events?: HistoricalEventCreateNestedManyWithoutCategoriesInput
+  }
+
+  export type EventPeriodUncheckedCreateInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    name: string
+    slug: string
+    description?: string | null
+    events?: HistoricalEventUncheckedCreateNestedManyWithoutCategoriesInput
+  }
+
+  export type EventPeriodUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: HistoricalEventUpdateManyWithoutCategoriesNestedInput
+  }
+
+  export type EventPeriodUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    events?: HistoricalEventUncheckedUpdateManyWithoutCategoriesNestedInput
+  }
+
+  export type EventPeriodCreateManyInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type EventPeriodUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventPeriodUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BlogPostCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    authors?: BlogAuthorCreateNestedManyWithoutPostInput
+  }
+
+  export type BlogPostUncheckedCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    authors?: BlogAuthorUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type BlogPostUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authors?: BlogAuthorUpdateManyWithoutPostNestedInput
+  }
+
+  export type BlogPostUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    authors?: BlogAuthorUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type BlogPostCreateManyInput = {
+    id?: string
+    title: string
+    slug: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorCreateInput = {
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutBlogPostsInput
+    post: BlogPostCreateNestedOneWithoutAuthorsInput
+  }
+
+  export type BlogAuthorUncheckedCreateInput = {
+    authorId: string
+    postId: string
+    createdAt?: Date | string
+  }
+
+  export type BlogAuthorUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutBlogPostsNestedInput
+    post?: BlogPostUpdateOneRequiredWithoutAuthorsNestedInput
+  }
+
+  export type BlogAuthorUncheckedUpdateInput = {
+    authorId?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorCreateManyInput = {
+    authorId: string
+    postId: string
+    createdAt?: Date | string
+  }
+
+  export type BlogAuthorUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorUncheckedUpdateManyInput = {
+    authorId?: StringFieldUpdateOperationsInput | string
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10290,6 +18025,17 @@ export namespace Prisma {
     not?: NestedEnumUserStatusFilter<$PrismaModel> | $Enums.UserStatus
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type RoleScalarRelationFilter = {
     is?: RoleWhereInput
     isNot?: RoleWhereInput
@@ -10301,12 +18047,42 @@ export namespace Prisma {
     none?: KeyTokenWhereInput
   }
 
+  export type HistoricalEventListRelationFilter = {
+    every?: HistoricalEventWhereInput
+    some?: HistoricalEventWhereInput
+    none?: HistoricalEventWhereInput
+  }
+
+  export type EventEditListRelationFilter = {
+    every?: EventEditWhereInput
+    some?: EventEditWhereInput
+    none?: EventEditWhereInput
+  }
+
+  export type BlogAuthorListRelationFilter = {
+    every?: BlogAuthorWhereInput
+    some?: BlogAuthorWhereInput
+    none?: BlogAuthorWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type KeyTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HistoricalEventOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EventEditOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BlogAuthorOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10326,6 +18102,8 @@ export namespace Prisma {
     sex?: SortOrder
     status?: SortOrder
     roleId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -10344,6 +18122,8 @@ export namespace Prisma {
     sex?: SortOrder
     status?: SortOrder
     roleId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -10362,6 +18142,23 @@ export namespace Prisma {
     sex?: SortOrder
     status?: SortOrder
     roleId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10432,6 +18229,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserStatusFilter<$PrismaModel>
     _max?: NestedEnumUserStatusFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type GrantListRelationFilter = {
@@ -10558,23 +18369,14 @@ export namespace Prisma {
     not?: NestedEnumOTPStatusFilter<$PrismaModel> | $Enums.OTPStatus
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type OTPCountOrderByAggregateInput = {
     id?: SortOrder
     token?: SortOrder
     email?: SortOrder
     status?: SortOrder
     expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OTPMaxOrderByAggregateInput = {
@@ -10583,6 +18385,8 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type OTPMinOrderByAggregateInput = {
@@ -10591,6 +18395,8 @@ export namespace Prisma {
     email?: SortOrder
     status?: SortOrder
     expiresAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumOTPStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -10601,20 +18407,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOTPStatusFilter<$PrismaModel>
     _max?: NestedEnumOTPStatusFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -10635,18 +18427,24 @@ export namespace Prisma {
     key?: SortOrder
     status?: SortOrder
     permissions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ApiKeyMaxOrderByAggregateInput = {
     id?: SortOrder
     key?: SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ApiKeyMinOrderByAggregateInput = {
     id?: SortOrder
     key?: SortOrder
     status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -10683,6 +18481,8 @@ export namespace Prisma {
     refreshTokensUsed?: SortOrder
     refreshToken?: SortOrder
     userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type KeyTokenMaxOrderByAggregateInput = {
@@ -10692,6 +18492,8 @@ export namespace Prisma {
     privateKey?: SortOrder
     refreshToken?: SortOrder
     userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type KeyTokenMinOrderByAggregateInput = {
@@ -10701,6 +18503,342 @@ export namespace Prisma {
     privateKey?: SortOrder
     refreshToken?: SortOrder
     userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EventPeriodListRelationFilter = {
+    every?: EventPeriodWhereInput
+    some?: EventPeriodWhereInput
+    none?: EventPeriodWhereInput
+  }
+
+  export type EventPeriodOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type HistoricalEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    content?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HistoricalEventAvgOrderByAggregateInput = {
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+  }
+
+  export type HistoricalEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    content?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HistoricalEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    content?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HistoricalEventSumOrderByAggregateInput = {
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type HistoricalEventScalarRelationFilter = {
+    is?: HistoricalEventWhereInput
+    isNot?: HistoricalEventWhereInput
+  }
+
+  export type EventEditCountOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    editorId?: SortOrder
+    editedAt?: SortOrder
+    prevContent?: SortOrder
+    newContent?: SortOrder
+    prevFromDay?: SortOrder
+    prevFromMonth?: SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrder
+    prevToMonth?: SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrder
+    newFromMonth?: SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrder
+    newToMonth?: SortOrder
+    newToYear?: SortOrder
+  }
+
+  export type EventEditAvgOrderByAggregateInput = {
+    prevFromDay?: SortOrder
+    prevFromMonth?: SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrder
+    prevToMonth?: SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrder
+    newFromMonth?: SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrder
+    newToMonth?: SortOrder
+    newToYear?: SortOrder
+  }
+
+  export type EventEditMaxOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    editorId?: SortOrder
+    editedAt?: SortOrder
+    prevContent?: SortOrder
+    newContent?: SortOrder
+    prevFromDay?: SortOrder
+    prevFromMonth?: SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrder
+    prevToMonth?: SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrder
+    newFromMonth?: SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrder
+    newToMonth?: SortOrder
+    newToYear?: SortOrder
+  }
+
+  export type EventEditMinOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    editorId?: SortOrder
+    editedAt?: SortOrder
+    prevContent?: SortOrder
+    newContent?: SortOrder
+    prevFromDay?: SortOrder
+    prevFromMonth?: SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrder
+    prevToMonth?: SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrder
+    newFromMonth?: SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrder
+    newToMonth?: SortOrder
+    newToYear?: SortOrder
+  }
+
+  export type EventEditSumOrderByAggregateInput = {
+    prevFromDay?: SortOrder
+    prevFromMonth?: SortOrder
+    prevFromYear?: SortOrder
+    prevToDay?: SortOrder
+    prevToMonth?: SortOrder
+    prevToYear?: SortOrder
+    newFromDay?: SortOrder
+    newFromMonth?: SortOrder
+    newFromYear?: SortOrder
+    newToDay?: SortOrder
+    newToMonth?: SortOrder
+    newToYear?: SortOrder
+  }
+
+  export type EventPeriodCountOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type EventPeriodAvgOrderByAggregateInput = {
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+  }
+
+  export type EventPeriodMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type EventPeriodMinOrderByAggregateInput = {
+    id?: SortOrder
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type EventPeriodSumOrderByAggregateInput = {
+    fromDay?: SortOrder
+    fromMonth?: SortOrder
+    fromYear?: SortOrder
+    toDay?: SortOrder
+    toMonth?: SortOrder
+    toYear?: SortOrder
+  }
+
+  export type BlogPostCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostScalarRelationFilter = {
+    is?: BlogPostWhereInput
+    isNot?: BlogPostWhereInput
+  }
+
+  export type BlogAuthorAuthorIdPostIdCompoundUniqueInput = {
+    authorId: string
+    postId: string
+  }
+
+  export type BlogAuthorCountOrderByAggregateInput = {
+    authorId?: SortOrder
+    postId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BlogAuthorMaxOrderByAggregateInput = {
+    authorId?: SortOrder
+    postId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BlogAuthorMinOrderByAggregateInput = {
+    authorId?: SortOrder
+    postId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type RoleCreateNestedOneWithoutUsersInput = {
@@ -10716,11 +18854,53 @@ export namespace Prisma {
     connect?: KeyTokenWhereUniqueInput | KeyTokenWhereUniqueInput[]
   }
 
+  export type HistoricalEventCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput> | HistoricalEventCreateWithoutAuthorInput[] | HistoricalEventUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutAuthorInput | HistoricalEventCreateOrConnectWithoutAuthorInput[]
+    createMany?: HistoricalEventCreateManyAuthorInputEnvelope
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+  }
+
+  export type EventEditCreateNestedManyWithoutEditorInput = {
+    create?: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput> | EventEditCreateWithoutEditorInput[] | EventEditUncheckedCreateWithoutEditorInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEditorInput | EventEditCreateOrConnectWithoutEditorInput[]
+    createMany?: EventEditCreateManyEditorInputEnvelope
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+  }
+
+  export type BlogAuthorCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput> | BlogAuthorCreateWithoutAuthorInput[] | BlogAuthorUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutAuthorInput | BlogAuthorCreateOrConnectWithoutAuthorInput[]
+    createMany?: BlogAuthorCreateManyAuthorInputEnvelope
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+  }
+
   export type KeyTokenUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<KeyTokenCreateWithoutUserInput, KeyTokenUncheckedCreateWithoutUserInput> | KeyTokenCreateWithoutUserInput[] | KeyTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KeyTokenCreateOrConnectWithoutUserInput | KeyTokenCreateOrConnectWithoutUserInput[]
     createMany?: KeyTokenCreateManyUserInputEnvelope
     connect?: KeyTokenWhereUniqueInput | KeyTokenWhereUniqueInput[]
+  }
+
+  export type HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput> | HistoricalEventCreateWithoutAuthorInput[] | HistoricalEventUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutAuthorInput | HistoricalEventCreateOrConnectWithoutAuthorInput[]
+    createMany?: HistoricalEventCreateManyAuthorInputEnvelope
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+  }
+
+  export type EventEditUncheckedCreateNestedManyWithoutEditorInput = {
+    create?: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput> | EventEditCreateWithoutEditorInput[] | EventEditUncheckedCreateWithoutEditorInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEditorInput | EventEditCreateOrConnectWithoutEditorInput[]
+    createMany?: EventEditCreateManyEditorInputEnvelope
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+  }
+
+  export type BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput> | BlogAuthorCreateWithoutAuthorInput[] | BlogAuthorUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutAuthorInput | BlogAuthorCreateOrConnectWithoutAuthorInput[]
+    createMany?: BlogAuthorCreateManyAuthorInputEnvelope
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10741,6 +18921,10 @@ export namespace Prisma {
 
   export type EnumUserStatusFieldUpdateOperationsInput = {
     set?: $Enums.UserStatus
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type RoleUpdateOneRequiredWithoutUsersNestedInput = {
@@ -10765,6 +18949,48 @@ export namespace Prisma {
     deleteMany?: KeyTokenScalarWhereInput | KeyTokenScalarWhereInput[]
   }
 
+  export type HistoricalEventUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput> | HistoricalEventCreateWithoutAuthorInput[] | HistoricalEventUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutAuthorInput | HistoricalEventCreateOrConnectWithoutAuthorInput[]
+    upsert?: HistoricalEventUpsertWithWhereUniqueWithoutAuthorInput | HistoricalEventUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: HistoricalEventCreateManyAuthorInputEnvelope
+    set?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    disconnect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    delete?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    update?: HistoricalEventUpdateWithWhereUniqueWithoutAuthorInput | HistoricalEventUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: HistoricalEventUpdateManyWithWhereWithoutAuthorInput | HistoricalEventUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+  }
+
+  export type EventEditUpdateManyWithoutEditorNestedInput = {
+    create?: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput> | EventEditCreateWithoutEditorInput[] | EventEditUncheckedCreateWithoutEditorInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEditorInput | EventEditCreateOrConnectWithoutEditorInput[]
+    upsert?: EventEditUpsertWithWhereUniqueWithoutEditorInput | EventEditUpsertWithWhereUniqueWithoutEditorInput[]
+    createMany?: EventEditCreateManyEditorInputEnvelope
+    set?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    disconnect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    delete?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    update?: EventEditUpdateWithWhereUniqueWithoutEditorInput | EventEditUpdateWithWhereUniqueWithoutEditorInput[]
+    updateMany?: EventEditUpdateManyWithWhereWithoutEditorInput | EventEditUpdateManyWithWhereWithoutEditorInput[]
+    deleteMany?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+  }
+
+  export type BlogAuthorUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput> | BlogAuthorCreateWithoutAuthorInput[] | BlogAuthorUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutAuthorInput | BlogAuthorCreateOrConnectWithoutAuthorInput[]
+    upsert?: BlogAuthorUpsertWithWhereUniqueWithoutAuthorInput | BlogAuthorUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BlogAuthorCreateManyAuthorInputEnvelope
+    set?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    disconnect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    delete?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    update?: BlogAuthorUpdateWithWhereUniqueWithoutAuthorInput | BlogAuthorUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BlogAuthorUpdateManyWithWhereWithoutAuthorInput | BlogAuthorUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
+  }
+
   export type KeyTokenUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<KeyTokenCreateWithoutUserInput, KeyTokenUncheckedCreateWithoutUserInput> | KeyTokenCreateWithoutUserInput[] | KeyTokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KeyTokenCreateOrConnectWithoutUserInput | KeyTokenCreateOrConnectWithoutUserInput[]
@@ -10777,6 +19003,48 @@ export namespace Prisma {
     update?: KeyTokenUpdateWithWhereUniqueWithoutUserInput | KeyTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: KeyTokenUpdateManyWithWhereWithoutUserInput | KeyTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: KeyTokenScalarWhereInput | KeyTokenScalarWhereInput[]
+  }
+
+  export type HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput> | HistoricalEventCreateWithoutAuthorInput[] | HistoricalEventUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutAuthorInput | HistoricalEventCreateOrConnectWithoutAuthorInput[]
+    upsert?: HistoricalEventUpsertWithWhereUniqueWithoutAuthorInput | HistoricalEventUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: HistoricalEventCreateManyAuthorInputEnvelope
+    set?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    disconnect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    delete?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    update?: HistoricalEventUpdateWithWhereUniqueWithoutAuthorInput | HistoricalEventUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: HistoricalEventUpdateManyWithWhereWithoutAuthorInput | HistoricalEventUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+  }
+
+  export type EventEditUncheckedUpdateManyWithoutEditorNestedInput = {
+    create?: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput> | EventEditCreateWithoutEditorInput[] | EventEditUncheckedCreateWithoutEditorInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEditorInput | EventEditCreateOrConnectWithoutEditorInput[]
+    upsert?: EventEditUpsertWithWhereUniqueWithoutEditorInput | EventEditUpsertWithWhereUniqueWithoutEditorInput[]
+    createMany?: EventEditCreateManyEditorInputEnvelope
+    set?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    disconnect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    delete?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    update?: EventEditUpdateWithWhereUniqueWithoutEditorInput | EventEditUpdateWithWhereUniqueWithoutEditorInput[]
+    updateMany?: EventEditUpdateManyWithWhereWithoutEditorInput | EventEditUpdateManyWithWhereWithoutEditorInput[]
+    deleteMany?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+  }
+
+  export type BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput> | BlogAuthorCreateWithoutAuthorInput[] | BlogAuthorUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutAuthorInput | BlogAuthorCreateOrConnectWithoutAuthorInput[]
+    upsert?: BlogAuthorUpsertWithWhereUniqueWithoutAuthorInput | BlogAuthorUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BlogAuthorCreateManyAuthorInputEnvelope
+    set?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    disconnect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    delete?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    update?: BlogAuthorUpdateWithWhereUniqueWithoutAuthorInput | BlogAuthorUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BlogAuthorUpdateManyWithWhereWithoutAuthorInput | BlogAuthorUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
   }
 
   export type GrantCreateNestedManyWithoutResourceInput = {
@@ -10941,10 +19209,6 @@ export namespace Prisma {
     set?: $Enums.OTPStatus
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
   export type ApiKeyCreatepermissionsInput = {
     set: $Enums.ApiKeyPermission[]
   }
@@ -10979,6 +19243,263 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutKeyTokenInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutKeyTokenInput, UserUpdateWithoutKeyTokenInput>, UserUncheckedUpdateWithoutKeyTokenInput>
+  }
+
+  export type UserCreateNestedOneWithoutCreatedEventsInput = {
+    create?: XOR<UserCreateWithoutCreatedEventsInput, UserUncheckedCreateWithoutCreatedEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedEventsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EventEditCreateNestedManyWithoutEventInput = {
+    create?: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput> | EventEditCreateWithoutEventInput[] | EventEditUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEventInput | EventEditCreateOrConnectWithoutEventInput[]
+    createMany?: EventEditCreateManyEventInputEnvelope
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+  }
+
+  export type EventPeriodCreateNestedManyWithoutEventsInput = {
+    create?: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput> | EventPeriodCreateWithoutEventsInput[] | EventPeriodUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: EventPeriodCreateOrConnectWithoutEventsInput | EventPeriodCreateOrConnectWithoutEventsInput[]
+    connect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+  }
+
+  export type EventEditUncheckedCreateNestedManyWithoutEventInput = {
+    create?: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput> | EventEditCreateWithoutEventInput[] | EventEditUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEventInput | EventEditCreateOrConnectWithoutEventInput[]
+    createMany?: EventEditCreateManyEventInputEnvelope
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+  }
+
+  export type EventPeriodUncheckedCreateNestedManyWithoutEventsInput = {
+    create?: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput> | EventPeriodCreateWithoutEventsInput[] | EventPeriodUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: EventPeriodCreateOrConnectWithoutEventsInput | EventPeriodCreateOrConnectWithoutEventsInput[]
+    connect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutCreatedEventsNestedInput = {
+    create?: XOR<UserCreateWithoutCreatedEventsInput, UserUncheckedCreateWithoutCreatedEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCreatedEventsInput
+    upsert?: UserUpsertWithoutCreatedEventsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCreatedEventsInput, UserUpdateWithoutCreatedEventsInput>, UserUncheckedUpdateWithoutCreatedEventsInput>
+  }
+
+  export type EventEditUpdateManyWithoutEventNestedInput = {
+    create?: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput> | EventEditCreateWithoutEventInput[] | EventEditUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEventInput | EventEditCreateOrConnectWithoutEventInput[]
+    upsert?: EventEditUpsertWithWhereUniqueWithoutEventInput | EventEditUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: EventEditCreateManyEventInputEnvelope
+    set?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    disconnect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    delete?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    update?: EventEditUpdateWithWhereUniqueWithoutEventInput | EventEditUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: EventEditUpdateManyWithWhereWithoutEventInput | EventEditUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+  }
+
+  export type EventPeriodUpdateManyWithoutEventsNestedInput = {
+    create?: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput> | EventPeriodCreateWithoutEventsInput[] | EventPeriodUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: EventPeriodCreateOrConnectWithoutEventsInput | EventPeriodCreateOrConnectWithoutEventsInput[]
+    upsert?: EventPeriodUpsertWithWhereUniqueWithoutEventsInput | EventPeriodUpsertWithWhereUniqueWithoutEventsInput[]
+    set?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    disconnect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    delete?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    connect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    update?: EventPeriodUpdateWithWhereUniqueWithoutEventsInput | EventPeriodUpdateWithWhereUniqueWithoutEventsInput[]
+    updateMany?: EventPeriodUpdateManyWithWhereWithoutEventsInput | EventPeriodUpdateManyWithWhereWithoutEventsInput[]
+    deleteMany?: EventPeriodScalarWhereInput | EventPeriodScalarWhereInput[]
+  }
+
+  export type EventEditUncheckedUpdateManyWithoutEventNestedInput = {
+    create?: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput> | EventEditCreateWithoutEventInput[] | EventEditUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: EventEditCreateOrConnectWithoutEventInput | EventEditCreateOrConnectWithoutEventInput[]
+    upsert?: EventEditUpsertWithWhereUniqueWithoutEventInput | EventEditUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: EventEditCreateManyEventInputEnvelope
+    set?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    disconnect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    delete?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    connect?: EventEditWhereUniqueInput | EventEditWhereUniqueInput[]
+    update?: EventEditUpdateWithWhereUniqueWithoutEventInput | EventEditUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: EventEditUpdateManyWithWhereWithoutEventInput | EventEditUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+  }
+
+  export type EventPeriodUncheckedUpdateManyWithoutEventsNestedInput = {
+    create?: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput> | EventPeriodCreateWithoutEventsInput[] | EventPeriodUncheckedCreateWithoutEventsInput[]
+    connectOrCreate?: EventPeriodCreateOrConnectWithoutEventsInput | EventPeriodCreateOrConnectWithoutEventsInput[]
+    upsert?: EventPeriodUpsertWithWhereUniqueWithoutEventsInput | EventPeriodUpsertWithWhereUniqueWithoutEventsInput[]
+    set?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    disconnect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    delete?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    connect?: EventPeriodWhereUniqueInput | EventPeriodWhereUniqueInput[]
+    update?: EventPeriodUpdateWithWhereUniqueWithoutEventsInput | EventPeriodUpdateWithWhereUniqueWithoutEventsInput[]
+    updateMany?: EventPeriodUpdateManyWithWhereWithoutEventsInput | EventPeriodUpdateManyWithWhereWithoutEventsInput[]
+    deleteMany?: EventPeriodScalarWhereInput | EventPeriodScalarWhereInput[]
+  }
+
+  export type HistoricalEventCreateNestedOneWithoutEditorsInput = {
+    create?: XOR<HistoricalEventCreateWithoutEditorsInput, HistoricalEventUncheckedCreateWithoutEditorsInput>
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutEditorsInput
+    connect?: HistoricalEventWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutEditedEventsInput = {
+    create?: XOR<UserCreateWithoutEditedEventsInput, UserUncheckedCreateWithoutEditedEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEditedEventsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type HistoricalEventUpdateOneRequiredWithoutEditorsNestedInput = {
+    create?: XOR<HistoricalEventCreateWithoutEditorsInput, HistoricalEventUncheckedCreateWithoutEditorsInput>
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutEditorsInput
+    upsert?: HistoricalEventUpsertWithoutEditorsInput
+    connect?: HistoricalEventWhereUniqueInput
+    update?: XOR<XOR<HistoricalEventUpdateToOneWithWhereWithoutEditorsInput, HistoricalEventUpdateWithoutEditorsInput>, HistoricalEventUncheckedUpdateWithoutEditorsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutEditedEventsNestedInput = {
+    create?: XOR<UserCreateWithoutEditedEventsInput, UserUncheckedCreateWithoutEditedEventsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEditedEventsInput
+    upsert?: UserUpsertWithoutEditedEventsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEditedEventsInput, UserUpdateWithoutEditedEventsInput>, UserUncheckedUpdateWithoutEditedEventsInput>
+  }
+
+  export type HistoricalEventCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput> | HistoricalEventCreateWithoutCategoriesInput[] | HistoricalEventUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutCategoriesInput | HistoricalEventCreateOrConnectWithoutCategoriesInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+  }
+
+  export type HistoricalEventUncheckedCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput> | HistoricalEventCreateWithoutCategoriesInput[] | HistoricalEventUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutCategoriesInput | HistoricalEventCreateOrConnectWithoutCategoriesInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+  }
+
+  export type HistoricalEventUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput> | HistoricalEventCreateWithoutCategoriesInput[] | HistoricalEventUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutCategoriesInput | HistoricalEventCreateOrConnectWithoutCategoriesInput[]
+    upsert?: HistoricalEventUpsertWithWhereUniqueWithoutCategoriesInput | HistoricalEventUpsertWithWhereUniqueWithoutCategoriesInput[]
+    set?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    disconnect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    delete?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    update?: HistoricalEventUpdateWithWhereUniqueWithoutCategoriesInput | HistoricalEventUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: HistoricalEventUpdateManyWithWhereWithoutCategoriesInput | HistoricalEventUpdateManyWithWhereWithoutCategoriesInput[]
+    deleteMany?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+  }
+
+  export type HistoricalEventUncheckedUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput> | HistoricalEventCreateWithoutCategoriesInput[] | HistoricalEventUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: HistoricalEventCreateOrConnectWithoutCategoriesInput | HistoricalEventCreateOrConnectWithoutCategoriesInput[]
+    upsert?: HistoricalEventUpsertWithWhereUniqueWithoutCategoriesInput | HistoricalEventUpsertWithWhereUniqueWithoutCategoriesInput[]
+    set?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    disconnect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    delete?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    connect?: HistoricalEventWhereUniqueInput | HistoricalEventWhereUniqueInput[]
+    update?: HistoricalEventUpdateWithWhereUniqueWithoutCategoriesInput | HistoricalEventUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: HistoricalEventUpdateManyWithWhereWithoutCategoriesInput | HistoricalEventUpdateManyWithWhereWithoutCategoriesInput[]
+    deleteMany?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+  }
+
+  export type BlogAuthorCreateNestedManyWithoutPostInput = {
+    create?: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput> | BlogAuthorCreateWithoutPostInput[] | BlogAuthorUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutPostInput | BlogAuthorCreateOrConnectWithoutPostInput[]
+    createMany?: BlogAuthorCreateManyPostInputEnvelope
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+  }
+
+  export type BlogAuthorUncheckedCreateNestedManyWithoutPostInput = {
+    create?: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput> | BlogAuthorCreateWithoutPostInput[] | BlogAuthorUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutPostInput | BlogAuthorCreateOrConnectWithoutPostInput[]
+    createMany?: BlogAuthorCreateManyPostInputEnvelope
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+  }
+
+  export type BlogAuthorUpdateManyWithoutPostNestedInput = {
+    create?: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput> | BlogAuthorCreateWithoutPostInput[] | BlogAuthorUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutPostInput | BlogAuthorCreateOrConnectWithoutPostInput[]
+    upsert?: BlogAuthorUpsertWithWhereUniqueWithoutPostInput | BlogAuthorUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: BlogAuthorCreateManyPostInputEnvelope
+    set?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    disconnect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    delete?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    update?: BlogAuthorUpdateWithWhereUniqueWithoutPostInput | BlogAuthorUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: BlogAuthorUpdateManyWithWhereWithoutPostInput | BlogAuthorUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
+  }
+
+  export type BlogAuthorUncheckedUpdateManyWithoutPostNestedInput = {
+    create?: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput> | BlogAuthorCreateWithoutPostInput[] | BlogAuthorUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: BlogAuthorCreateOrConnectWithoutPostInput | BlogAuthorCreateOrConnectWithoutPostInput[]
+    upsert?: BlogAuthorUpsertWithWhereUniqueWithoutPostInput | BlogAuthorUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: BlogAuthorCreateManyPostInputEnvelope
+    set?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    disconnect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    delete?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    connect?: BlogAuthorWhereUniqueInput | BlogAuthorWhereUniqueInput[]
+    update?: BlogAuthorUpdateWithWhereUniqueWithoutPostInput | BlogAuthorUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: BlogAuthorUpdateManyWithWhereWithoutPostInput | BlogAuthorUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutBlogPostsInput = {
+    create?: XOR<UserCreateWithoutBlogPostsInput, UserUncheckedCreateWithoutBlogPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBlogPostsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BlogPostCreateNestedOneWithoutAuthorsInput = {
+    create?: XOR<BlogPostCreateWithoutAuthorsInput, BlogPostUncheckedCreateWithoutAuthorsInput>
+    connectOrCreate?: BlogPostCreateOrConnectWithoutAuthorsInput
+    connect?: BlogPostWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutBlogPostsNestedInput = {
+    create?: XOR<UserCreateWithoutBlogPostsInput, UserUncheckedCreateWithoutBlogPostsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBlogPostsInput
+    upsert?: UserUpsertWithoutBlogPostsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBlogPostsInput, UserUpdateWithoutBlogPostsInput>, UserUncheckedUpdateWithoutBlogPostsInput>
+  }
+
+  export type BlogPostUpdateOneRequiredWithoutAuthorsNestedInput = {
+    create?: XOR<BlogPostCreateWithoutAuthorsInput, BlogPostUncheckedCreateWithoutAuthorsInput>
+    connectOrCreate?: BlogPostCreateOrConnectWithoutAuthorsInput
+    upsert?: BlogPostUpsertWithoutAuthorsInput
+    connect?: BlogPostWhereUniqueInput
+    update?: XOR<XOR<BlogPostUpdateToOneWithWhereWithoutAuthorsInput, BlogPostUpdateWithoutAuthorsInput>, BlogPostUncheckedUpdateWithoutAuthorsInput>
+  }
+
+  export type NestedUuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11034,6 +19555,42 @@ export namespace Prisma {
     not?: NestedEnumUserStatusFilter<$PrismaModel> | $Enums.UserStatus
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11049,17 +19606,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11124,6 +19670,20 @@ export namespace Prisma {
     _max?: NestedEnumUserStatusFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedEnumRoleStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.RoleStatus | EnumRoleStatusFieldRefInput<$PrismaModel>
     in?: $Enums.RoleStatus[] | ListEnumRoleStatusFieldRefInput<$PrismaModel>
@@ -11148,17 +19708,6 @@ export namespace Prisma {
     not?: NestedEnumOTPStatusFilter<$PrismaModel> | $Enums.OTPStatus
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedEnumOTPStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.OTPStatus | EnumOTPStatusFieldRefInput<$PrismaModel>
     in?: $Enums.OTPStatus[] | ListEnumOTPStatusFieldRefInput<$PrismaModel>
@@ -11167,20 +19716,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOTPStatusFilter<$PrismaModel>
     _max?: NestedEnumOTPStatusFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -11194,6 +19729,60 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type RoleCreateWithoutUsersInput = {
@@ -11226,6 +19815,8 @@ export namespace Prisma {
     privateKey: string
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type KeyTokenUncheckedCreateWithoutUserInput = {
@@ -11235,6 +19826,8 @@ export namespace Prisma {
     privateKey: string
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type KeyTokenCreateOrConnectWithoutUserInput = {
@@ -11244,6 +19837,116 @@ export namespace Prisma {
 
   export type KeyTokenCreateManyUserInputEnvelope = {
     data: KeyTokenCreateManyUserInput | KeyTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HistoricalEventCreateWithoutAuthorInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    editors?: EventEditCreateNestedManyWithoutEventInput
+    categories?: EventPeriodCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    editors?: EventEditUncheckedCreateNestedManyWithoutEventInput
+    categories?: EventPeriodUncheckedCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventCreateOrConnectWithoutAuthorInput = {
+    where: HistoricalEventWhereUniqueInput
+    create: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type HistoricalEventCreateManyAuthorInputEnvelope = {
+    data: HistoricalEventCreateManyAuthorInput | HistoricalEventCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventEditCreateWithoutEditorInput = {
+    id?: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+    event: HistoricalEventCreateNestedOneWithoutEditorsInput
+  }
+
+  export type EventEditUncheckedCreateWithoutEditorInput = {
+    id?: string
+    eventId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type EventEditCreateOrConnectWithoutEditorInput = {
+    where: EventEditWhereUniqueInput
+    create: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput>
+  }
+
+  export type EventEditCreateManyEditorInputEnvelope = {
+    data: EventEditCreateManyEditorInput | EventEditCreateManyEditorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BlogAuthorCreateWithoutAuthorInput = {
+    createdAt?: Date | string
+    post: BlogPostCreateNestedOneWithoutAuthorsInput
+  }
+
+  export type BlogAuthorUncheckedCreateWithoutAuthorInput = {
+    postId: string
+    createdAt?: Date | string
+  }
+
+  export type BlogAuthorCreateOrConnectWithoutAuthorInput = {
+    where: BlogAuthorWhereUniqueInput
+    create: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BlogAuthorCreateManyAuthorInputEnvelope = {
+    data: BlogAuthorCreateManyAuthorInput | BlogAuthorCreateManyAuthorInput[]
     skipDuplicates?: boolean
   }
 
@@ -11296,13 +19999,113 @@ export namespace Prisma {
     AND?: KeyTokenScalarWhereInput | KeyTokenScalarWhereInput[]
     OR?: KeyTokenScalarWhereInput[]
     NOT?: KeyTokenScalarWhereInput | KeyTokenScalarWhereInput[]
-    id?: StringFilter<"KeyToken"> | string
+    id?: UuidFilter<"KeyToken"> | string
     browserId?: StringFilter<"KeyToken"> | string
     publicKey?: StringFilter<"KeyToken"> | string
     privateKey?: StringFilter<"KeyToken"> | string
     refreshTokensUsed?: StringNullableListFilter<"KeyToken">
     refreshToken?: StringFilter<"KeyToken"> | string
-    userId?: StringFilter<"KeyToken"> | string
+    userId?: UuidFilter<"KeyToken"> | string
+    createdAt?: DateTimeFilter<"KeyToken"> | Date | string
+    updatedAt?: DateTimeFilter<"KeyToken"> | Date | string
+  }
+
+  export type HistoricalEventUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: HistoricalEventWhereUniqueInput
+    update: XOR<HistoricalEventUpdateWithoutAuthorInput, HistoricalEventUncheckedUpdateWithoutAuthorInput>
+    create: XOR<HistoricalEventCreateWithoutAuthorInput, HistoricalEventUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type HistoricalEventUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: HistoricalEventWhereUniqueInput
+    data: XOR<HistoricalEventUpdateWithoutAuthorInput, HistoricalEventUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type HistoricalEventUpdateManyWithWhereWithoutAuthorInput = {
+    where: HistoricalEventScalarWhereInput
+    data: XOR<HistoricalEventUpdateManyMutationInput, HistoricalEventUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type HistoricalEventScalarWhereInput = {
+    AND?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+    OR?: HistoricalEventScalarWhereInput[]
+    NOT?: HistoricalEventScalarWhereInput | HistoricalEventScalarWhereInput[]
+    id?: UuidFilter<"HistoricalEvent"> | string
+    fromDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    fromYear?: IntFilter<"HistoricalEvent"> | number
+    toDay?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toMonth?: IntNullableFilter<"HistoricalEvent"> | number | null
+    toYear?: IntFilter<"HistoricalEvent"> | number
+    content?: StringFilter<"HistoricalEvent"> | string
+    authorId?: UuidFilter<"HistoricalEvent"> | string
+    createdAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"HistoricalEvent"> | Date | string
+  }
+
+  export type EventEditUpsertWithWhereUniqueWithoutEditorInput = {
+    where: EventEditWhereUniqueInput
+    update: XOR<EventEditUpdateWithoutEditorInput, EventEditUncheckedUpdateWithoutEditorInput>
+    create: XOR<EventEditCreateWithoutEditorInput, EventEditUncheckedCreateWithoutEditorInput>
+  }
+
+  export type EventEditUpdateWithWhereUniqueWithoutEditorInput = {
+    where: EventEditWhereUniqueInput
+    data: XOR<EventEditUpdateWithoutEditorInput, EventEditUncheckedUpdateWithoutEditorInput>
+  }
+
+  export type EventEditUpdateManyWithWhereWithoutEditorInput = {
+    where: EventEditScalarWhereInput
+    data: XOR<EventEditUpdateManyMutationInput, EventEditUncheckedUpdateManyWithoutEditorInput>
+  }
+
+  export type EventEditScalarWhereInput = {
+    AND?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+    OR?: EventEditScalarWhereInput[]
+    NOT?: EventEditScalarWhereInput | EventEditScalarWhereInput[]
+    id?: UuidFilter<"EventEdit"> | string
+    eventId?: UuidFilter<"EventEdit"> | string
+    editorId?: UuidFilter<"EventEdit"> | string
+    editedAt?: DateTimeFilter<"EventEdit"> | Date | string
+    prevContent?: StringFilter<"EventEdit"> | string
+    newContent?: StringFilter<"EventEdit"> | string
+    prevFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevFromYear?: IntFilter<"EventEdit"> | number
+    prevToDay?: IntNullableFilter<"EventEdit"> | number | null
+    prevToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    prevToYear?: IntFilter<"EventEdit"> | number
+    newFromDay?: IntNullableFilter<"EventEdit"> | number | null
+    newFromMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newFromYear?: IntFilter<"EventEdit"> | number
+    newToDay?: IntNullableFilter<"EventEdit"> | number | null
+    newToMonth?: IntNullableFilter<"EventEdit"> | number | null
+    newToYear?: IntFilter<"EventEdit"> | number
+  }
+
+  export type BlogAuthorUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: BlogAuthorWhereUniqueInput
+    update: XOR<BlogAuthorUpdateWithoutAuthorInput, BlogAuthorUncheckedUpdateWithoutAuthorInput>
+    create: XOR<BlogAuthorCreateWithoutAuthorInput, BlogAuthorUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BlogAuthorUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: BlogAuthorWhereUniqueInput
+    data: XOR<BlogAuthorUpdateWithoutAuthorInput, BlogAuthorUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type BlogAuthorUpdateManyWithWhereWithoutAuthorInput = {
+    where: BlogAuthorScalarWhereInput
+    data: XOR<BlogAuthorUpdateManyMutationInput, BlogAuthorUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type BlogAuthorScalarWhereInput = {
+    AND?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
+    OR?: BlogAuthorScalarWhereInput[]
+    NOT?: BlogAuthorScalarWhereInput | BlogAuthorScalarWhereInput[]
+    authorId?: UuidFilter<"BlogAuthor"> | string
+    postId?: UuidFilter<"BlogAuthor"> | string
+    createdAt?: DateTimeFilter<"BlogAuthor"> | Date | string
   }
 
   export type GrantCreateWithoutResourceInput = {
@@ -11349,9 +20152,9 @@ export namespace Prisma {
     AND?: GrantScalarWhereInput | GrantScalarWhereInput[]
     OR?: GrantScalarWhereInput[]
     NOT?: GrantScalarWhereInput | GrantScalarWhereInput[]
-    id?: StringFilter<"Grant"> | string
-    roleId?: StringFilter<"Grant"> | string
-    resourceId?: StringFilter<"Grant"> | string
+    id?: UuidFilter<"Grant"> | string
+    roleId?: UuidFilter<"Grant"> | string
+    resourceId?: UuidFilter<"Grant"> | string
     action?: StringFilter<"Grant"> | string
     attribute?: StringFilter<"Grant"> | string
   }
@@ -11395,7 +20198,12 @@ export namespace Prisma {
     msisdn?: string | null
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     keyToken?: KeyTokenCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -11413,7 +20221,12 @@ export namespace Prisma {
     msisdn?: string | null
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     keyToken?: KeyTokenUncheckedCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditUncheckedCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutRoleInput = {
@@ -11462,7 +20275,7 @@ export namespace Prisma {
     AND?: UserScalarWhereInput | UserScalarWhereInput[]
     OR?: UserScalarWhereInput[]
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: StringFilter<"User"> | string
+    id?: UuidFilter<"User"> | string
     username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     firstName?: StringFilter<"User"> | string
@@ -11476,7 +20289,9 @@ export namespace Prisma {
     msisdn?: StringNullableFilter<"User"> | string | null
     sex?: EnumUserSexNullableFilter<"User"> | $Enums.UserSex | null
     status?: EnumUserStatusFilter<"User"> | $Enums.UserStatus
-    roleId?: StringFilter<"User"> | string
+    roleId?: UuidFilter<"User"> | string
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type RoleCreateWithoutGrantsInput = {
@@ -11590,7 +20405,12 @@ export namespace Prisma {
     msisdn?: string | null
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
     role: RoleCreateNestedOneWithoutUsersInput
+    createdEvents?: HistoricalEventCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUncheckedCreateWithoutKeyTokenInput = {
@@ -11609,6 +20429,11 @@ export namespace Prisma {
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
     roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdEvents?: HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditUncheckedCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserCreateOrConnectWithoutKeyTokenInput = {
@@ -11642,7 +20467,12 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    createdEvents?: HistoricalEventUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutKeyTokenInput = {
@@ -11661,6 +20491,679 @@ export namespace Prisma {
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
     roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdEvents?: HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUncheckedUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserCreateWithoutCreatedEventsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: RoleCreateNestedOneWithoutUsersInput
+    keyToken?: KeyTokenCreateNestedManyWithoutUserInput
+    editedEvents?: EventEditCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutCreatedEventsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keyToken?: KeyTokenUncheckedCreateNestedManyWithoutUserInput
+    editedEvents?: EventEditUncheckedCreateNestedManyWithoutEditorInput
+    blogPosts?: BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutCreatedEventsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCreatedEventsInput, UserUncheckedCreateWithoutCreatedEventsInput>
+  }
+
+  export type EventEditCreateWithoutEventInput = {
+    id?: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+    editor: UserCreateNestedOneWithoutEditedEventsInput
+  }
+
+  export type EventEditUncheckedCreateWithoutEventInput = {
+    id?: string
+    editorId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type EventEditCreateOrConnectWithoutEventInput = {
+    where: EventEditWhereUniqueInput
+    create: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput>
+  }
+
+  export type EventEditCreateManyEventInputEnvelope = {
+    data: EventEditCreateManyEventInput | EventEditCreateManyEventInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventPeriodCreateWithoutEventsInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type EventPeriodUncheckedCreateWithoutEventsInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type EventPeriodCreateOrConnectWithoutEventsInput = {
+    where: EventPeriodWhereUniqueInput
+    create: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput>
+  }
+
+  export type UserUpsertWithoutCreatedEventsInput = {
+    update: XOR<UserUpdateWithoutCreatedEventsInput, UserUncheckedUpdateWithoutCreatedEventsInput>
+    create: XOR<UserCreateWithoutCreatedEventsInput, UserUncheckedCreateWithoutCreatedEventsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCreatedEventsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCreatedEventsInput, UserUncheckedUpdateWithoutCreatedEventsInput>
+  }
+
+  export type UserUpdateWithoutCreatedEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    keyToken?: KeyTokenUpdateManyWithoutUserNestedInput
+    editedEvents?: EventEditUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCreatedEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyToken?: KeyTokenUncheckedUpdateManyWithoutUserNestedInput
+    editedEvents?: EventEditUncheckedUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type EventEditUpsertWithWhereUniqueWithoutEventInput = {
+    where: EventEditWhereUniqueInput
+    update: XOR<EventEditUpdateWithoutEventInput, EventEditUncheckedUpdateWithoutEventInput>
+    create: XOR<EventEditCreateWithoutEventInput, EventEditUncheckedCreateWithoutEventInput>
+  }
+
+  export type EventEditUpdateWithWhereUniqueWithoutEventInput = {
+    where: EventEditWhereUniqueInput
+    data: XOR<EventEditUpdateWithoutEventInput, EventEditUncheckedUpdateWithoutEventInput>
+  }
+
+  export type EventEditUpdateManyWithWhereWithoutEventInput = {
+    where: EventEditScalarWhereInput
+    data: XOR<EventEditUpdateManyMutationInput, EventEditUncheckedUpdateManyWithoutEventInput>
+  }
+
+  export type EventPeriodUpsertWithWhereUniqueWithoutEventsInput = {
+    where: EventPeriodWhereUniqueInput
+    update: XOR<EventPeriodUpdateWithoutEventsInput, EventPeriodUncheckedUpdateWithoutEventsInput>
+    create: XOR<EventPeriodCreateWithoutEventsInput, EventPeriodUncheckedCreateWithoutEventsInput>
+  }
+
+  export type EventPeriodUpdateWithWhereUniqueWithoutEventsInput = {
+    where: EventPeriodWhereUniqueInput
+    data: XOR<EventPeriodUpdateWithoutEventsInput, EventPeriodUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type EventPeriodUpdateManyWithWhereWithoutEventsInput = {
+    where: EventPeriodScalarWhereInput
+    data: XOR<EventPeriodUpdateManyMutationInput, EventPeriodUncheckedUpdateManyWithoutEventsInput>
+  }
+
+  export type EventPeriodScalarWhereInput = {
+    AND?: EventPeriodScalarWhereInput | EventPeriodScalarWhereInput[]
+    OR?: EventPeriodScalarWhereInput[]
+    NOT?: EventPeriodScalarWhereInput | EventPeriodScalarWhereInput[]
+    id?: UuidFilter<"EventPeriod"> | string
+    fromDay?: IntNullableFilter<"EventPeriod"> | number | null
+    fromMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    fromYear?: IntFilter<"EventPeriod"> | number
+    toDay?: IntNullableFilter<"EventPeriod"> | number | null
+    toMonth?: IntNullableFilter<"EventPeriod"> | number | null
+    toYear?: IntFilter<"EventPeriod"> | number
+    name?: StringFilter<"EventPeriod"> | string
+    slug?: StringFilter<"EventPeriod"> | string
+    description?: StringNullableFilter<"EventPeriod"> | string | null
+  }
+
+  export type HistoricalEventCreateWithoutEditorsInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: UserCreateNestedOneWithoutCreatedEventsInput
+    categories?: EventPeriodCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventUncheckedCreateWithoutEditorsInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    categories?: EventPeriodUncheckedCreateNestedManyWithoutEventsInput
+  }
+
+  export type HistoricalEventCreateOrConnectWithoutEditorsInput = {
+    where: HistoricalEventWhereUniqueInput
+    create: XOR<HistoricalEventCreateWithoutEditorsInput, HistoricalEventUncheckedCreateWithoutEditorsInput>
+  }
+
+  export type UserCreateWithoutEditedEventsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: RoleCreateNestedOneWithoutUsersInput
+    keyToken?: KeyTokenCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventCreateNestedManyWithoutAuthorInput
+    blogPosts?: BlogAuthorCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserUncheckedCreateWithoutEditedEventsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keyToken?: KeyTokenUncheckedCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput
+    blogPosts?: BlogAuthorUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type UserCreateOrConnectWithoutEditedEventsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEditedEventsInput, UserUncheckedCreateWithoutEditedEventsInput>
+  }
+
+  export type HistoricalEventUpsertWithoutEditorsInput = {
+    update: XOR<HistoricalEventUpdateWithoutEditorsInput, HistoricalEventUncheckedUpdateWithoutEditorsInput>
+    create: XOR<HistoricalEventCreateWithoutEditorsInput, HistoricalEventUncheckedCreateWithoutEditorsInput>
+    where?: HistoricalEventWhereInput
+  }
+
+  export type HistoricalEventUpdateToOneWithWhereWithoutEditorsInput = {
+    where?: HistoricalEventWhereInput
+    data: XOR<HistoricalEventUpdateWithoutEditorsInput, HistoricalEventUncheckedUpdateWithoutEditorsInput>
+  }
+
+  export type HistoricalEventUpdateWithoutEditorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCreatedEventsNestedInput
+    categories?: EventPeriodUpdateManyWithoutEventsNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateWithoutEditorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categories?: EventPeriodUncheckedUpdateManyWithoutEventsNestedInput
+  }
+
+  export type UserUpsertWithoutEditedEventsInput = {
+    update: XOR<UserUpdateWithoutEditedEventsInput, UserUncheckedUpdateWithoutEditedEventsInput>
+    create: XOR<UserCreateWithoutEditedEventsInput, UserUncheckedCreateWithoutEditedEventsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEditedEventsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEditedEventsInput, UserUncheckedUpdateWithoutEditedEventsInput>
+  }
+
+  export type UserUpdateWithoutEditedEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    keyToken?: KeyTokenUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUpdateManyWithoutAuthorNestedInput
+    blogPosts?: BlogAuthorUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEditedEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyToken?: KeyTokenUncheckedUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput
+    blogPosts?: BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type HistoricalEventCreateWithoutCategoriesInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: UserCreateNestedOneWithoutCreatedEventsInput
+    editors?: EventEditCreateNestedManyWithoutEventInput
+  }
+
+  export type HistoricalEventUncheckedCreateWithoutCategoriesInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    editors?: EventEditUncheckedCreateNestedManyWithoutEventInput
+  }
+
+  export type HistoricalEventCreateOrConnectWithoutCategoriesInput = {
+    where: HistoricalEventWhereUniqueInput
+    create: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput>
+  }
+
+  export type HistoricalEventUpsertWithWhereUniqueWithoutCategoriesInput = {
+    where: HistoricalEventWhereUniqueInput
+    update: XOR<HistoricalEventUpdateWithoutCategoriesInput, HistoricalEventUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<HistoricalEventCreateWithoutCategoriesInput, HistoricalEventUncheckedCreateWithoutCategoriesInput>
+  }
+
+  export type HistoricalEventUpdateWithWhereUniqueWithoutCategoriesInput = {
+    where: HistoricalEventWhereUniqueInput
+    data: XOR<HistoricalEventUpdateWithoutCategoriesInput, HistoricalEventUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type HistoricalEventUpdateManyWithWhereWithoutCategoriesInput = {
+    where: HistoricalEventScalarWhereInput
+    data: XOR<HistoricalEventUpdateManyMutationInput, HistoricalEventUncheckedUpdateManyWithoutCategoriesInput>
+  }
+
+  export type BlogAuthorCreateWithoutPostInput = {
+    createdAt?: Date | string
+    author: UserCreateNestedOneWithoutBlogPostsInput
+  }
+
+  export type BlogAuthorUncheckedCreateWithoutPostInput = {
+    authorId: string
+    createdAt?: Date | string
+  }
+
+  export type BlogAuthorCreateOrConnectWithoutPostInput = {
+    where: BlogAuthorWhereUniqueInput
+    create: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput>
+  }
+
+  export type BlogAuthorCreateManyPostInputEnvelope = {
+    data: BlogAuthorCreateManyPostInput | BlogAuthorCreateManyPostInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BlogAuthorUpsertWithWhereUniqueWithoutPostInput = {
+    where: BlogAuthorWhereUniqueInput
+    update: XOR<BlogAuthorUpdateWithoutPostInput, BlogAuthorUncheckedUpdateWithoutPostInput>
+    create: XOR<BlogAuthorCreateWithoutPostInput, BlogAuthorUncheckedCreateWithoutPostInput>
+  }
+
+  export type BlogAuthorUpdateWithWhereUniqueWithoutPostInput = {
+    where: BlogAuthorWhereUniqueInput
+    data: XOR<BlogAuthorUpdateWithoutPostInput, BlogAuthorUncheckedUpdateWithoutPostInput>
+  }
+
+  export type BlogAuthorUpdateManyWithWhereWithoutPostInput = {
+    where: BlogAuthorScalarWhereInput
+    data: XOR<BlogAuthorUpdateManyMutationInput, BlogAuthorUncheckedUpdateManyWithoutPostInput>
+  }
+
+  export type UserCreateWithoutBlogPostsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: RoleCreateNestedOneWithoutUsersInput
+    keyToken?: KeyTokenCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditCreateNestedManyWithoutEditorInput
+  }
+
+  export type UserUncheckedCreateWithoutBlogPostsInput = {
+    id?: string
+    username: string
+    email: string
+    firstName: string
+    lastName?: string | null
+    slug: string
+    password: string
+    salt: string
+    avatar?: string | null
+    address?: string | null
+    birthdate?: Date | string | null
+    msisdn?: string | null
+    sex?: $Enums.UserSex | null
+    status?: $Enums.UserStatus
+    roleId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keyToken?: KeyTokenUncheckedCreateNestedManyWithoutUserInput
+    createdEvents?: HistoricalEventUncheckedCreateNestedManyWithoutAuthorInput
+    editedEvents?: EventEditUncheckedCreateNestedManyWithoutEditorInput
+  }
+
+  export type UserCreateOrConnectWithoutBlogPostsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBlogPostsInput, UserUncheckedCreateWithoutBlogPostsInput>
+  }
+
+  export type BlogPostCreateWithoutAuthorsInput = {
+    id?: string
+    title: string
+    slug: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUncheckedCreateWithoutAuthorsInput = {
+    id?: string
+    title: string
+    slug: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostCreateOrConnectWithoutAuthorsInput = {
+    where: BlogPostWhereUniqueInput
+    create: XOR<BlogPostCreateWithoutAuthorsInput, BlogPostUncheckedCreateWithoutAuthorsInput>
+  }
+
+  export type UserUpsertWithoutBlogPostsInput = {
+    update: XOR<UserUpdateWithoutBlogPostsInput, UserUncheckedUpdateWithoutBlogPostsInput>
+    create: XOR<UserCreateWithoutBlogPostsInput, UserUncheckedCreateWithoutBlogPostsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBlogPostsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBlogPostsInput, UserUncheckedUpdateWithoutBlogPostsInput>
+  }
+
+  export type UserUpdateWithoutBlogPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    keyToken?: KeyTokenUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUpdateManyWithoutEditorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBlogPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    salt?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    msisdn?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    roleId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keyToken?: KeyTokenUncheckedUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUncheckedUpdateManyWithoutEditorNestedInput
+  }
+
+  export type BlogPostUpsertWithoutAuthorsInput = {
+    update: XOR<BlogPostUpdateWithoutAuthorsInput, BlogPostUncheckedUpdateWithoutAuthorsInput>
+    create: XOR<BlogPostCreateWithoutAuthorsInput, BlogPostUncheckedCreateWithoutAuthorsInput>
+    where?: BlogPostWhereInput
+  }
+
+  export type BlogPostUpdateToOneWithWhereWithoutAuthorsInput = {
+    where?: BlogPostWhereInput
+    data: XOR<BlogPostUpdateWithoutAuthorsInput, BlogPostUncheckedUpdateWithoutAuthorsInput>
+  }
+
+  export type BlogPostUpdateWithoutAuthorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostUncheckedUpdateWithoutAuthorsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenCreateManyUserInput = {
@@ -11670,6 +21173,46 @@ export namespace Prisma {
     privateKey: string
     refreshTokensUsed?: KeyTokenCreaterefreshTokensUsedInput | string[]
     refreshToken: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HistoricalEventCreateManyAuthorInput = {
+    id?: string
+    fromDay?: number | null
+    fromMonth?: number | null
+    fromYear: number
+    toDay?: number | null
+    toMonth?: number | null
+    toYear: number
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventEditCreateManyEditorInput = {
+    id?: string
+    eventId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type BlogAuthorCreateManyAuthorInput = {
+    postId: string
+    createdAt?: Date | string
   }
 
   export type KeyTokenUpdateWithoutUserInput = {
@@ -11679,6 +21222,8 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenUncheckedUpdateWithoutUserInput = {
@@ -11688,6 +21233,8 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type KeyTokenUncheckedUpdateManyWithoutUserInput = {
@@ -11697,6 +21244,126 @@ export namespace Prisma {
     privateKey?: StringFieldUpdateOperationsInput | string
     refreshTokensUsed?: KeyTokenUpdaterefreshTokensUsedInput | string[]
     refreshToken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HistoricalEventUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editors?: EventEditUpdateManyWithoutEventNestedInput
+    categories?: EventPeriodUpdateManyWithoutEventsNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editors?: EventEditUncheckedUpdateManyWithoutEventNestedInput
+    categories?: EventPeriodUncheckedUpdateManyWithoutEventsNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventEditUpdateWithoutEditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+    event?: HistoricalEventUpdateOneRequiredWithoutEditorsNestedInput
+  }
+
+  export type EventEditUncheckedUpdateWithoutEditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventEditUncheckedUpdateManyWithoutEditorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BlogAuthorUpdateWithoutAuthorInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: BlogPostUpdateOneRequiredWithoutAuthorsNestedInput
+  }
+
+  export type BlogAuthorUncheckedUpdateWithoutAuthorInput = {
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorUncheckedUpdateManyWithoutAuthorInput = {
+    postId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GrantCreateManyResourceInput = {
@@ -11749,6 +21416,8 @@ export namespace Prisma {
     msisdn?: string | null
     sex?: $Enums.UserSex | null
     status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type GrantUpdateWithoutRoleInput = {
@@ -11787,7 +21456,12 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     keyToken?: KeyTokenUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -11805,7 +21479,12 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     keyToken?: KeyTokenUncheckedUpdateManyWithoutUserNestedInput
+    createdEvents?: HistoricalEventUncheckedUpdateManyWithoutAuthorNestedInput
+    editedEvents?: EventEditUncheckedUpdateManyWithoutEditorNestedInput
+    blogPosts?: BlogAuthorUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -11823,6 +21502,191 @@ export namespace Prisma {
     msisdn?: NullableStringFieldUpdateOperationsInput | string | null
     sex?: NullableEnumUserSexFieldUpdateOperationsInput | $Enums.UserSex | null
     status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventEditCreateManyEventInput = {
+    id?: string
+    editorId: string
+    editedAt?: Date | string
+    prevContent: string
+    newContent: string
+    prevFromDay?: number | null
+    prevFromMonth?: number | null
+    prevFromYear: number
+    prevToDay?: number | null
+    prevToMonth?: number | null
+    prevToYear: number
+    newFromDay?: number | null
+    newFromMonth?: number | null
+    newFromYear: number
+    newToDay?: number | null
+    newToMonth?: number | null
+    newToYear: number
+  }
+
+  export type EventEditUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+    editor?: UserUpdateOneRequiredWithoutEditedEventsNestedInput
+  }
+
+  export type EventEditUncheckedUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editorId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventEditUncheckedUpdateManyWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    editorId?: StringFieldUpdateOperationsInput | string
+    editedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    prevContent?: StringFieldUpdateOperationsInput | string
+    newContent?: StringFieldUpdateOperationsInput | string
+    prevFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevFromYear?: IntFieldUpdateOperationsInput | number
+    prevToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    prevToYear?: IntFieldUpdateOperationsInput | number
+    newFromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newFromYear?: IntFieldUpdateOperationsInput | number
+    newToDay?: NullableIntFieldUpdateOperationsInput | number | null
+    newToMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    newToYear?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventPeriodUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventPeriodUncheckedUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventPeriodUncheckedUpdateManyWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type HistoricalEventUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutCreatedEventsNestedInput
+    editors?: EventEditUpdateManyWithoutEventNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editors?: EventEditUncheckedUpdateManyWithoutEventNestedInput
+  }
+
+  export type HistoricalEventUncheckedUpdateManyWithoutCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromDay?: NullableIntFieldUpdateOperationsInput | number | null
+    fromMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    fromYear?: IntFieldUpdateOperationsInput | number
+    toDay?: NullableIntFieldUpdateOperationsInput | number | null
+    toMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    toYear?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorCreateManyPostInput = {
+    authorId: string
+    createdAt?: Date | string
+  }
+
+  export type BlogAuthorUpdateWithoutPostInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutBlogPostsNestedInput
+  }
+
+  export type BlogAuthorUncheckedUpdateWithoutPostInput = {
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogAuthorUncheckedUpdateManyWithoutPostInput = {
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
