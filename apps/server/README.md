@@ -8,6 +8,178 @@
 
 API for Nien Su Viet
 
+## Database design
+
+```mermaid
+erDiagram
+    User ||--o{ KeyToken : "has"
+    User ||--o{ HistoricalEvent : "creates"
+    User ||--o{ EventEdit : "edits"
+    User ||--o{ BlogAuthor : "authors"
+    User }o--|| Role : "has"
+
+    Role ||--o{ Grant : "has"
+    Role ||--o{ User : "assigned_to"
+
+    Resource ||--o{ Grant : "granted_in"
+
+    Grant }o--|| Role : "belongs_to"
+    Grant }o--|| Resource : "grants_access_to"
+
+    HistoricalEvent ||--o{ EventEdit : "has_edits"
+    HistoricalEvent }o--o{ EventPeriod : "categorized_in"
+    HistoricalEvent }o--|| User : "created_by"
+
+    EventEdit }o--|| HistoricalEvent : "edits"
+    EventEdit }o--|| User : "edited_by"
+
+    EventPeriod }o--o{ HistoricalEvent : "contains"
+
+    BlogPost ||--o{ BlogAuthor : "has_authors"
+
+    BlogAuthor }o--|| User : "is"
+    BlogAuthor }o--|| BlogPost : "authors"
+
+    KeyToken }o--|| User : "belongs_to"
+
+    User {
+        uuid id PK
+        varchar username UK
+        varchar email UK
+        varchar firstName
+        varchar lastName
+        varchar slug UK
+        varchar password
+        varchar salt
+        varchar avatar
+        varchar address
+        date birthdate
+        varchar msisdn
+        enum sex
+        enum status
+        uuid roleId FK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    Role {
+        uuid id PK
+        varchar name UK
+        varchar slug UK
+        enum status
+        text description
+    }
+
+    Resource {
+        uuid id PK
+        varchar name UK
+        varchar slug UK
+        text description
+    }
+
+    Grant {
+        uuid id PK
+        uuid roleId FK
+        uuid resourceId FK
+        varchar action
+        varchar attribute
+    }
+
+    KeyToken {
+        uuid id PK
+        varchar browserId
+        text publicKey
+        text privateKey
+        text[] refreshTokensUsed
+        text refreshToken
+        uuid userId FK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    OTP {
+        uuid id PK
+        varchar token UK
+        varchar email
+        enum status
+        timestamp expiresAt
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    ApiKey {
+        uuid id PK
+        varchar key UK
+        boolean status
+        enum[] permissions
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    HistoricalEvent {
+        uuid id PK
+        smallint fromDay
+        smallint fromMonth
+        smallint fromYear
+        smallint toDay
+        smallint toMonth
+        smallint toYear
+        text content
+        uuid authorId FK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    EventEdit {
+        uuid id PK
+        uuid eventId FK
+        uuid editorId FK
+        timestamp editedAt
+        text prevContent
+        text newContent
+        smallint prevFromDay
+        smallint prevFromMonth
+        smallint prevFromYear
+        smallint prevToDay
+        smallint prevToMonth
+        smallint prevToYear
+        smallint newFromDay
+        smallint newFromMonth
+        smallint newFromYear
+        smallint newToDay
+        smallint newToMonth
+        smallint newToYear
+    }
+
+    EventPeriod {
+        uuid id PK
+        smallint fromDay
+        smallint fromMonth
+        smallint fromYear
+        smallint toDay
+        smallint toMonth
+        smallint toYear
+        varchar name UK
+        varchar slug UK
+        text description
+    }
+
+    BlogPost {
+        uuid id PK
+        varchar title
+        varchar slug UK
+        text content
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    BlogAuthor {
+        uuid authorId FK,PK
+        uuid postId FK,PK
+        timestamp createdAt
+    }
+```
+
 ## Project setup
 
 ```bash
