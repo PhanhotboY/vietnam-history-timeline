@@ -107,7 +107,9 @@ exports.Prisma.UserScalarFieldEnum = {
   msisdn: 'msisdn',
   sex: 'sex',
   status: 'status',
-  roleId: 'roleId'
+  roleId: 'roleId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ResourceScalarFieldEnum = {
@@ -138,14 +140,18 @@ exports.Prisma.OTPScalarFieldEnum = {
   token: 'token',
   email: 'email',
   status: 'status',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ApiKeyScalarFieldEnum = {
   id: 'id',
   key: 'key',
   status: 'status',
-  permissions: 'permissions'
+  permissions: 'permissions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.KeyTokenScalarFieldEnum = {
@@ -155,7 +161,72 @@ exports.Prisma.KeyTokenScalarFieldEnum = {
   privateKey: 'privateKey',
   refreshTokensUsed: 'refreshTokensUsed',
   refreshToken: 'refreshToken',
-  userId: 'userId'
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HistoricalEventScalarFieldEnum = {
+  id: 'id',
+  fromDay: 'fromDay',
+  fromMonth: 'fromMonth',
+  fromYear: 'fromYear',
+  toDay: 'toDay',
+  toMonth: 'toMonth',
+  toYear: 'toYear',
+  content: 'content',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EventEditScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  editorId: 'editorId',
+  editedAt: 'editedAt',
+  prevContent: 'prevContent',
+  newContent: 'newContent',
+  prevFromDay: 'prevFromDay',
+  prevFromMonth: 'prevFromMonth',
+  prevFromYear: 'prevFromYear',
+  prevToDay: 'prevToDay',
+  prevToMonth: 'prevToMonth',
+  prevToYear: 'prevToYear',
+  newFromDay: 'newFromDay',
+  newFromMonth: 'newFromMonth',
+  newFromYear: 'newFromYear',
+  newToDay: 'newToDay',
+  newToMonth: 'newToMonth',
+  newToYear: 'newToYear'
+};
+
+exports.Prisma.EventPeriodScalarFieldEnum = {
+  id: 'id',
+  fromDay: 'fromDay',
+  fromMonth: 'fromMonth',
+  fromYear: 'fromYear',
+  toDay: 'toDay',
+  toMonth: 'toMonth',
+  toYear: 'toYear',
+  name: 'name',
+  slug: 'slug',
+  description: 'description'
+};
+
+exports.Prisma.BlogPostScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BlogAuthorScalarFieldEnum = {
+  authorId: 'authorId',
+  postId: 'postId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -209,7 +280,12 @@ exports.Prisma.ModelName = {
   Grant: 'Grant',
   OTP: 'OTP',
   ApiKey: 'ApiKey',
-  KeyToken: 'KeyToken'
+  KeyToken: 'KeyToken',
+  HistoricalEvent: 'HistoricalEvent',
+  EventEdit: 'EventEdit',
+  EventPeriod: 'EventPeriod',
+  BlogPost: 'BlogPost',
+  BlogAuthor: 'BlogAuthor'
 };
 /**
  * Create the Client
@@ -258,13 +334,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum UserSex {\n  MALE\n  FEMALE\n  OTHER\n}\n\nenum UserStatus {\n  ACTIVE\n  PENDING\n  DELETED\n}\n\nmodel User {\n  id        String     @id @default(uuid())\n  username  String     @unique @db.VarChar(255)\n  email     String     @unique @db.VarChar(255)\n  firstName String     @db.VarChar(255)\n  lastName  String?    @db.VarChar(255)\n  slug      String     @unique @db.VarChar(255)\n  password  String     @db.VarChar(255)\n  salt      String     @db.VarChar(255)\n  avatar    String?    @db.VarChar(255)\n  address   String?    @db.VarChar(255)\n  birthdate DateTime?  @db.Date\n  msisdn    String?    @db.VarChar(255)\n  sex       UserSex?\n  status    UserStatus @default(ACTIVE)\n  roleId    String\n  role      Role       @relation(fields: [roleId], references: [id])\n  keyToken  KeyToken[]\n}\n\nmodel Resource {\n  id          String  @id @default(uuid())\n  name        String  @unique @db.VarChar(255)\n  slug        String  @unique @db.VarChar(255)\n  description String? @db.Text\n  roles       Grant[]\n}\n\nenum RoleStatus {\n  ACTIVE\n  INACTIVE\n}\n\nmodel Role {\n  id          String     @id @default(uuid())\n  name        String     @unique @db.VarChar(255)\n  slug        String     @unique @db.VarChar(255)\n  status      RoleStatus @default(ACTIVE)\n  description String?    @db.Text\n  grants      Grant[]    @relation(\"RoleGrants\")\n  users       User[]\n}\n\nmodel Grant {\n  id         String   @id @default(uuid())\n  roleId     String\n  resourceId String\n  role       Role     @relation(\"RoleGrants\", fields: [roleId], references: [id])\n  resource   Resource @relation(fields: [resourceId], references: [id])\n  action     String   @db.VarChar(20) // create:any | create:own | ...\n  attribute  String   @db.VarChar(20) // * | '*, !password | ...\n\n  @@unique([roleId, resourceId, action], name: \"unique_role_resource_action\")\n}\n\nenum OTPStatus {\n  ACTIVE\n  PENDING\n  BLOCKED\n}\n\nmodel OTP {\n  id        String    @id @default(uuid())\n  token     String    @unique @db.VarChar(255)\n  email     String    @db.VarChar(255)\n  status    OTPStatus @default(ACTIVE)\n  expiresAt DateTime  @default(dbgenerated(\"NOW() + INTERVAL '60 seconds'\"))\n}\n\nenum ApiKeyPermission {\n  READ\n  WRITE\n  DELETE\n  ALL\n}\n\nmodel ApiKey {\n  id          String             @id @default(uuid())\n  key         String             @unique @db.VarChar(255)\n  status      Boolean            @default(true)\n  permissions ApiKeyPermission[]\n}\n\nmodel KeyToken {\n  id                String   @id @default(uuid())\n  browserId         String   @db.VarChar(255)\n  publicKey         String   @db.Text\n  privateKey        String   @db.Text\n  refreshTokensUsed String[] @default([]) @db.Text\n  refreshToken      String   @db.Text\n  userId            String\n  user              User     @relation(fields: [userId], references: [id])\n\n  @@unique([userId, browserId], name: \"unique_user_browser\")\n}\n",
-  "inlineSchemaHash": "45c4092a04087d49320aa83512c1c8b0fe3a097c0a7513191f6e2c33710b8ea0",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum UserSex {\n  MALE\n  FEMALE\n  OTHER\n}\n\nenum UserStatus {\n  ACTIVE\n  PENDING\n  DELETED\n}\n\nmodel User {\n  id            String            @id @default(uuid()) @db.Uuid\n  username      String            @unique @db.VarChar(255)\n  email         String            @unique @db.VarChar(255)\n  firstName     String            @db.VarChar(255)\n  lastName      String?           @db.VarChar(255)\n  slug          String            @unique @db.VarChar(255)\n  password      String            @db.VarChar(255)\n  salt          String            @db.VarChar(255)\n  avatar        String?           @db.VarChar(255)\n  address       String?           @db.VarChar(255)\n  birthdate     DateTime?         @db.Date\n  msisdn        String?           @db.VarChar(255)\n  sex           UserSex?\n  status        UserStatus        @default(ACTIVE)\n  roleId        String            @db.Uuid\n  role          Role              @relation(fields: [roleId], references: [id])\n  keyToken      KeyToken[]\n  createdEvents HistoricalEvent[]\n  editedEvents  EventEdit[]\n  blogPosts     BlogAuthor[]\n\n  createdAt DateTime @default(now()) @db.Timestamp(6)\n  updatedAt DateTime @updatedAt @db.Timestamp(6)\n}\n\nmodel Resource {\n  id          String  @id @default(uuid()) @db.Uuid\n  name        String  @unique @db.VarChar(255)\n  slug        String  @unique @db.VarChar(255)\n  description String? @db.Text\n  roles       Grant[]\n}\n\nenum RoleStatus {\n  ACTIVE\n  INACTIVE\n}\n\nmodel Role {\n  id          String     @id @default(uuid()) @db.Uuid\n  name        String     @unique @db.VarChar(255)\n  slug        String     @unique @db.VarChar(255)\n  status      RoleStatus @default(ACTIVE)\n  description String?    @db.Text\n  grants      Grant[]    @relation(\"RoleGrants\")\n  users       User[]\n}\n\nmodel Grant {\n  id         String   @id @default(uuid()) @db.Uuid\n  roleId     String   @db.Uuid\n  resourceId String   @db.Uuid\n  role       Role     @relation(\"RoleGrants\", fields: [roleId], references: [id])\n  resource   Resource @relation(fields: [resourceId], references: [id])\n  action     String   @db.VarChar(20) // create:any | create:own | ...\n  attribute  String   @db.VarChar(20) // * | '*, !password | ...\n\n  @@unique([roleId, resourceId, action], name: \"unique_role_resource_action\")\n}\n\nenum OTPStatus {\n  ACTIVE\n  PENDING\n  BLOCKED\n}\n\nmodel OTP {\n  id        String    @id @default(uuid()) @db.Uuid\n  token     String    @unique @db.VarChar(255)\n  email     String    @db.VarChar(255)\n  status    OTPStatus @default(ACTIVE)\n  expiresAt DateTime  @default(dbgenerated(\"NOW() + INTERVAL '60 seconds'\"))\n  createdAt DateTime  @default(now()) @db.Timestamp(6)\n  updatedAt DateTime  @updatedAt @db.Timestamp(6)\n}\n\nenum ApiKeyPermission {\n  READ\n  WRITE\n  DELETE\n  ALL\n}\n\nmodel ApiKey {\n  id          String             @id @default(uuid()) @db.Uuid\n  key         String             @unique @db.VarChar(255)\n  status      Boolean            @default(true)\n  permissions ApiKeyPermission[] @default([])\n  createdAt   DateTime           @default(now()) @db.Timestamp(6)\n  updatedAt   DateTime           @updatedAt @db.Timestamp(6)\n}\n\nmodel KeyToken {\n  id                String   @id @default(uuid()) @db.Uuid\n  browserId         String   @db.VarChar(255)\n  publicKey         String   @db.Text\n  privateKey        String   @db.Text\n  refreshTokensUsed String[] @default([]) @db.Text\n  refreshToken      String   @db.Text\n  userId            String   @db.Uuid\n  user              User     @relation(fields: [userId], references: [id])\n  createdAt         DateTime @default(now()) @db.Timestamp(6)\n  updatedAt         DateTime @updatedAt @db.Timestamp(6)\n\n  @@unique([userId, browserId], name: \"unique_user_browser\")\n}\n\nmodel HistoricalEvent {\n  id        String @id @default(uuid()) @db.Uuid\n  fromDay   Int?   @db.SmallInt\n  fromMonth Int?   @db.SmallInt\n  fromYear  Int    @db.SmallInt\n  toDay     Int?   @db.SmallInt\n  toMonth   Int?   @db.SmallInt\n  toYear    Int    @db.SmallInt\n  content   String @db.Text\n  authorId  String @db.Uuid\n  author    User   @relation(fields: [authorId], references: [id])\n\n  editors    EventEdit[]\n  categories EventPeriod[] @relation(\"EventPeriods\")\n\n  createdAt DateTime @default(now()) @db.Timestamp(6)\n  updatedAt DateTime @updatedAt @db.Timestamp(6)\n}\n\nmodel EventEdit {\n  id       String   @id @default(uuid()) @db.Uuid\n  eventId  String   @db.Uuid\n  editorId String   @db.Uuid\n  editedAt DateTime @default(now()) @db.Timestamp(6)\n\n  prevContent String @db.Text\n  newContent  String @db.Text\n\n  prevFromDay   Int? @db.SmallInt\n  prevFromMonth Int? @db.SmallInt\n  prevFromYear  Int  @db.SmallInt\n  prevToDay     Int? @db.SmallInt\n  prevToMonth   Int? @db.SmallInt\n  prevToYear    Int  @db.SmallInt\n\n  newFromDay   Int? @db.SmallInt\n  newFromMonth Int? @db.SmallInt\n  newFromYear  Int  @db.SmallInt\n  newToDay     Int? @db.SmallInt\n  newToMonth   Int? @db.SmallInt\n  newToYear    Int  @db.SmallInt\n\n  event  HistoricalEvent @relation(fields: [eventId], references: [id])\n  editor User            @relation(fields: [editorId], references: [id])\n\n  @@index([eventId], name: \"idx_event\")\n  @@index([editorId], name: \"idx_editor\")\n}\n\nmodel EventPeriod {\n  id String @id @default(uuid()) @db.Uuid\n\n  fromDay   Int? @db.SmallInt\n  fromMonth Int? @db.SmallInt\n  fromYear  Int  @db.SmallInt\n\n  toDay   Int? @db.SmallInt\n  toMonth Int? @db.SmallInt\n  toYear  Int  @db.SmallInt\n\n  name        String  @unique @db.VarChar(255)\n  slug        String  @unique @db.VarChar(255)\n  description String? @db.Text\n\n  events HistoricalEvent[] @relation(\"EventPeriods\")\n}\n\nmodel BlogPost {\n  id      String @id @default(uuid()) @db.Uuid\n  title   String @db.VarChar(255)\n  slug    String @unique @db.VarChar(255)\n  content String @db.Text\n\n  authors BlogAuthor[]\n\n  createdAt DateTime @default(now()) @db.Timestamp(6)\n  updatedAt DateTime @updatedAt @db.Timestamp(6)\n}\n\nmodel BlogAuthor {\n  authorId  String   @db.Uuid\n  postId    String   @db.Uuid\n  author    User     @relation(fields: [authorId], references: [id])\n  post      BlogPost @relation(fields: [postId], references: [id])\n  createdAt DateTime @default(now()) @db.Timestamp(6)\n\n  @@id([authorId, postId])\n  @@index([postId], name: \"idx_post\")\n  @@index([authorId], name: \"idx_author\")\n}\n",
+  "inlineSchemaHash": "eb46b98736643ab82c4b4ec80242e3e08f6cd850198d287d0db59fb3cd93f918",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"salt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"msisdn\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sex\",\"kind\":\"enum\",\"type\":\"UserSex\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"UserStatus\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUser\"},{\"name\":\"keyToken\",\"kind\":\"object\",\"type\":\"KeyToken\",\"relationName\":\"KeyTokenToUser\"}],\"dbName\":null},\"Resource\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roles\",\"kind\":\"object\",\"type\":\"Grant\",\"relationName\":\"GrantToResource\"}],\"dbName\":null},\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"RoleStatus\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grants\",\"kind\":\"object\",\"type\":\"Grant\",\"relationName\":\"RoleGrants\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RoleToUser\"}],\"dbName\":null},\"Grant\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"resourceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleGrants\"},{\"name\":\"resource\",\"kind\":\"object\",\"type\":\"Resource\",\"relationName\":\"GrantToResource\"},{\"name\":\"action\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attribute\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"OTP\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"OTPStatus\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ApiKey\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"permissions\",\"kind\":\"enum\",\"type\":\"ApiKeyPermission\"}],\"dbName\":null},\"KeyToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"browserId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"publicKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"privateKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshTokensUsed\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"KeyTokenToUser\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"salt\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"msisdn\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sex\",\"kind\":\"enum\",\"type\":\"UserSex\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"UserStatus\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUser\"},{\"name\":\"keyToken\",\"kind\":\"object\",\"type\":\"KeyToken\",\"relationName\":\"KeyTokenToUser\"},{\"name\":\"createdEvents\",\"kind\":\"object\",\"type\":\"HistoricalEvent\",\"relationName\":\"HistoricalEventToUser\"},{\"name\":\"editedEvents\",\"kind\":\"object\",\"type\":\"EventEdit\",\"relationName\":\"EventEditToUser\"},{\"name\":\"blogPosts\",\"kind\":\"object\",\"type\":\"BlogAuthor\",\"relationName\":\"BlogAuthorToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Resource\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roles\",\"kind\":\"object\",\"type\":\"Grant\",\"relationName\":\"GrantToResource\"}],\"dbName\":null},\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"RoleStatus\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"grants\",\"kind\":\"object\",\"type\":\"Grant\",\"relationName\":\"RoleGrants\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RoleToUser\"}],\"dbName\":null},\"Grant\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"resourceId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleGrants\"},{\"name\":\"resource\",\"kind\":\"object\",\"type\":\"Resource\",\"relationName\":\"GrantToResource\"},{\"name\":\"action\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"attribute\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"OTP\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"OTPStatus\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ApiKey\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"key\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"permissions\",\"kind\":\"enum\",\"type\":\"ApiKeyPermission\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"KeyToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"browserId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"publicKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"privateKey\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshTokensUsed\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"refreshToken\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"KeyTokenToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"HistoricalEvent\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"fromMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"fromYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"HistoricalEventToUser\"},{\"name\":\"editors\",\"kind\":\"object\",\"type\":\"EventEdit\",\"relationName\":\"EventEditToHistoricalEvent\"},{\"name\":\"categories\",\"kind\":\"object\",\"type\":\"EventPeriod\",\"relationName\":\"EventPeriods\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"EventEdit\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"eventId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"editorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"editedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"prevContent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"newContent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"prevFromDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prevFromMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prevFromYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prevToDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prevToMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"prevToYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newFromDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newFromMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newFromYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newToDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newToMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"newToYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"event\",\"kind\":\"object\",\"type\":\"HistoricalEvent\",\"relationName\":\"EventEditToHistoricalEvent\"},{\"name\":\"editor\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"EventEditToUser\"}],\"dbName\":null},\"EventPeriod\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fromDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"fromMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"fromYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toDay\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toMonth\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"toYear\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"events\",\"kind\":\"object\",\"type\":\"HistoricalEvent\",\"relationName\":\"EventPeriods\"}],\"dbName\":null},\"BlogPost\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"authors\",\"kind\":\"object\",\"type\":\"BlogAuthor\",\"relationName\":\"BlogAuthorToBlogPost\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"BlogAuthor\":{\"fields\":[{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"BlogAuthorToUser\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"BlogPost\",\"relationName\":\"BlogAuthorToBlogPost\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
