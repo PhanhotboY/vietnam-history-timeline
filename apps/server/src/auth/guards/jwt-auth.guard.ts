@@ -1,5 +1,6 @@
 import {
   ExecutionContext,
+  HttpException,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -25,7 +26,6 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       throw new InternalServerErrorException('Server error');
     }
 
-    const req = context.switchToHttp().getRequest<Request>();
     if (metadata.includes(APP.BYPASS_AUTHENTICATION)) {
       return true;
     }

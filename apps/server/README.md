@@ -169,7 +169,9 @@ erDiagram
 
 ```bash
 $ pnpm install
-$ pnpm setup
+$ pnpm prisma generate
+$ pnpm setup:resource
+$ pnpm setup:role
 ```
 
 ## Stay in touch

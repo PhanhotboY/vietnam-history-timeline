@@ -33,4 +33,12 @@ export const config = {
   redis: {
     url: process.env.REDIS_URL || 'redis://localhost:6379',
   },
+  throttlers: [
+    {
+      // default, 5 requests per 1 milisecond. For testing only
+      name: 'default',
+      ttl: 1,
+      limit: 5,
+    },
+  ],
 };

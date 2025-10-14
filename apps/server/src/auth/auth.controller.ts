@@ -86,7 +86,6 @@ export class AuthController {
         </div>
       </body>`);
     } catch (e: any) {
-      console.log(e);
       res.status(500).send(`<body style='margin:0'>
         <div style='background-color: #f3f4f6; height: 100vh; display: flex; align-items: center; justify-content: center;'>
           <div style='background-color: #ffffff; padding: 1.5rem; width: 768px;'>

@@ -2,6 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
@@ -22,24 +23,31 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
       // fetch public key dynamically
       secretOrKeyProvider: async (request, rawJwtToken, done) => {
-        const clientId = request.headers[HEADER.CLIENT_ID];
-        if (!clientId) throw new UnauthorizedException('Invalid request');
+        try {
+          const clientId = request.headers[HEADER.CLIENT_ID];
+          if (!clientId)
+            return done(new UnauthorizedException('Invalid request'));
 
-        if (!rawJwtToken) throw new UnauthorizedException('Invalid request');
-        const { userId, browserId } =
-          this.authUtilService.decodeAuthToken(rawJwtToken);
+          if (!rawJwtToken)
+            return done(new UnauthorizedException('Invalid request'));
+          const { userId, browserId } =
+            this.authUtilService.decodeAuthToken(rawJwtToken);
 
-        if (clientId !== userId)
-          throw new UnauthorizedException('Invalid token');
+          if (clientId !== userId)
+            return done(new UnauthorizedException('Invalid token'));
 
-        const keyToken = await this.keyTokenService.findByUserId(
-          userId,
-          browserId,
-        );
-        if (!keyToken) throw new BadRequestException('Invalid request');
+          const keyToken = await this.keyTokenService.findByUserId(
+            userId,
+            browserId,
+          );
+          if (!keyToken)
+            return done(new BadRequestException('Invalid request'));
 
-        // return key to verify token
-        done(null, keyToken.publicKey);
+          // return key to verify token
+          done(null, keyToken.publicKey);
+        } catch (error: any) {
+          done(new InternalServerErrorException(error.message));
+        }
       },
     });
   }

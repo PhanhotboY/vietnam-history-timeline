@@ -29,4 +29,12 @@ export class UserController {
   getMe(@Req() req: Request) {
     return this.userService.findUserById(req.user?.userId);
   }
+
+  @Get('immediate')
+  // @Permissions(['user', 'readAny'])
+  @SetAuthMetadata(APP.BYPASS_AUTHENTICATION)
+  // @cacheable
+  getImmediate() {
+    return { success: true };
+  }
 }

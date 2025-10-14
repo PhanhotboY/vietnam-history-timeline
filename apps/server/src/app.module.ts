@@ -2,7 +2,7 @@ import { Module, Scope, ValidationPipe } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggerModule } from 'nestjs-pino';
 
-import { ExceptionsFilter } from './common/filters';
+import { HttpExceptionsFilter } from './common/filters';
 import { loggerOptions } from './config/logger.config';
 import { CommonModule } from './common';
 import { AuthModule } from './auth';
@@ -18,7 +18,9 @@ import { OtpModule } from './modules/otp/otp.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { KeyTokenModule } from './modules/key-token';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard } from '@nestjs/throttler';
+import { CacheInterceptor } from '@nestjs/cache-manager';
+import { HistoricalEventModule } from './modules/historical-event/historical-event.module';
 
 @Module({
   imports: [
@@ -33,16 +35,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     OtpModule,
     ResourceModule,
     KeyTokenModule,
-    ThrottlerModule.forRoot({
-      throttlers: [
-        {
-          // Default, 100 requests per 60 seconds
-          name: 'default',
-          limit: 100,
-          ttl: 60,
-        },
-      ],
-    }),
+    HistoricalEventModule,
   ],
   providers: [
     {
@@ -58,8 +51,13 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     { provide: APP_GUARD, useClass: JwtAuthGuard, scope: Scope.REQUEST },
     { provide: APP_GUARD, useClass: RbacGuard, scope: Scope.REQUEST },
     // Global Filter, Exception check
-    { provide: APP_FILTER, useClass: ExceptionsFilter },
+    { provide: APP_FILTER, useClass: HttpExceptionsFilter },
     { provide: APP_INTERCEPTOR, useClass: SerializeResponseInterceptor },
+    {
+      provide: APP_INTERCEPTOR,
+      // Cache GET requests, run after all guards
+      useClass: CacheInterceptor,
+    },
     // Global Pipe, Validation check
     // https://docs.nestjs.com/pipes#global-scoped-pipes
     // https://docs.nestjs.com/techniques/validation
