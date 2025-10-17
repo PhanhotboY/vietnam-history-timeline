@@ -43,7 +43,7 @@ export class RbacGuard implements CanActivate {
     const req = context.switchToHttp().getRequest<Request>();
     const userId = req.user?.userId;
 
-    return this.checkPermission(userId, resource, action);
+    return await this.checkPermission(userId, resource, action);
   }
 
   async checkPermission(userId: string, resource: string, action: keyof Query) {

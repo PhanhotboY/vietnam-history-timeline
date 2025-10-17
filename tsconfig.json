@@ -12,7 +12,7 @@
     "paths": {
       "@shared/*": ["packages/shared/*"],
       "@server/*": ["apps/server/src/*"],
-      "@server-prisma/*": ["apps/server/generated/prisma/*"]
+      "@server-prisma/*": ["apps/server/dist/apps/server/generated/prisma/*"]
     }
   }
 }

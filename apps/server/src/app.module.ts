@@ -1,5 +1,12 @@
-import { Module, Scope, ValidationPipe } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import {
+  ClassSerializerInterceptor,
+  Module,
+  Scope,
+  ValidationPipe,
+} from '@nestjs/common';
+import { ThrottlerGuard } from '@nestjs/throttler';
+import { AccessControl } from 'accesscontrol';
 import { LoggerModule } from 'nestjs-pino';
 
 import { HttpExceptionsFilter } from './common/filters';
@@ -12,15 +19,15 @@ import { PrismaModule } from './database';
 import { SerializeResponseInterceptor } from './common/interceptors';
 import { RoleModule } from './modules/role/role.module';
 import { RbacGuard } from './auth/guards/rbac.guard';
-import { AccessControl } from 'accesscontrol';
 import { MailModule } from './mail/mail.module';
 import { OtpModule } from './modules/otp/otp.module';
 import { ResourceModule } from './modules/resource/resource.module';
 import { KeyTokenModule } from './modules/key-token';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { ThrottlerGuard } from '@nestjs/throttler';
-import { CacheInterceptor } from '@nestjs/cache-manager';
 import { HistoricalEventModule } from './modules/historical-event/historical-event.module';
+import { EventPeriodModule } from './modules/event-period/event-period.module';
+import { EventEditModule } from './modules/event-edit/event-edit.module';
+import { EventCategoryModule } from './modules/event-category/event-category.module';
 
 @Module({
   imports: [
@@ -36,6 +43,9 @@ import { HistoricalEventModule } from './modules/historical-event/historical-eve
     ResourceModule,
     KeyTokenModule,
     HistoricalEventModule,
+    EventPeriodModule,
+    EventEditModule,
+    EventCategoryModule,
   ],
   providers: [
     {
@@ -52,12 +62,12 @@ import { HistoricalEventModule } from './modules/historical-event/historical-eve
     { provide: APP_GUARD, useClass: RbacGuard, scope: Scope.REQUEST },
     // Global Filter, Exception check
     { provide: APP_FILTER, useClass: HttpExceptionsFilter },
-    { provide: APP_INTERCEPTOR, useClass: SerializeResponseInterceptor },
     {
       provide: APP_INTERCEPTOR,
-      // Cache GET requests, run after all guards
-      useClass: CacheInterceptor,
+      useClass: ClassSerializerInterceptor,
+      scope: Scope.REQUEST,
     },
+    { provide: APP_INTERCEPTOR, useClass: SerializeResponseInterceptor },
     // Global Pipe, Validation check
     // https://docs.nestjs.com/pipes#global-scoped-pipes
     // https://docs.nestjs.com/techniques/validation

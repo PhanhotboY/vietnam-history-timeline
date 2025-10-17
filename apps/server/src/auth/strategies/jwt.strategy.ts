@@ -11,6 +11,7 @@ import { AuthUtilService } from '@/common';
 import { KeyTokenService } from '@/modules/key-token';
 import { HEADER } from '@shared/constants';
 import { JwtPayloadDto } from '@shared/dto/auth';
+import { Request } from 'express';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -19,7 +20,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly authUtilService: AuthUtilService,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: (req: Request) => {
+        const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
+        if (!token) throw new UnauthorizedException('Invalid request');
+
+        return token;
+      },
       ignoreExpiration: false,
       // fetch public key dynamically
       secretOrKeyProvider: async (request, rawJwtToken, done) => {

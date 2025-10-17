@@ -1,4 +1,3 @@
-import { USER } from '@shared/constants';
 import { Transform } from 'class-transformer';
 import {
   IsString,
@@ -12,6 +11,7 @@ import {
   IsUUID,
 } from 'class-validator';
 import { CreateUserDto } from './create-user.dto';
+import { UserSex, UserStatus } from '@server-prisma/index';
 
 export class UpdateUserDto implements Partial<CreateUserDto> {
   // Properties from RegisterUserDto and PasswordUserDto should be defined here
@@ -76,16 +76,16 @@ export class UpdateUserDto implements Partial<CreateUserDto> {
   msisdn?: string;
 
   @IsOptional()
-  @IsEnum(Object.values(USER.SEX).map((sex) => sex.value), {
+  @IsEnum(Object.values(UserSex), {
     message: 'Giới tính không hợp lệ',
   })
-  sex?: Values<typeof USER.SEX>['value'];
+  sex?: Values<typeof UserSex>;
 
   @IsOptional()
-  @IsEnum(Object.values(USER.STATUS).map((status) => status.value), {
+  @IsEnum(Object.values(UserStatus), {
     message: 'Trạng thái không hợp lệ',
   })
-  status?: Values<typeof USER.STATUS>['value'];
+  status?: Values<typeof UserStatus>;
 
   @IsOptional()
   role?: string;

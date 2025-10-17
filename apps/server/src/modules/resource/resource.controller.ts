@@ -11,7 +11,7 @@ import { ResourceService } from './resource.service';
 import { CreateResourceDto } from '@shared/dto/resource';
 import { Permissions } from '@/common/decorators';
 
-@Controller('resource')
+@Controller('resources')
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {}
 
@@ -30,12 +30,12 @@ export class ResourceController {
   @Get(':id')
   @Permissions(['resource', 'readAny'])
   findOne(@Param('id') id: string) {
-    return this.resourceService.findOne(+id);
+    return this.resourceService.findOne(id);
   }
 
   @Delete(':id')
   @Permissions(['resource', 'deleteAny'])
   remove(@Param('id') id: string) {
-    return this.resourceService.remove(+id);
+    return this.resourceService.remove(id);
   }
 }

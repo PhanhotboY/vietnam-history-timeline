@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { configuration } from '@/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CsrfController } from './csrf';
 
 const { REDIS_CLIENT, ...pvds } = providers;
 const services = Object.values(pvds);
@@ -47,8 +48,14 @@ const services = Object.values(pvds);
     //   provide: APP_GUARD,
     //   useClass: ApiKeyGuard,
     // },
+    {
+      provide: APP_INTERCEPTOR,
+      // Cache GET requests, run after all guards
+      useClass: CacheInterceptor,
+    },
   ],
-  exports: [...services, ConfigModule, JwtModule, CacheModule],
+  controllers: [CsrfController],
+  exports: [...services, ConfigModule, JwtModule],
 })
 export class CommonModule implements NestModule {
   // Global Middleware

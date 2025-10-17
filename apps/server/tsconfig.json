@@ -8,13 +8,15 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "outDir": "./dist",
+    "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "paths": {
       "@shared/*": ["../../packages/shared/*"],
       "@/*": ["./src/*"],
-      "@prisma-client/*": ["./generated/prisma/*"]
+      "@prisma-client/*": ["./generated/prisma/*"],
+      "@server-prisma/*": ["./generated/prisma/*"]
     }
   },
   "include": [

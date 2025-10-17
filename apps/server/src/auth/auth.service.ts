@@ -7,11 +7,10 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Role, User } from '@prisma-client/index';
+import { Role, User, UserStatus } from '@prisma-client/index';
 
 import { CreateKeyTokenDto } from '@shared/dto/keyToken/create-keyToken.dto';
 import { JwtPayloadDto, SignUpDto } from '@shared/dto/auth';
-import { USER } from '@shared/constants';
 import { AuthUtilService, UtilService } from '@/common';
 import { KeyTokenService } from '@/modules/key-token';
 import { MailService } from '../mail';
@@ -111,8 +110,8 @@ export class AuthService {
       throw new BadRequestException('Email already exists');
     }
 
-    const roles = await this.roleService.getRoles({ slug: 'admin' });
-    if (!roles || !roles.length) {
+    const role = await this.roleService.getRoleById('admin');
+    if (!role) {
       throw new InternalServerErrorException('Fail to get role!');
     }
 
@@ -128,8 +127,8 @@ export class AuthService {
       firstName: email.split('@')[0],
       lastName: '',
       slug: email.split('@')[0],
-      status: USER.STATUS.ACTIVE.value,
-      roleId: roles[0].id,
+      status: UserStatus.ACTIVE,
+      roleId: role.id,
     });
 
     if (!newUser) {

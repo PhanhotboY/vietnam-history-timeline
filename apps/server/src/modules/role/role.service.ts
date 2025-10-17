@@ -42,6 +42,13 @@ export class RoleService {
   createRole = async (roleData: CreateRoleDto) => {
     try {
       const { grants, ...role } = roleData;
+      const foundRole = await this.prisma.role.findFirst({
+        where: { OR: [{ name: role.name }, { slug: role.slug }] },
+      });
+      if (foundRole) {
+        throw new BadRequestException('Role already exists');
+      }
+
       const newRole = await this.prisma.role.create({
         data: role,
       });
@@ -96,63 +103,70 @@ export class RoleService {
   };
 
   addRoleGrants = async (roleId: string, newGrants: GrantDto[]) => {
-    try {
-      // Lấy role hiện tại
-      const currentRole = await this.getRoleById(roleId);
-      if (!currentRole) throw new NotFoundException('Role not found');
+    if (!newGrants || newGrants.length === 0) {
+      throw new BadRequestException('No grants provided');
+    }
+    // Lấy role hiện tại
+    const currentRole = await this.getRoleById(roleId);
+    if (!currentRole) throw new NotFoundException('Role not found');
 
-      // Tạo map của các grant hiện tại theo resourceId để kiểm tra trùng lặp
-      const existingResourceIds = new Set(
-        currentRole.grants!.map((grant) => grant.resourceId),
-      );
+    // Tạo map của các grant hiện tại theo resourceId để kiểm tra trùng lặp
+    const existingGrants = new Map(
+      currentRole.grants!.map(({ attribute, roleId, resourceId, action }) => [
+        JSON.stringify({ roleId, resourceId, action }),
+        attribute,
+      ]),
+    );
 
-      // Lọc ra các grant mới (không trùng với grant hiện tại)
-      const validNewGrants = newGrants.filter(
-        (grant) => !existingResourceIds.has(grant.resourceId),
-      );
+    // Lọc ra các grant mới (không trùng với grant hiện tại)
+    const validNewGrants = newGrants.filter(
+      ({ action, resourceId }) =>
+        !existingGrants.has(
+          JSON.stringify({ roleId: currentRole.id, resourceId, action }),
+        ),
+    );
 
-      // Chuyển đổi resourceId thành ObjectId
-      const grantsToAdd = validNewGrants.map((grant) => {
-        this.checkActionFormat(grant.action);
+    // Chuyển đổi resourceId thành ObjectId
+    const grantsToAdd = validNewGrants.map((grant) => {
+      this.checkActionFormat(grant.action);
 
-        return {
-          resourceId: grant.resourceId,
-          action: grant.action,
-          attribute: grant.attribute || '*',
-        };
-      });
+      return {
+        resourceId: grant.resourceId,
+        action: grant.action,
+        attribute: grant.attribute || '*',
+      };
+    });
 
-      // Thêm grants mới vào mảng grants hiện tại
-      const updatedRole = await this.prisma.role.update({
-        where: { id: roleId },
-        data: {
-          grants: {
-            createMany: {
-              data: grantsToAdd,
-            },
-          },
+    console.log(grantsToAdd);
+    if (grantsToAdd.length === 0) {
+      throw new BadRequestException('All provided grants are duplicates');
+    }
+    // Thêm grants mới vào mảng grants hiện tại
+    const updatedRole = await this.prisma.role.update({
+      where: { id: currentRole.id },
+      data: {
+        grants: {
+          createMany: { data: grantsToAdd },
         },
-        include: {
-          grants: {
-            include: {
-              resource: {
-                select: {
-                  name: true,
-                  slug: true,
-                  description: true,
-                },
+      },
+      include: {
+        grants: {
+          include: {
+            resource: {
+              select: {
+                name: true,
+                slug: true,
+                description: true,
               },
             },
           },
         },
-      });
+      },
+    });
 
-      if (!updatedRole)
-        throw new NotFoundException('Role not found after update');
-      return updatedRole;
-    } catch (error) {
-      throw error;
-    }
+    if (!updatedRole)
+      throw new NotFoundException('Role not found after update');
+    return updatedRole;
   };
 
   deleteRoleGrant = async (roleId: string, resourceId: string) => {

@@ -10,7 +10,9 @@ export const redisProvider: Provider = {
     const client = createClient({
       url: configService.get('redis.url'),
     });
-    await client.connect();
+    await client.connect().then(() => {
+      console.log('Connected to Redis');
+    });
     return client;
   },
   inject: [ConfigService],

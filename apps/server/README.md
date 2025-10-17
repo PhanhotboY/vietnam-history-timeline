@@ -12,36 +12,36 @@ API for Nien Su Viet
 
 ```mermaid
 erDiagram
-    User }o--|| Role : "has"
-    User ||--o{ KeyToken : "has"
     User ||--o{ HistoricalEvent : "creates"
     User ||--o{ EventEdit : "edits"
-    User ||--o{ BlogAuthor : "authors"
+    User ||--o{ BlogPost : "authors"
+    User ||--o{ Image : "uploads"
+    User ||--o{ KeyToken : "has"
+    User }o--|| Role : "has"
 
     Role ||--o{ Grant : "has"
+    Resource ||--o{ Grant : "has"
 
-    Grant }o--|| Resource : "grants_access_to"
+    HistoricalEvent ||--o{ EventEdit : "has edits"
+    HistoricalEvent }o--o{ EventCategory : "categorized by"
 
-    HistoricalEvent ||--o{ EventEdit : "has_edits"
-    HistoricalEvent }o--o{ EventPeriod : "categorized_in"
-
-    BlogPost ||--o{ BlogAuthor : "has_authors"
+    BlogPost }o--o| Image : "has thumbnail"
 
     User {
         uuid id PK
-        varchar username UK
-        varchar email UK
-        varchar firstName
-        varchar lastName
-        varchar slug UK
-        varchar password
-        varchar salt
-        varchar avatar
-        varchar address
+        string username UK
+        string email UK
+        string firstName
+        string lastName
+        string slug UK
+        string password
+        string salt
+        string avatar
+        string address
         date birthdate
-        varchar msisdn
-        enum sex
-        enum status
+        string msisdn
+        UserSex sex
+        UserStatus status
         uuid roleId FK
         timestamp createdAt
         timestamp updatedAt
@@ -49,56 +49,25 @@ erDiagram
 
     Role {
         uuid id PK
-        varchar name UK
-        varchar slug UK
-        enum status
-        text description
+        string name UK
+        string slug UK
+        RoleStatus status
+        string description
     }
 
     Resource {
         uuid id PK
-        varchar name UK
-        varchar slug UK
-        text description
+        string name UK
+        string slug UK
+        string description
     }
 
     Grant {
         uuid id PK
         uuid roleId FK
         uuid resourceId FK
-        varchar action
-        varchar attribute
-    }
-
-    KeyToken {
-        uuid id PK
-        varchar browserId
-        text publicKey
-        text privateKey
-        text[] refreshTokensUsed
-        text refreshToken
-        uuid userId FK
-        timestamp createdAt
-        timestamp updatedAt
-    }
-
-    OTP {
-        uuid id PK
-        varchar token UK
-        varchar email
-        enum status
-        timestamp expiresAt
-        timestamp createdAt
-        timestamp updatedAt
-    }
-
-    ApiKey {
-        uuid id PK
-        varchar key UK
-        boolean status
-        enum[] permissions
-        timestamp createdAt
-        timestamp updatedAt
+        string action
+        string attribute
     }
 
     HistoricalEvent {
@@ -111,8 +80,16 @@ erDiagram
         smallint toYear
         text content
         uuid authorId FK
+        uuid[] categoryIds
         timestamp createdAt
         timestamp updatedAt
+    }
+
+    EventCategory {
+        uuid id PK
+        string name UK
+        string slug UK
+        text description
     }
 
     EventEdit {
@@ -144,24 +121,66 @@ erDiagram
         smallint toDay
         smallint toMonth
         smallint toYear
-        varchar name UK
-        varchar slug UK
+        string name UK
+        string slug UK
         text description
     }
 
-    BlogPost {
+    OTP {
         uuid id PK
-        varchar title
-        varchar slug UK
-        text content
+        string token UK
+        string email
+        OTPStatus status
+        timestamp expiresAt
         timestamp createdAt
         timestamp updatedAt
     }
 
-    BlogAuthor {
-        uuid authorId FK,PK
-        uuid postId FK,PK
+    ApiKey {
+        uuid id PK
+        string key UK
+        boolean status
+        ApiKeyPermission[] permissions
         timestamp createdAt
+        timestamp updatedAt
+    }
+
+    KeyToken {
+        uuid id PK
+        string browserId
+        text publicKey
+        text privateKey
+        text[] refreshTokensUsed
+        text refreshToken
+        uuid userId FK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    Image {
+        uuid id PK
+        string name
+        text caption
+        text description
+        string url
+        string link
+        string type
+        uuid uploaderId FK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    BlogPost {
+        uuid id PK
+        string title
+        string slug UK
+        text content
+        text excerpt
+        BlogStatus status
+        uuid thumbnailId FK
+        uuid authorId FK
+        timestamp createdAt
+        timestamp updatedAt
     }
 ```
 

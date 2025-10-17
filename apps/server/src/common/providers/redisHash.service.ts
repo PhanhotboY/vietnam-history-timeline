@@ -1,18 +1,37 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Cache } from 'cache-manager';
-import KeyvRedis, { RedisClientType } from '@keyv/redis';
+import { RedisClientType } from '@keyv/redis';
 import { REDIS_CLIENT } from './redisClient.provider';
 
+/**
+ * Extended Redis service to handle hash operations with JSON serialization
+ * @description ```ts
+ * // use Inject with Type for better TS typing
+ * constructor(@Inject(RedisService) private redisService: RedisServiceType) {}
+ * ```
+ */
 @Injectable()
-export class RedisHashService {
+export class RedisService {
   constructor(
     @Inject(REDIS_CLIENT) private readonly redisClient: RedisClientType,
-  ) {}
+  ) {
+    return new Proxy(this, {
+      get(target, prop) {
+        if (prop in target) {
+          return Reflect.get(target, prop);
+        }
+
+        const value = Reflect.get(target.redisClient, prop);
+        if (typeof value === 'function') {
+          return value.bind(target.redisClient);
+        }
+        return value;
+      },
+    });
+  }
 
   // Set hash field
   hSet(key: string, field: string, value: any) {
-    return this.redisClient.hSet(key, field, JSON.stringify(value));
+    return this.redisClient.hSet(key, field, JSON.stringify(value as any));
   }
 
   // Get hash field
@@ -49,21 +68,6 @@ export class RedisHashService {
     return await this.redisClient.hDel(key, fields);
   }
 
-  // Check if field exists
-  hExists(key: string, field: string) {
-    return this.redisClient.hExists(key, field);
-  }
-
-  // Get hash field count
-  hLen(key: string) {
-    return this.redisClient.hLen(key);
-  }
-
-  // Get all field names
-  hKeys(key: string) {
-    return this.redisClient.hKeys(key);
-  }
-
   // Get all values
   async hVals(key: string): Promise<any[]> {
     const values = await this.redisClient.hVals(key);
@@ -86,4 +90,19 @@ export class RedisHashService {
     await this.hSet(key, field, value);
     await this.redisClient.expire(key, ttlSeconds);
   }
+
+  async get(key: string) {
+    const value = await this.redisClient.get(key);
+    return value ? JSON.parse(value) : null;
+  }
+  async set(key: string, value: any) {
+    const serializedValue = JSON.stringify(value);
+    await this.redisClient.set(key, serializedValue);
+  }
 }
+
+/**
+ * TS type-safe for RedisService
+ */
+export type RedisServiceType = RedisService &
+  Omit<RedisClientType, keyof RedisService>;

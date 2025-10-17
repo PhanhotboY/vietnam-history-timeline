@@ -1,4 +1,3 @@
-import { USER } from '@shared/constants';
 import { Transform } from 'class-transformer';
 import {
   IsString,
@@ -12,6 +11,7 @@ import {
   IsUUID,
 } from 'class-validator';
 import { PasswordUserDto } from './password-user.dto';
+import { UserSex, UserStatus } from '@server-prisma/index';
 
 // Base DTO for user creation
 export class CreateUserDto implements PasswordUserDto {
@@ -44,14 +44,14 @@ export class CreateUserDto implements PasswordUserDto {
   @IsOptional()
   @IsString({ message: 'Họ phải là chuỗi' })
   @Transform(({ value }) => value?.trim() || '')
-  lastName!: string;
+  lastName?: string;
 
   @IsString()
   salt!: string;
 
   @IsOptional()
   @IsUUID('4', { message: 'ID avatar không hợp lệ' })
-  avatar?: string;
+  avatarId?: string;
 
   @IsOptional()
   @IsString({ message: 'Địa chỉ phải là chuỗi' })
@@ -72,15 +72,15 @@ export class CreateUserDto implements PasswordUserDto {
   msisdn?: string;
 
   @IsOptional()
-  @IsEnum(Object.values(USER.SEX).map((sex) => sex.value), {
+  @IsEnum(Object.values(UserSex), {
     message: 'Giới tính không hợp lệ',
   })
-  sex?: Values<typeof USER.SEX>['value'];
+  sex?: Values<typeof UserSex>;
 
-  @IsEnum(Object.values(USER.STATUS).map((status) => status.value), {
+  @IsEnum(Object.values(UserStatus), {
     message: 'Trạng thái không hợp lệ',
   })
-  status!: Values<typeof USER.STATUS>['value'];
+  status!: Values<typeof UserStatus>;
 
   @IsUUID('4', { message: 'ID vai trò không hợp lệ' })
   roleId!: string;

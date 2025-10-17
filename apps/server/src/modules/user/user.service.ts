@@ -1,36 +1,16 @@
 import { PrismaService } from '@/database';
-import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@prisma-client/index';
-import { UpdateUserDto, CreateUserDto } from '@shared/dto/user';
+import { CreateUserDto } from '@shared/dto/user';
 import { isUUID } from 'class-validator';
-import { RedisHashService } from '../../common/providers/redisHash.service';
+import { RedisService } from '../../common/providers';
 
 @Injectable()
 export class UserService {
   constructor(
     private prisma: PrismaService,
-    private readonly redisHashService: RedisHashService,
+    private readonly redisService: RedisService,
   ) {}
-
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
-
-  async findByUsername({ username }: { username: string }) {
-    return this.prisma.user.findUnique({
-      where: { username },
-    });
-  }
-
-  async getAllUsers() {
-    return await this.prisma.user.findMany();
-  }
 
   async createUser(user: CreateUserDto) {
     return await this.prisma.user.create({ data: user });
@@ -54,7 +34,7 @@ export class UserService {
     let user: (User & { role: { name: string; slug: string } }) | null = null;
     const userKey = `user:${id}`;
 
-    user = await this.redisHashService.hGet(userKey, JSON.stringify(include));
+    user = await this.redisService.hGet(userKey, JSON.stringify(include));
     if (user) {
       return user;
     }
@@ -73,7 +53,7 @@ export class UserService {
       });
     }
 
-    await this.redisHashService.hSet(
+    await this.redisService.hSet(
       userKey,
       JSON.stringify(include),
       user || null,

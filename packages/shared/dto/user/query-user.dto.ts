@@ -1,4 +1,4 @@
-import { USER } from '@shared/constants';
+import { UserSex, UserStatus } from '@server-prisma/index';
 import { Transform, Type } from 'class-transformer';
 import {
   IsDateString,
@@ -37,11 +37,11 @@ export class QueryUserDto {
   sortOrder?: 'asc' | 'desc';
 
   @IsOptional()
-  @IsEnum(USER.STATUS, { message: 'Trạng thái không hợp lệ' })
+  @IsEnum(UserStatus, { message: 'Trạng thái không hợp lệ' })
   status?: string;
 
   @IsOptional()
-  @IsEnum(USER.SEX, { message: 'Giới tính không hợp lệ' })
+  @IsEnum(UserSex, { message: 'Giới tính không hợp lệ' })
   sex?: string;
 
   @IsOptional()

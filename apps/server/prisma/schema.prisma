@@ -35,21 +35,27 @@ model User {
   slug      String      @unique @db.VarChar(255)
   password  String      @db.VarChar(255)
   salt      String      @db.VarChar(255)
-  avatar    String?     @db.VarChar(255)
+  avatarId  String?     @db.Uuid
   address   String?     @db.VarChar(255)
   birthdate DateTime?   @db.Date
   msisdn    String?     @db.VarChar(255)
   sex       UserSex?
   status    UserStatus  @default(ACTIVE)
   roleId    String      @db.Uuid
+
   role      Role        @relation(fields: [roleId], references: [id])
-  keyToken  KeyToken[]
+  avatar    Image?      @relation("UserAvatar", fields: [avatarId], references: [id])
+  keyToken              KeyToken[]
   createdEvents         HistoricalEvent[]
   editedEvents          EventEdit[]
-  blogPosts             BlogAuthor[]
+  blogPosts             BlogPost[]
+  images                Image[] @relation("ImageUploader")
 
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt @db.Timestamp(6)
+
+  @@index([username], name: "idx_user_username")
+  @@index([email], name: "idx_user_email")
 }
 
 model Resource {
@@ -57,7 +63,7 @@ model Resource {
   name        String     @unique @db.VarChar(255)
   slug        String     @unique @db.VarChar(255)
   description String?     @db.Text
-  roles Grant[]
+  roles       Grant[]
 }
 
 enum RoleStatus {
@@ -72,7 +78,10 @@ model Role {
   status      RoleStatus  @default(ACTIVE)
   description String?     @db.Text
   grants      Grant[]     @relation("RoleGrants")
-  users       User[]    
+  users       User[]
+
+  @@index([status], name: "idx_role_status")
+  @@index([slug], name: "idx_role_slug")
 }
 
 model Grant {
@@ -83,7 +92,9 @@ model Grant {
   resource  Resource    @relation(fields: [resourceId], references: [id])
   action    String      @db.VarChar(20) // create:any | create:own | ...
   attribute String      @db.VarChar(20) // * | '*, !password | ...
+
   @@unique([roleId, resourceId, action ], name: "unique_role_resource_action")
+  @@index([roleId], name: "idx_grant_role")
 }
 
 enum OTPStatus {
@@ -100,6 +111,10 @@ model OTP {
   expiresAt DateTime    @default(dbgenerated("NOW() + INTERVAL '60 seconds'"))
   createdAt DateTime    @default(now()) @db.Timestamp(6)
   updatedAt DateTime    @updatedAt @db.Timestamp(6)
+
+  @@index([email], name: "idx_otp_email")
+  @@index([status], name: "idx_otp_status")
+  @@index([expiresAt], name: "idx_otp_expires_at")
 }
 
 enum ApiKeyPermission {
@@ -134,22 +149,46 @@ model KeyToken {
 }
 
 model HistoricalEvent {
-  id          String @id @db.Uuid @default(uuid())
-  fromDay     Int? @db.SmallInt 
-  fromMonth   Int? @db.SmallInt
-  fromYear    Int @db.SmallInt
-  toDay       Int? @db.SmallInt
-  toMonth     Int? @db.SmallInt
-  toYear      Int @db.SmallInt
-  content     String @db.Text
-  authorId    String @db.Uuid
-  author      User @relation(fields: [authorId], references: [id])
+  id          String  @id @db.Uuid @default(uuid())
+  fromDay     Int?    @db.SmallInt 
+  fromMonth   Int?    @db.SmallInt
+  fromYear    Int     @db.SmallInt
+  toDay       Int?    @db.SmallInt
+  toMonth     Int?    @db.SmallInt
+  toYear      Int?    @db.SmallInt
+
+  name        String    @db.VarChar(255)
+  content     String    @db.Text
+  thumbnailId String?   @db.Uuid
+  authorId    String    @db.Uuid
+  categoryIds String[]  @db.Uuid
   
   editors     EventEdit[]
-  categories  EventPeriod[] @relation("EventPeriods")
+  thumbnail   Image? @relation(fields: [thumbnailId], references: [id])
+  author      User @relation(fields: [authorId], references: [id])
+  categories  EventCategory[] @relation("EventCategories")
   
   createdAt   DateTime    @default(now()) @db.Timestamp(6)
   updatedAt   DateTime    @updatedAt @db.Timestamp(6)
+
+  @@index([fromYear], name: "idx_event_from_year")
+  @@index([fromMonth], name: "idx_event_from_month")
+  @@index([fromDay], name: "idx_event_from_day")
+  @@index([toYear], name: "idx_event_to_year")
+  @@index([toMonth], name: "idx_event_to_month")
+  @@index([toDay], name: "idx_event_to_day")
+  @@index([categoryIds], name: "idx_event_categories")
+}
+
+model EventCategory {
+  id          String @id @db.Uuid @default(uuid())
+  name        String @unique @db.VarChar(255)
+  slug        String @unique @db.VarChar(255) 
+  description String? @db.Text
+
+  events      HistoricalEvent[] @relation("EventCategories")
+
+  @@index([slug], name: "idx_category_slug")
 }
 
 model EventEdit {
@@ -166,20 +205,20 @@ model EventEdit {
   prevFromYear  Int @db.SmallInt
   prevToDay     Int? @db.SmallInt
   prevToMonth   Int? @db.SmallInt
-  prevToYear    Int @db.SmallInt
+  prevToYear    Int? @db.SmallInt
   
   newFromDay    Int? @db.SmallInt
   newFromMonth  Int? @db.SmallInt
-  newFromYear   Int @db.SmallInt
+  newFromYear   Int? @db.SmallInt
   newToDay      Int? @db.SmallInt
   newToMonth    Int? @db.SmallInt
-  newToYear     Int @db.SmallInt
+  newToYear     Int? @db.SmallInt
 
   event     HistoricalEvent @relation(fields: [eventId], references: [id])
   editor    User      @relation(fields: [editorId], references: [id])
 
-  @@index([eventId], name: "idx_event")
-  @@index([editorId], name: "idx_editor")
+  @@index([eventId], name: "idx_edit_event")
+  @@index([editorId], name: "idx_edit_editor")
 }
 
 model EventPeriod {
@@ -196,30 +235,50 @@ model EventPeriod {
   name        String @unique @db.VarChar(255)
   slug        String @unique @db.VarChar(255) 
   description String? @db.Text
+}
 
-  events      HistoricalEvent[] @relation("EventPeriods")
+model Image {
+  id          String  @id @db.Uuid @default(uuid())
+  name        String  @db.VarChar(255) // memorable name
+  caption     String? @db.Text
+  description String? @db.Text
+  url         String  @db.VarChar(255) // actual image url
+  link        String? @db.VarChar(255) // link to redirect when clicking on image
+  type        String? @db.VarChar(100) // thumbnail, banner, avatar, ...
+  uploaderId  String  @db.Uuid
+
+  users       User[]  @relation("UserAvatar")
+  uploader    User    @relation("ImageUploader", fields: [uploaderId], references: [id])
+  blogPosts   BlogPost[]
+  events      HistoricalEvent[]
+
+  createdAt   DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime    @updatedAt @db.Timestamp(6)
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
 }
 
 model BlogPost {
-  id        String   @id @db.Uuid @default(uuid())
-  title     String   @db.VarChar(255)
-  slug      String   @unique @db.VarChar(255)
-  content   String   @db.Text
+  id        String      @id @db.Uuid @default(uuid())
+  title     String      @db.VarChar(255)
+  slug      String      @unique @db.VarChar(255)
+  content   String      @db.Text
+  excerpt   String?     @db.Text
+  status    BlogStatus  @default(DRAFT)
+  thumbnailId String?   @db.Uuid
+  authorId  String      @db.Uuid
 
-  authors   BlogAuthor[]
+  thumbnail Image?      @relation(fields: [thumbnailId], references: [id])
+  author    User        @relation(fields: [authorId], references: [id])   
 
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @updatedAt @db.Timestamp(6)
-}
+  createdAt DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt DateTime    @updatedAt @db.Timestamp(6)
 
-model BlogAuthor {
-  authorId  String @db.Uuid
-  postId    String @db.Uuid
-  author    User   @relation(fields: [authorId], references: [id])
-  post      BlogPost @relation(fields: [postId], references: [id])
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-
-  @@id([authorId, postId])
-  @@index([postId], name: "idx_post")
-  @@index([authorId], name: "idx_author")
+  @@index([status], name: "idx_blog_status")
+  @@index([authorId], name: "idx_blog_author")
+  @@index([slug], name: "idx_blog_slug")
 }
