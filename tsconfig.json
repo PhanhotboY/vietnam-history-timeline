@@ -1,18 +1,37 @@
 {
   "compilerOptions": {
-    "target": "es2021",
-    "module": "commonjs",
-    "strict": true,
+    "module": "nodenext",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@shared/*": ["packages/shared/*"],
-      "@server/*": ["apps/server/src/*"],
-      "@server-prisma/*": ["apps/server/dist/apps/server/generated/prisma/*"]
+      "@auth/*": ["apps/auth/src/*"],
+      "@auth-prisma/*": ["apps/auth/generated/prisma/*"],
+      "@auth-prisma": ["apps/auth/generated/prisma"],
+
+      "@user/*": ["apps/user/src/*"],
+      "@user-prisma": ["apps/auth/generated/prisma"],
+      "@user-prisma/*": ["apps/auth/generated/prisma"],
+
+      "@phanhotboy/nsv-common": ["libs/nsv-common/src"],
+      "@phanhotboy/nsv-common/*": ["libs/nsv-common/src/*"],
+      "@phanhotboy/nsv-jwt-auth": ["libs/nsv-jwt-auth/src"],
+      "@phanhotboy/nsv-jwt-auth/*": ["libs/nsv-jwt-auth/src/*"]
     }
   }
 }

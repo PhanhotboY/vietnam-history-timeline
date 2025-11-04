@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+enum UserSex {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum UserStatus {
+  ACTIVE
+  PENDING
+  DELETED
+}
+
+model User {
+  id        String      @id @db.Uuid @default(uuid())
+  username  String      @unique @db.VarChar(255)
+  email     String      @unique @db.VarChar(255)
+  firstName String      @db.VarChar(255)
+  lastName  String?     @db.VarChar(255)
+  slug      String      @unique @db.VarChar(255)
+  password  String      @db.VarChar(255)
+  salt      String      @db.VarChar(255)
+  avatarId  String?     @db.Uuid
+  address   String?     @db.VarChar(255)
+  birthdate DateTime?   @db.Date
+  msisdn    String?     @db.VarChar(255)
+  sex       UserSex?
+  status    UserStatus  @default(ACTIVE)
+  roleId    String      @db.Uuid
+
+  avatar    Image?      @relation("UserAvatar", fields: [avatarId], references: [id])
+  images                Image[] @relation("ImageUploader")
+
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @updatedAt @db.Timestamp(6)
+
+  @@index([username], name: "idx_user_username")
+  @@index([email], name: "idx_user_email")
+}
+
+model Image {
+  id          String  @id @db.Uuid @default(uuid())
+  name        String  @db.VarChar(255) // memorable name
+  caption     String? @db.Text
+  description String? @db.Text
+  url         String  @db.VarChar(255) // actual image url
+  link        String? @db.VarChar(255) // link to redirect when clicking on image
+  type        String? @db.VarChar(100) // thumbnail, banner, avatar, ...
+  uploaderId  String  @db.Uuid
+
+  users       User[]  @relation("UserAvatar")
+  uploader    User    @relation("ImageUploader", fields: [uploaderId], references: [id])
+
+  createdAt   DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime    @updatedAt @db.Timestamp(6)
+}
