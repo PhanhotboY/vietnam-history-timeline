@@ -10,10 +10,8 @@ import { LocalStrategy } from './strategies';
 import { KeyTokenModule } from '@auth/modules/key-token';
 import { AuthUtilService } from '@phanhotboy/nsv-jwt-auth';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigService, RmqModule } from '@phanhotboy/nsv-common';
+import { ConfigService, RmqModule, RMQ } from '@phanhotboy/nsv-common';
 import { Config } from '@auth/config';
-import { AuthConsumer } from './auth.consumer';
-import { RMQ } from '@auth/constants';
 
 @Module({
   imports: [
@@ -34,10 +32,10 @@ import { RMQ } from '@auth/constants';
     OtpModule,
     PassportModule,
     KeyTokenModule,
-    RmqModule.register({ name: RMQ.CLIENT_NAME }),
+    RmqModule.register({ name: RMQ.TOPIC_EVENTS_EXCHANGE }),
   ],
   providers: [AuthService, LocalStrategy, AuthUtilService],
-  controllers: [AuthController, AuthConsumer],
+  controllers: [AuthController],
   exports: [AuthService],
 })
 export class AuthModule {}

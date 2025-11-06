@@ -67,8 +67,8 @@ model Grant {
   id          String      @id @db.Uuid @default(uuid())
   roleId    String      @db.Uuid
   resourceId String     @db.Uuid
-  role      Role        @relation("RoleGrants", fields: [roleId], references: [id])
-  resource  Resource    @relation(fields: [resourceId], references: [id])
+  role      Role        @relation("RoleGrants", fields: [roleId], references: [id], onDelete: Cascade)
+  resource  Resource    @relation(fields: [resourceId], references: [id], onDelete: Cascade)
   action    String      @db.VarChar(20) // create:any | create:own | ...
   attribute String      @db.VarChar(20) // * | '*, !password | ...
 
@@ -118,9 +118,10 @@ model KeyToken {
   refreshTokensUsed String[] @default([]) @db.Text
   refreshToken      String @db.Text
   userId            String @db.Uuid
-  user              User @relation(fields: [userId], references: [id])
   createdAt         DateTime    @default(now()) @db.Timestamp(6)
   updatedAt         DateTime    @updatedAt @db.Timestamp(6)
+
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, browserId], name: "unique_user_browser")
 }

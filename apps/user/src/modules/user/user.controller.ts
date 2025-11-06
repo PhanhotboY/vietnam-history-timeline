@@ -13,9 +13,7 @@ export class UserController {
   @Permissions(['user', 'readOwn'])
   @Serialize(UserBriefDto)
   getMe(@Req() req: Request) {
-    return this.userService.findUserById(req.user!.userId, {
-      withPassword: false,
-    });
+    return this.userService.findUserById(req.user!.userId);
   }
 
   @Delete(':id')

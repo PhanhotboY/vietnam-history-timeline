@@ -21,12 +21,13 @@ import {
   ConfigService,
   UserRegisterDto,
   UtilService,
+  RMQ,
+  USER_EVENT,
 } from '@phanhotboy/nsv-common';
 import { AuthUtilService } from '@phanhotboy/nsv-jwt-auth';
 import { Config } from '@auth/config';
 import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
-import { RMQ } from '@auth/constants';
 import { CreateUserDto } from '@auth/modules/user/dto';
 
 @Injectable()
@@ -41,7 +42,7 @@ export class AuthService {
     private readonly authUtilService: AuthUtilService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService<Config>,
-    @Inject(RMQ.CLIENT_NAME) private readonly rmq: ClientProxy,
+    @Inject(RMQ.TOPIC_EVENTS_EXCHANGE) private readonly rmq: ClientProxy,
   ) {}
 
   async signIn(payload: JwtPayloadDto, refreshToken?: string) {
@@ -93,28 +94,14 @@ export class AuthService {
   }
 
   async signUp({ email }: SignUpDto) {
-    this.rmq.emit(
-      'user.registered',
-      plainToInstance(UserRegisterDto, {
-        email,
-        password: 'string',
-        username: 'string',
-        slug: 'string',
-        firstName: 'string',
-        salt: 'string',
-        roleId: 'string',
-        status: UserStatus.ACTIVE,
-        id: 'string',
-      } as UserRegisterDto),
-    );
-    // const foundUser = await this.userService.findUserByEmail(email);
-    // if (foundUser) {
-    //   throw new BadRequestException('Email already exists');
-    // }
+    const foundUser = await this.userService.findUserByEmail(email);
+    if (foundUser) {
+      throw new BadRequestException('Email already exists');
+    }
 
-    // const res = await this.mailService.sendVerificationEmail(email);
+    await this.mailService.sendVerificationEmail(email);
 
-    return { ok: true };
+    return { success: true };
   }
 
   async verifyEmailToken({ token }: { token: string }) {
@@ -155,8 +142,8 @@ export class AuthService {
     const newUser = await this.userService.createUser(userData);
 
     this.rmq.emit(
-      'user.registered',
-      plainToInstance(UserRegisterDto, userData),
+      USER_EVENT.REGISTERED,
+      plainToInstance(UserRegisterDto, newUser),
     );
 
     if (!newUser) {

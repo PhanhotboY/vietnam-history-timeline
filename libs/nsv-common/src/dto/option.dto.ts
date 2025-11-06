@@ -4,4 +4,5 @@ export interface CommonOptionDto {
   throttlerConfigKey: string;
   redisConfigKey: string;
   rabbitmqConfigKey: string;
+  cachePrefix: string;
 }

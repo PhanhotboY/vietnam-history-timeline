@@ -1,11 +1,7 @@
 import { Controller } from '@nestjs/common';
-import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
-import {
-  RmqService,
-  USER_EVENT,
-  UserRegisterDto,
-} from '@phanhotboy/nsv-common';
 import { UserService } from './user.service';
+import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
+import { RmqService, USER_EVENT, UserDeleteDto } from '@phanhotboy/nsv-common';
 
 @Controller()
 export class UserConsumer {
@@ -14,12 +10,12 @@ export class UserConsumer {
     private readonly rmqService: RmqService,
   ) {}
 
-  @EventPattern(USER_EVENT.REGISTERED)
-  async handleUserRegisteredEvent(
-    @Payload() data: UserRegisterDto,
+  @EventPattern(USER_EVENT.DELETED)
+  async handleUserDeleted(
+    @Payload() data: UserDeleteDto,
     @Ctx() context: RmqContext,
   ) {
-    await this.userService.handleUserRegister(data);
+    await this.userService.deleteUser(data.userId);
     return this.rmqService.ack(context);
   }
 }

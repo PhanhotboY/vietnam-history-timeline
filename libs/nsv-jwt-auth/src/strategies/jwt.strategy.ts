@@ -6,18 +6,19 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
+import { Request } from 'express';
+import { HEADER } from '@phanhotboy/nsv-common';
 
 import { AuthUtilService } from '../util';
-import { HEADER } from '@phanhotboy/nsv-common';
 import { JwtPayloadDto } from '../dto';
-import { Request } from 'express';
 import { JwtOptionsDto } from '../dto/module-option.dto';
+import { MODULE_OPTIONS_TOKEN, OPTIONS_TYPE } from '../auth.module-definition';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     private readonly authUtilService: AuthUtilService,
-    @Inject('JWT_OPTIONS') private readonly options: JwtOptionsDto
+    @Inject(MODULE_OPTIONS_TOKEN) private readonly options: typeof OPTIONS_TYPE,
   ) {
     super({
       jwtFromRequest: (req: Request) => {
@@ -29,7 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
       algorithms: ['RS256'],
       // fetch public key dynamically
-      secretOrKeyProvider: async (request, rawJwtToken, done) => {
+      secretOrKeyProvider: async (request: Request, rawJwtToken, done) => {
         try {
           const clientId = request.headers[HEADER.CLIENT_ID];
           if (!clientId)

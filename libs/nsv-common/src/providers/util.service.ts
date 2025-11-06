@@ -1,8 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import _ from 'lodash';
+import {
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+} from '../common.module-definition';
 
 @Injectable()
 export class UtilService {
+  constructor(
+    @Inject(MODULE_OPTIONS_TOKEN) private readonly options: typeof OPTIONS_TYPE,
+  ) {}
+
   omit<T = Object>(obj: T, fields?: string[]): Partial<T> {
     if (!fields || !fields.length) return obj;
 
@@ -90,5 +98,13 @@ export class UtilService {
       return this.removeNullishAttributes(any as Object) as T;
 
     return any;
+  }
+
+  genCacheKey(...args: any[]) {
+    return (
+      this.options.cachePrefix +
+      '|' +
+      args.map((arg) => JSON.stringify(arg)).join(':')
+    );
   }
 }

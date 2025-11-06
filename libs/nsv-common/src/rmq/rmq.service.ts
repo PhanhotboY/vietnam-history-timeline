@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RmqContext, RmqOptions, Transport } from '@nestjs/microservices';
+import { RmqOptions, Transport } from '@nestjs/microservices';
 import { ConfigService } from '../providers';
 
 export const RABBITMQ_OPTIONS = 'RABBITMQ_OPTIONS';

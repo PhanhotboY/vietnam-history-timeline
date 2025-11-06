@@ -1,5 +1,6 @@
 export const USER_EVENT = {
   REGISTERED: 'user.registered',
+  DELETED: 'user.deleted',
 } as const;
 
 export const USER = {

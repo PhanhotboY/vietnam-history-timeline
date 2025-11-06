@@ -1,6 +1,6 @@
 import { Module, Scope } from '@nestjs/common';
 import { APP_GUARD, Reflector } from '@nestjs/core';
-import { CommonModule, ConfigService, RmqModule } from '@phanhotboy/nsv-common';
+import { CommonModule, ConfigService } from '@phanhotboy/nsv-common';
 import {
   JwtAuthGuard,
   JwtAuthModule,
@@ -11,7 +11,6 @@ import { UserModule } from './modules/user';
 import { PrismaModule } from './database/prisma.module';
 import { Config } from './config';
 import { configuration } from './config/configuration';
-import { RMQ } from './constants/rmq.constant';
 
 @Module({
   imports: [
@@ -21,13 +20,14 @@ import { RMQ } from './constants/rmq.constant';
       redisConfigKey: 'redis',
       throttlerConfigKey: 'throttlers',
       rabbitmqConfigKey: 'rabbitmq',
+      cachePrefix: 'user-service',
     }),
     PrismaModule.forRoot(),
     JwtAuthModule.registerAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService<Config>) => {
-        console.log(configuration());
         const jwtPublicKey = configService.get('jwt.publicKey');
+
         if (!jwtPublicKey) {
           throw new Error('JWT public key is not defined');
         }
@@ -37,7 +37,6 @@ import { RMQ } from './constants/rmq.constant';
         };
       },
     }),
-    RmqModule.register({ name: RMQ.CLIENT_NAME }),
     UserModule,
   ],
   providers: [

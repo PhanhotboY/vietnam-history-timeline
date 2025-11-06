@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { JwtAuthGuard, JwtAuthModule } from '@phanhotboy/nsv-jwt-auth';
-import { CommonModule, ConfigService, RmqModule } from '@phanhotboy/nsv-common';
+import {
+  CommonModule,
+  ConfigService,
+  RmqModule,
+  RMQ,
+} from '@phanhotboy/nsv-common';
 
 import { configuration } from './config/configuration';
 import { Config } from './config';
 import { PrismaModule } from './database';
-import { RMQ } from './constants';
 import { LocalStrategy } from './auth/strategies';
 import { AuthModule } from './auth';
 import { MailModule } from './mail';
@@ -14,6 +18,7 @@ import { OtpModule } from './modules/otp';
 import { ResourceModule } from './modules/resource/resource.module';
 import { UserModule } from './modules/user';
 import { RoleModule } from './modules/role';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -22,6 +27,7 @@ import { RoleModule } from './modules/role';
       rabbitmqConfigKey: 'rabbitmq',
       redisConfigKey: 'redis',
       throttlerConfigKey: 'throttlers',
+      cachePrefix: 'auth-service',
       global: true,
     }),
     JwtAuthModule.registerAsync({
@@ -32,7 +38,6 @@ import { RoleModule } from './modules/role';
       inject: [ConfigService],
       global: true,
     }),
-    RmqModule.register({ name: RMQ.CLIENT_NAME }),
     PrismaModule.forRoot(),
     AuthModule,
     KeyTokenModule,
@@ -42,6 +47,12 @@ import { RoleModule } from './modules/role';
     ResourceModule,
     UserModule,
   ],
-  providers: [JwtAuthGuard, LocalStrategy],
+  providers: [
+    LocalStrategy,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

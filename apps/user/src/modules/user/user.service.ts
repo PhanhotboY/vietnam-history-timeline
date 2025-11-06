@@ -1,18 +1,29 @@
 import { PrismaService } from '@user/database';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { isUUID } from 'class-validator';
+
 import { User } from '@user-prisma';
 import { CreateUserDto } from '@user/modules/user/dto';
-import { isUUID } from 'class-validator';
 import {
   RedisService,
   type RedisServiceType,
   UserRegisterDto,
+  UserDeleteDto,
+  RMQ,
+  USER_EVENT,
+  UtilService,
 } from '@phanhotboy/nsv-common';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class UserService {
+  private readonly cachePrefix = 'user';
+
   constructor(
-    private prisma: PrismaService,
+    private readonly prisma: PrismaService,
+    private readonly util: UtilService,
+    @Inject(RMQ.TOPIC_EVENTS_EXCHANGE) private readonly rmq: ClientProxy,
     @Inject(RedisService) private readonly redisService: RedisServiceType,
   ) {}
 
@@ -21,6 +32,7 @@ export class UserService {
   }
 
   async handleUserRegister(data: UserRegisterDto) {
+    console.log(data);
     return await this.createUser({
       ...data,
       slug: data.username,
@@ -32,22 +44,11 @@ export class UserService {
     return await this.prisma.user.findUnique({ where: { email } });
   }
 
-  async findUserById(
-    id: string,
-    options?: { withRole?: boolean; withPassword?: boolean },
-  ) {
-    // Have to include nested relation explicitly
-    // Exclude fields using false since including using true will throw error
-    const omit = {
-      ...(options?.withPassword
-        ? {}
-        : ({ password: false, salt: false } as const)),
-    };
-
+  async findUserById(id: string) {
     let user: User | null = null;
-    const userKey = `user:${id}`;
+    const userKey = this.util.genCacheKey(this.cachePrefix, id);
 
-    user = await this.redisService.hGet(userKey, JSON.stringify(omit));
+    user = await this.redisService.get(userKey);
     if (user) {
       return user;
     }
@@ -55,18 +56,16 @@ export class UserService {
     if (isUUID(id)) {
       user = await this.prisma.user.findUnique({
         where: { id },
-        omit,
       });
     } else {
       user = await this.prisma.user.findFirst({
         where: {
           OR: [{ email: id }, { username: id }],
         },
-        omit,
       });
     }
 
-    await this.redisService.hSet(userKey, JSON.stringify(omit), user || null);
+    await this.redisService.set(userKey, user || null);
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -76,6 +75,16 @@ export class UserService {
   }
 
   async deleteUser(id: string) {
-    return await this.prisma.user.delete({ where: { id } });
+    await this.findUserById(id); // Ensure user exists
+
+    const userKey = this.util.genCacheKey(this.cachePrefix, id);
+    await this.redisService.del(userKey);
+
+    await this.prisma.user.delete({ where: { id } });
+    this.rmq.emit(
+      USER_EVENT.DELETED,
+      plainToInstance(UserDeleteDto, { userId: id }),
+    );
+    return { success: true };
   }
 }

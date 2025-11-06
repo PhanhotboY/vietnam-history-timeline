@@ -34,8 +34,6 @@ model User {
   firstName String      @db.VarChar(255)
   lastName  String?     @db.VarChar(255)
   slug      String      @unique @db.VarChar(255)
-  password  String      @db.VarChar(255)
-  salt      String      @db.VarChar(255)
   avatarId  String?     @db.Uuid
   address   String?     @db.VarChar(255)
   birthdate DateTime?   @db.Date
@@ -44,7 +42,7 @@ model User {
   status    UserStatus  @default(ACTIVE)
   roleId    String      @db.Uuid
 
-  avatar    Image?      @relation("UserAvatar", fields: [avatarId], references: [id])
+  avatar    Image?      @relation("UserAvatar", fields: [avatarId], references: [id], onDelete: SetNull)
   images                Image[] @relation("ImageUploader")
 
   createdAt DateTime @default(now()) @db.Timestamp(6)
@@ -65,7 +63,7 @@ model Image {
   uploaderId  String  @db.Uuid
 
   users       User[]  @relation("UserAvatar")
-  uploader    User    @relation("ImageUploader", fields: [uploaderId], references: [id])
+  uploader    User    @relation("ImageUploader", fields: [uploaderId], references: [id], onDelete: Cascade)
 
   createdAt   DateTime    @default(now()) @db.Timestamp(6)
   updatedAt   DateTime    @updatedAt @db.Timestamp(6)

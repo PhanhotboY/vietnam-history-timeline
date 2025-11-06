@@ -50,7 +50,7 @@ export class AuthController {
     try {
       await this.authService.verifyEmailToken({ token });
 
-      res.status(200).send(`<body style='margin:0'>
+      return res.status(200).send(`<body style='margin:0'>
         <div style='background-color: #f3f4f6; height: 100vh; display: flex; align-items: center; justify-content: center;'>
           <div style='background-color: #ffffff; padding: 1.5rem; width: 768px;'>
             <div style='border-radius: 50%; background-color: #16a34a; width: 4rem; height: 4rem; margin: 1.5rem auto;'>
@@ -86,7 +86,7 @@ export class AuthController {
         </div>
       </body>`);
     } catch (e: any) {
-      res.status(500).send(`<body style='margin:0'>
+      return res.status(500).send(`<body style='margin:0'>
         <div style='background-color: #f3f4f6; height: 100vh; display: flex; align-items: center; justify-content: center;'>
           <div style='background-color: #ffffff; padding: 1.5rem; width: 768px;'>
             <div style='border-radius: 50%; background-color: #D8453D; width: 4rem; height: 4rem; margin: 1.5rem auto;'>

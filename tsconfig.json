@@ -25,8 +25,8 @@
       "@auth-prisma": ["apps/auth/generated/prisma"],
 
       "@user/*": ["apps/user/src/*"],
-      "@user-prisma": ["apps/auth/generated/prisma"],
-      "@user-prisma/*": ["apps/auth/generated/prisma"],
+      "@user-prisma": ["apps/user/generated/prisma"],
+      "@user-prisma/*": ["apps/user/generated/prisma"],
 
       "@phanhotboy/nsv-common": ["libs/nsv-common/src"],
       "@phanhotboy/nsv-common/*": ["libs/nsv-common/src/*"],

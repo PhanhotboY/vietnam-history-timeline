@@ -9,7 +9,8 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "tsconfig.build.json"
+    "tsConfigPath": "tsconfig.build.json",
+    "webpackConfigPath": "webpack.config.js"
   },
   "monorepo": true,
   "root": "apps/auth",

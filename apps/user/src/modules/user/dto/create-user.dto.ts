@@ -10,11 +10,10 @@ import {
   Matches,
   IsUUID,
 } from 'class-validator';
-import { PasswordUserDto } from './password-user.dto';
 import { USER } from '@phanhotboy/nsv-common';
 
 // Base DTO for user creation
-export class CreateUserDto implements PasswordUserDto {
+export class CreateUserDto {
   // Properties from RegisterUserDto and PasswordUserDto should be defined here
   @IsUUID('4', { message: 'ID không hợp lệ' })
   id?: string;
@@ -22,10 +21,6 @@ export class CreateUserDto implements PasswordUserDto {
   @IsEmail({}, { message: 'Email không hợp lệ' })
   @Transform(({ value }) => value?.trim())
   email!: string;
-
-  @IsString({ message: 'Mật khẩu phải là chuỗi' })
-  @MinLength(6, { message: 'Mật khẩu phải có ít nhất 6 ký tự' })
-  password!: string;
 
   @IsString({ message: 'Tên đăng nhập phải là chuỗi' })
   @MinLength(3, { message: 'Tên đăng nhập phải có ít nhất 3 ký tự' })
@@ -36,7 +31,7 @@ export class CreateUserDto implements PasswordUserDto {
   @Transform(({ value }) => value?.trim())
   username!: string;
 
-  @IsString({ message: 'Mật khẩu phải là chuỗi' })
+  @IsString({ message: 'Slug phải là chuỗi' })
   slug!: string;
 
   @IsString({ message: 'Tên phải là chuỗi' })
@@ -48,9 +43,6 @@ export class CreateUserDto implements PasswordUserDto {
   @IsString({ message: 'Họ phải là chuỗi' })
   @Transform(({ value }) => value?.trim() || '')
   lastName?: string;
-
-  @IsString()
-  salt!: string;
 
   @IsOptional()
   @IsUUID('4', { message: 'ID avatar không hợp lệ' })

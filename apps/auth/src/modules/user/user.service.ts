@@ -3,12 +3,19 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@auth-prisma';
 import { CreateUserDto } from '@auth/modules/user/dto';
 import { isUUID } from 'class-validator';
-import { RedisService, type RedisServiceType } from '@phanhotboy/nsv-common';
+import {
+  RedisService,
+  UtilService,
+  type RedisServiceType,
+} from '@phanhotboy/nsv-common';
 
 @Injectable()
 export class UserService {
+  private readonly cachePrefix = 'user';
+
   constructor(
-    private prisma: PrismaService,
+    private readonly prisma: PrismaService,
+    private readonly util: UtilService,
     @Inject(RedisService) private readonly redisService: RedisServiceType,
   ) {}
 
@@ -32,7 +39,7 @@ export class UserService {
     };
 
     let user: (User & { role: { name: string; slug: string } }) | null = null;
-    const userKey = `user:${id}`;
+    const userKey = this.util.genCacheKey(this.cachePrefix, id);
 
     user = await this.redisService.hGet(userKey, JSON.stringify(include));
     if (user) {
@@ -63,6 +70,13 @@ export class UserService {
       throw new NotFoundException('User not found');
     }
 
+    return user;
+  }
+
+  async deleteUser(id: string) {
+    const user = await this.prisma.user.delete({ where: { id } });
+    const userKey = this.util.genCacheKey(this.cachePrefix, id);
+    await this.redisService.del(userKey);
     return user;
   }
 }

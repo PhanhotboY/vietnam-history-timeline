@@ -12,12 +12,15 @@ import * as providers from './providers';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
-import { CommonOptionDto } from './dto/option.dto';
 import { HttpExceptionsFilter } from './filters';
 import { SerializeResponseInterceptor } from './interceptors';
 import { LoggerModule } from 'nestjs-pino';
 import { loggerOptions } from './config/logger.config';
-import { ConfigurableModuleClass } from '@nestjs/cache-manager/dist/cache.module-definition';
+import {
+  ConfigurableModuleClass,
+  MODULE_OPTIONS_TOKEN,
+  OPTIONS_TYPE,
+} from './common.module-definition';
 
 const { REDIS_OPTIONS, ...prvds } = providers;
 const services = Object.values(prvds);
@@ -25,9 +28,9 @@ const services = Object.values(prvds);
 @Global()
 @Module({})
 export class CommonModule extends ConfigurableModuleClass {
-  static forRoot(options: CommonOptionDto): DynamicModule {
+  static forRoot(options: typeof OPTIONS_TYPE): DynamicModule {
     return {
-      ...super.register({}),
+      ...super.forRoot(options),
       module: CommonModule,
       imports: [
         LoggerModule.forRoot(loggerOptions),
@@ -49,6 +52,7 @@ export class CommonModule extends ConfigurableModuleClass {
         }),
       ],
       providers: [
+        { provide: MODULE_OPTIONS_TOKEN, useValue: options },
         ...services,
         {
           provide: APP_INTERCEPTOR,
