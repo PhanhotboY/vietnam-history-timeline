@@ -2,14 +2,13 @@ import {
   CanActivate,
   ExecutionContext,
   ForbiddenException,
-  Inject,
   Injectable,
 } from '@nestjs/common';
 import { AccessControl, Permission, Query } from 'accesscontrol';
 import { Reflector } from '@nestjs/core';
 import { Permissions } from '../decorators';
 import { APP } from '@phanhotboy/nsv-common';
-import { JwtPayloadDto, JwtPermissionDto } from '../dto';
+import { JwtPayloadDto, JwtPermissionDto } from '@phanhotboy/nsv-common/dto';
 import { Request } from 'express';
 
 @Injectable()
@@ -48,7 +47,7 @@ export class RbacGuard implements CanActivate {
   checkPermission(
     permissions: JwtPermissionDto[],
     resource: string,
-    action: keyof Query
+    action: keyof Query,
   ) {
     if (!permissions || permissions.length === 0) {
       throw new ForbiddenException('Access denied');

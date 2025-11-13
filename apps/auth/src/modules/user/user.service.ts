@@ -1,10 +1,10 @@
 import { PrismaService } from '@auth/database';
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@auth-prisma';
-import { CreateUserDto } from '@auth/modules/user/dto';
 import { isUUID } from 'class-validator';
 import {
   RedisService,
+  UserAuthCreateDto,
   UtilService,
   type RedisServiceType,
 } from '@phanhotboy/nsv-common';
@@ -19,7 +19,7 @@ export class UserService {
     @Inject(RedisService) private readonly redisService: RedisServiceType,
   ) {}
 
-  async createUser(user: CreateUserDto) {
+  async createUser(user: UserAuthCreateDto) {
     return await this.prisma.user.create({ data: user });
   }
 

@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtPayloadDto } from '../dto';
+import { JwtPayloadDto } from '@phanhotboy/nsv-common/dto';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()

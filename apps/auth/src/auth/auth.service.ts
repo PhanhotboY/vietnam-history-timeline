@@ -10,7 +10,12 @@ import {
 import { UserStatus } from '@auth-prisma';
 
 import { CreateKeyTokenDto } from '@auth/modules/key-token/dto';
-import { JwtPayloadDto, SignUpDto } from '@auth/auth/dto';
+import {
+  JwtPayloadDto,
+  SignUpDto,
+  UserAuthCreateDto,
+  UserBaseDto,
+} from '@phanhotboy/nsv-common/dto';
 import { KeyTokenService } from '@auth/modules/key-token';
 import { MailService } from '../mail';
 import { UserService } from '@auth/modules/user';
@@ -19,16 +24,15 @@ import { OtpService } from '@auth/modules/otp';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import {
   ConfigService,
-  UserRegisterDto,
   UtilService,
   RMQ,
   USER_EVENT,
+  RefreshTokenResponseDto,
 } from '@phanhotboy/nsv-common';
 import { AuthUtilService } from '@phanhotboy/nsv-jwt-auth';
 import { Config } from '@auth/config';
 import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
-import { CreateUserDto } from '@auth/modules/user/dto';
 
 @Injectable()
 export class AuthService {
@@ -130,7 +134,7 @@ export class AuthService {
     const tempPass = randomBytes(8).toString('hex');
     const hashPassword = await bcrypt.hash(tempPass, salt);
 
-    const userData = plainToInstance(CreateUserDto, {
+    const userData = plainToInstance(UserAuthCreateDto, {
       email,
       username: email,
       password: hashPassword,
@@ -141,10 +145,7 @@ export class AuthService {
 
     const newUser = await this.userService.createUser(userData);
 
-    this.rmq.emit(
-      USER_EVENT.REGISTERED,
-      plainToInstance(UserRegisterDto, newUser),
-    );
+    this.rmq.emit(USER_EVENT.REGISTERED, plainToInstance(UserBaseDto, newUser));
 
     if (!newUser) {
       throw new InternalServerErrorException('Fail to create new user!');
@@ -239,9 +240,7 @@ export class AuthService {
     );
 
     return {
-      user: this.utilService.getReturnData(foundUser, {
-        fields: ['id', 'email', 'role'],
-      }),
+      user: plainToInstance(RefreshTokenResponseDto, foundUser),
       tokens,
     };
   }

@@ -12,7 +12,7 @@ import {
 import type { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
-import { SignUpDto } from '@auth/auth/dto';
+import { SignUpDto } from '@phanhotboy/nsv-common/dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { ConfigService, APP, HEADER } from '@phanhotboy/nsv-common';
 import { Config } from '@auth/config';

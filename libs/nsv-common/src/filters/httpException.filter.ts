@@ -6,6 +6,7 @@ import {
   Logger,
   ExceptionFilter,
 } from '@nestjs/common';
+import { JsonWebTokenError } from '@nestjs/jwt';
 import { Response } from 'express';
 
 @Catch(HttpException)
@@ -20,10 +21,11 @@ export class HttpExceptionsFilter implements ExceptionFilter {
     const err = req.authInfo || exception;
     const args = req.body;
 
-    const status = this.getHttpStatus(err);
+    let status = this.getHttpStatus(err);
     if (status === HttpStatus.INTERNAL_SERVER_ERROR) {
-      if (err instanceof Error) {
-        this.logger.error({ err: err, args });
+      if (err instanceof JsonWebTokenError) {
+        status = HttpStatus.UNAUTHORIZED;
+        this.logger.log(err.message, 'JWTError');
       } else {
         // Error Notifications
         this.logger.error('UnhandledException', err);

@@ -89,19 +89,6 @@ async function main() {
   await prisma.$disconnect();
 }
 
-// Base permissions shared by all employees
-const BASE_EMPLOYEE_GRANTS = [
-  {
-    resourceId: { slug: 'keyToken' },
-    actions: ['create:own', 'read:own', 'update:own', 'delete:own'],
-  },
-  { resourceId: { slug: 'user' }, actions: ['read:own', 'update:own'] },
-  {
-    resourceId: { slug: 'image' },
-    actions: ['create:any', 'read:any', 'update:any', 'delete:any'],
-  },
-];
-
 const ROLES = [
   {
     name: 'Quản trị hệ thống',

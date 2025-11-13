@@ -23,36 +23,6 @@ export class UtilService {
     }, {});
   }
 
-  getReturnData<T = Object>(
-    obj: T,
-    options?: Partial<
-      Record<'fields' | 'without', Array<Extract<keyof T, string>>>
-    >,
-  ) {
-    if (!obj) return obj;
-
-    const pickedObj = _.isEmpty(options?.fields || [])
-      ? obj
-      : _.pick(obj, options?.fields!);
-    const filteredObj = this.omit(pickedObj, [
-      ...(options?.without || []),
-      '__v',
-    ]) as Partial<typeof obj>;
-
-    return filteredObj;
-  }
-
-  getReturnList<T = Array<any>>(
-    arr: T[],
-    options?: Partial<
-      Record<'fields' | 'without', Array<Extract<keyof T, string>>>
-    >,
-  ) {
-    if (!arr.length) return arr;
-
-    return arr.map((ele) => this.getReturnData(ele, options));
-  }
-
   isNullish = (val: any) => (val ?? null) === null;
   isEmptyObj = (obj: Object) => !Object.keys(obj).length;
   getSkipNumber = (limit: number, page: number) => limit * (page - 1);

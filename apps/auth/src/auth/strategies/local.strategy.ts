@@ -2,8 +2,8 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { AuthService } from '../auth.service';
-import { instanceToPlain } from 'class-transformer';
-import { JwtPayloadDto } from '@auth/auth/dto';
+import { instanceToPlain, plainToInstance } from 'class-transformer';
+import { JwtPayloadDto, SignInDto } from '@phanhotboy/nsv-common/dto';
 import { Request } from 'express';
 import { RoleService } from '../../modules/role/role.service';
 
@@ -20,7 +20,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   authenticate(req: Request, options?: any): void {
-    const { username, password, browserId } = req.body;
+    const { username, password, browserId } = plainToInstance(
+      SignInDto,
+      req.body,
+    );
     if (!username || !password) {
       throw new BadRequestException('Tên đăng nhập và mật khẩu là bắt buộc!');
     }

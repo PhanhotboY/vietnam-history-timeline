@@ -1,4 +1,4 @@
-import { JwtPayloadDto } from './dto';
+import { JwtPayloadDto } from '@phanhotboy/nsv-common/dto';
 
 export * from './decorators';
 export * from './dto';

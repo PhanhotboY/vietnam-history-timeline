@@ -4,7 +4,6 @@ import { middleware } from './app.middleware';
 import { RmqService } from '@phanhotboy/nsv-common';
 
 async function bootstrap() {
-  console.log(process.env.PORT);
   const app = await NestFactory.create(AppModule);
   const rmqService = app.get(RmqService);
 
@@ -14,7 +13,7 @@ async function bootstrap() {
   app.setGlobalPrefix('/api/v1');
 
   app.enableShutdownHooks();
-  const port = process.env.PORT || 3000;
+  const port = process.env.NODE_PORT || 3000;
 
   await app.startAllMicroservices();
   await app.listen(port);

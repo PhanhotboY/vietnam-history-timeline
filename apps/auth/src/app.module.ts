@@ -1,11 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtAuthGuard, JwtAuthModule } from '@phanhotboy/nsv-jwt-auth';
-import {
-  CommonModule,
-  ConfigService,
-  RmqModule,
-  RMQ,
-} from '@phanhotboy/nsv-common';
+import { CommonModule, ConfigService } from '@phanhotboy/nsv-common';
 
 import { configuration } from './config/configuration';
 import { Config } from './config';

@@ -10,8 +10,7 @@ import { Request } from 'express';
 import { HEADER } from '@phanhotboy/nsv-common';
 
 import { AuthUtilService } from '../util';
-import { JwtPayloadDto } from '../dto';
-import { JwtOptionsDto } from '../dto/module-option.dto';
+import { JwtPayloadDto } from '@phanhotboy/nsv-common/dto';
 import { MODULE_OPTIONS_TOKEN, OPTIONS_TYPE } from '../auth.module-definition';
 
 @Injectable()

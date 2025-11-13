@@ -4,15 +4,15 @@ import { ClientProxy } from '@nestjs/microservices';
 import { isUUID } from 'class-validator';
 
 import { User } from '@user-prisma';
-import { CreateUserDto } from '@user/modules/user/dto';
 import {
   RedisService,
   type RedisServiceType,
-  UserRegisterDto,
   UserDeleteDto,
   RMQ,
   USER_EVENT,
   UtilService,
+  UserFullCreateDto,
+  UserBaseDto,
 } from '@phanhotboy/nsv-common';
 import { plainToInstance } from 'class-transformer';
 
@@ -27,16 +27,17 @@ export class UserService {
     @Inject(RedisService) private readonly redisService: RedisServiceType,
   ) {}
 
-  async createUser(user: CreateUserDto) {
-    return await this.prisma.user.create({ data: user });
+  async createUser(user: UserFullCreateDto) {
+    return await this.prisma.user.create({
+      data: { ...user, slug: user.slug || user.email.split('@')[0] },
+    });
   }
 
-  async handleUserRegister(data: UserRegisterDto) {
-    console.log(data);
+  async handleUserRegister(data: UserBaseDto) {
     return await this.createUser({
       ...data,
-      slug: data.username,
-      firstName: data.username,
+      avatarId: '',
+      firstName: data.email.split('@')[0],
     });
   }
 
@@ -59,9 +60,7 @@ export class UserService {
       });
     } else {
       user = await this.prisma.user.findFirst({
-        where: {
-          OR: [{ email: id }, { username: id }],
-        },
+        where: { email: id },
       });
     }
 

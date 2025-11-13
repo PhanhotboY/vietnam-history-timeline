@@ -8,6 +8,7 @@ export * from './providers';
 export * from './common.module';
 export * from './constants';
 export * from './rmq';
+export * from './util';
 
 declare global {
   type Values<T> = T[keyof T];
