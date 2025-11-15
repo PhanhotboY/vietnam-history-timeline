@@ -1,8 +1,21 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { RoleService } from './role.service';
-import { CreateRoleDto, GrantDto } from '@auth/modules/role/dto';
 import { Permissions } from '@phanhotboy/nsv-jwt-auth';
-import { ArrayValidationPipe } from '@phanhotboy/nsv-common';
+import {
+  ArrayValidationPipe,
+  GrantBaseCreateDto,
+  RoleBaseCreateDto,
+  RoleBaseDto,
+  Serialize,
+} from '@phanhotboy/nsv-common';
 
 @Controller('roles')
 export class RoleController {
@@ -10,34 +23,47 @@ export class RoleController {
 
   @Post()
   @Permissions(['role', 'createAny'])
-  createRole(@Body() roleData: CreateRoleDto) {
+  @Serialize(RoleBaseDto)
+  createRole(@Body() roleData: RoleBaseCreateDto) {
     return this.roleService.createRole(roleData);
   }
 
   @Get()
   @Permissions(['role', 'readAny'])
+  @Serialize(RoleBaseDto)
   getRoles() {
     return this.roleService.getRoles();
   }
 
   @Get(':id')
   @Permissions(['role', 'readAny'])
+  @Serialize(RoleBaseDto)
   getRoleById(@Param('id') id: string) {
     return this.roleService.getRoleById(id);
+  }
+
+  @Delete(':id')
+  @Permissions(['role', 'deleteAny'])
+  @Serialize(RoleBaseDto)
+  deleteRole(@Param('id') id: string) {
+    return this.roleService.deleteRole(id);
   }
 
   @Post(':id/grants')
   @Permissions(['role', 'updateAny'])
   addGrants(
     @Param('id') id: string,
-    @Body(ArrayValidationPipe(GrantDto)) grants: GrantDto[],
+    @Body(ArrayValidationPipe(GrantBaseCreateDto)) grants: GrantBaseCreateDto[],
   ) {
     return this.roleService.addRoleGrants(id, grants);
   }
 
-  @Delete(':id')
-  @Permissions(['role', 'deleteAny'])
-  deleteRole(@Param('id') id: string) {
-    return this.roleService.deleteRole(id);
+  @Delete(':roleId/grants/:resourceId')
+  @Permissions(['role', 'updateAny'])
+  deleteRoleGrant(
+    @Param('roleId') roleId: string,
+    @Param('resourceId') resourceId: string,
+  ) {
+    return this.roleService.deleteRoleGrant(roleId, resourceId);
   }
 }

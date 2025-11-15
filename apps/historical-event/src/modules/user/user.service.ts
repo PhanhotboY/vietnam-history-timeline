@@ -18,20 +18,34 @@ import { plainToInstance } from 'class-transformer';
 @Injectable()
 export class UserService {
   private readonly cachePrefix = 'user';
+  private readonly cacheKey: string;
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly util: UtilService,
     @Inject(RMQ.TOPIC_EVENTS_EXCHANGE) private readonly rmq: ClientProxy,
     @Inject(RedisService) private readonly redisService: RedisServiceType,
-  ) {}
+  ) {
+    this.cacheKey = this.util.genCacheKey(this.cachePrefix);
+  }
 
   async createUser(user: UserBaseDto) {
-    return await this.prisma.user.create({ data: user });
+    const newUser = await this.prisma.user.create({
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        slug: user.slug || user.email.split('@')[0],
+        avatarId: user.avatarId,
+      },
+    });
+
+    await this.redisService.del(this.cacheKey);
+
+    return newUser;
   }
 
   async handleUserRegister(data: UserBaseDto) {
-    console.log(data);
     return await this.createUser({
       ...data,
       slug: data.email.split('@')[0],
@@ -40,29 +54,24 @@ export class UserService {
   }
 
   async findUserById(id: string) {
-    let user: User | null = null;
-    const userKey = this.util.genCacheKey(this.cachePrefix, id);
+    const options = { where: { id } } satisfies Parameters<
+      typeof this.prisma.user.findUnique
+    >[0];
 
-    user = await this.redisService.get(userKey);
-    if (user) {
-      return user;
-    }
-
-    if (isUUID(id)) {
-      user = await this.prisma.user.findUnique({
-        where: { id },
-      });
-    } else {
-      throw new NotFoundException('User not found');
-    }
-
-    await this.redisService.set(userKey, user || null);
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return user;
+    return this.util.handleHashCachingQuery(
+      {
+        cacheKey: this.cacheKey,
+        hashAttribute: options,
+        notFoundMessage: 'Người dùng không tồn tại',
+      },
+      () => {
+        if (isUUID(id)) {
+          return this.prisma.user.findUnique(options);
+        } else {
+          throw new NotFoundException('Người dùng không tồn tại');
+        }
+      },
+    );
   }
 
   async deleteUser(id: string) {
@@ -74,8 +83,7 @@ export class UserService {
       plainToInstance(UserDeleteDto, { userId: id }),
     );
 
-    const userKey = this.util.genCacheKey(this.cachePrefix, id);
-    await this.redisService.del(userKey);
+    await this.redisService.del(this.cacheKey);
 
     return { success: true };
   }

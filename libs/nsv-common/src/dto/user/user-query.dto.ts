@@ -45,9 +45,6 @@ export class UserQueryDto {
   sex?: string;
 
   @IsOptional()
-  roleId?: string;
-
-  @IsOptional()
   @IsDateString({}, { message: 'Ngày sinh từ không hợp lệ' })
   @Transform(({ value }: any) => (value ? new Date(value) : undefined))
   birthdateFrom?: Date;

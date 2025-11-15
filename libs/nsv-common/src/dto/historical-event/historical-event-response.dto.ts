@@ -9,7 +9,16 @@ import { UserBaseResponseDto } from '../user/user-base-response.dto';
 @Exclude()
 export class HistoricalEventBriefResponseDto extends PickType(
   HistoricalEventBaseDto,
-  ['id', 'fromDay', 'fromMonth', 'fromYear', 'toDay', 'toMonth', 'toYear'],
+  [
+    'id',
+    'name',
+    'fromDay',
+    'fromMonth',
+    'fromYear',
+    'toDay',
+    'toMonth',
+    'toYear',
+  ],
 ) {
   @Type(() => ImageBriefResponseDto)
   thumbnail?: ImageBriefResponseDto | null;

@@ -67,6 +67,7 @@ export class HistoricalEventQueryDto {
   @IsInt({ message: 'Tháng bắt đầu phải là số nguyên' })
   @Min(1, { message: 'Tháng phải từ 1 đến 12' })
   @Max(12, { message: 'Tháng phải từ 1 đến 12' })
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   fromMonth?: number;
 
   @IsOptional()
@@ -74,12 +75,14 @@ export class HistoricalEventQueryDto {
   @IsInt({ message: 'Ngày bắt đầu phải là số nguyên' })
   @Min(1, { message: 'Ngày phải từ 1 đến 31' })
   @Max(31, { message: 'Ngày phải từ 1 đến 31' })
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   fromDay?: number;
 
   // Filter by date range (to)
   @IsOptional()
   @Type(() => Number)
   @IsInt({ message: 'Năm kết thúc phải là số nguyên' })
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   toYear?: number;
 
   @IsOptional()
@@ -87,6 +90,7 @@ export class HistoricalEventQueryDto {
   @IsInt({ message: 'Tháng kết thúc phải là số nguyên' })
   @Min(1, { message: 'Tháng phải từ 1 đến 12' })
   @Max(12, { message: 'Tháng phải từ 1 đến 12' })
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   toMonth?: number;
 
   @IsOptional()

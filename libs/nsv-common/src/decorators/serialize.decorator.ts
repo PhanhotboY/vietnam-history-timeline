@@ -15,17 +15,26 @@ import { ClassConstructor, plainToInstance } from 'class-transformer';
 export function Serialize<T>(dto: ClassConstructor<T>) {
   class SerializeInterceptor implements NestInterceptor {
     intercept(_ctx: ExecutionContext, next: CallHandler): Observable<any> {
-      return next
-        .handle()
-        .pipe(
-          map((data) =>
+      return next.handle().pipe(
+        map((data) => {
+          const serializeResponseData = (data: any) =>
             Array.isArray(data)
               ? data.map((d) =>
                   plainToInstance(dto, d, { excludeExtraneousValues: true }),
                 )
-              : plainToInstance(dto, data, { excludeExtraneousValues: true }),
-          ),
-        );
+              : plainToInstance(dto, data, { excludeExtraneousValues: true });
+
+          if (data.data && data.pagination) {
+            // paginated response
+            return {
+              ...data,
+              data: serializeResponseData(data.data),
+            };
+          }
+
+          return serializeResponseData(data);
+        }),
+      );
     }
   }
   return UseInterceptors(SerializeInterceptor);

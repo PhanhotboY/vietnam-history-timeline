@@ -13,6 +13,7 @@ import {
   UtilService,
   UserFullCreateDto,
   UserBaseDto,
+  UserQueryDto,
 } from '@phanhotboy/nsv-common';
 import { plainToInstance } from 'class-transformer';
 
@@ -85,5 +86,105 @@ export class UserService {
       plainToInstance(UserDeleteDto, { userId: id }),
     );
     return { success: true };
+  }
+
+  async queryUsers(query: UserQueryDto) {
+    const {
+      page = 1,
+      limit = 10,
+      search,
+      sortBy = 'createdAt',
+      sortOrder = 'desc',
+      status,
+      sex,
+      birthdateFrom,
+      birthdateTo,
+      createdAtFrom,
+      createdAtTo,
+    } = query;
+
+    // Build where clause
+    const where: any = {};
+
+    // Search across multiple fields
+    if (search) {
+      where.OR = [
+        { email: { contains: search, mode: 'insensitive' } },
+        { firstName: { contains: search, mode: 'insensitive' } },
+        { lastName: { contains: search, mode: 'insensitive' } },
+        { slug: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+
+    // Filter by status
+    if (status) {
+      where.status = status;
+    }
+
+    // Filter by sex
+    if (sex) {
+      where.sex = sex;
+    }
+
+    // Filter by birthdate range
+    if (birthdateFrom || birthdateTo) {
+      where.birthdate = {};
+      if (birthdateFrom) {
+        where.birthdate.gte = birthdateFrom;
+      }
+      if (birthdateTo) {
+        where.birthdate.lte = birthdateTo;
+      }
+    }
+
+    // Filter by createdAt range
+    if (createdAtFrom || createdAtTo) {
+      where.createdAt = {};
+      if (createdAtFrom) {
+        where.createdAt.gte = createdAtFrom;
+      }
+      if (createdAtTo) {
+        where.createdAt.lte = createdAtTo;
+      }
+    }
+
+    // Calculate pagination
+    const skip = (page - 1) * limit;
+
+    // Execute query with count
+    const [users, total] = await Promise.all([
+      this.prisma.user.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: {
+          [sortBy]: sortOrder,
+        },
+        select: {
+          id: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+          slug: true,
+          avatarId: true,
+          status: true,
+          sex: true,
+          birthdate: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      }),
+      this.prisma.user.count({ where }),
+    ]);
+
+    return {
+      data: users,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 }

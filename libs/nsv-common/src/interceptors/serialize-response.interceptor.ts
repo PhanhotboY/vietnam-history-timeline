@@ -18,14 +18,28 @@ export class SerializeResponseInterceptor implements NestInterceptor {
       .handle()
       .pipe(tap(() => console.log(`After... ${Date.now() - now}ms`)))
       .pipe(
-        map((data) => ({
-          data,
-          statusCode: res.statusCode,
-          timestamp: new Date().toISOString(),
-        })),
+        map((data) => {
+          const commonizedResponse = (data: Record<string, any>) => {
+            return {
+              ...data,
+              statusCode: res.statusCode,
+              timestamp: new Date().toISOString(),
+            };
+          };
+
+          if (!data) return commonizedResponse({ data: null });
+
+          // if data has data and pagination properties, it's a paginated response
+          if (data && data.data && data.pagination) {
+            return commonizedResponse(data);
+          }
+
+          return commonizedResponse({ data });
+        }),
       )
       .pipe(
         catchError((err) => {
+          console.log(`After... ${Date.now() - now}ms`);
           console.log('Error occurred: ', err);
           let errMessage = '';
 

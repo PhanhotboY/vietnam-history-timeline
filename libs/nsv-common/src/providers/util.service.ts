@@ -1,13 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import _ from 'lodash';
 import {
   MODULE_OPTIONS_TOKEN,
   OPTIONS_TYPE,
 } from '../common.module-definition';
+import { RedisService, type RedisServiceType } from './redisHash.service';
 
 @Injectable()
 export class UtilService {
   constructor(
+    @Inject(RedisService) private readonly redisService: RedisServiceType,
     @Inject(MODULE_OPTIONS_TOKEN) private readonly options: typeof OPTIONS_TYPE,
   ) {}
 
@@ -70,11 +72,84 @@ export class UtilService {
     return any;
   }
 
+  removeNestedUndefined<T>(any: any): T {
+    if (any instanceof Array)
+      return this.removeUndefinedElements(any as Array<any>) as T;
+    if (any instanceof Object)
+      return this.removeUndefinedAttributes(any as Object) as T;
+
+    return any;
+  }
+
+  removeUndefinedAttributes(obj: Record<string, any>) {
+    const final: typeof obj = {};
+
+    (Object.keys(obj) as Array<keyof typeof obj>).forEach((key) => {
+      if (obj[key] !== undefined) {
+        const result = this.removeNestedUndefined(obj[key]);
+
+        if (result instanceof Object && this.isEmptyObj(result)) return;
+
+        final[key] = result;
+      }
+    });
+
+    return final;
+  }
+
+  removeUndefinedElements(arr: Array<any>) {
+    const final: typeof arr = [];
+
+    arr.forEach((ele) => {
+      if (ele !== undefined) {
+        const result = this.removeNestedUndefined(ele);
+        if (result instanceof Object && this.isEmptyObj(result)) return;
+
+        final[final.length] = result;
+      }
+    });
+
+    return final.filter((ele) => ele !== undefined);
+  }
+
   genCacheKey(...args: any[]) {
     return (
       this.options.cachePrefix +
       '|' +
-      args.map((arg) => JSON.stringify(arg)).join(':')
+      args
+        .map((arg) => (typeof arg === 'string' ? arg : JSON.stringify(arg)))
+        .join(':')
     );
+  }
+
+  async handleHashCachingQuery<T>(
+    {
+      cacheKey,
+      hashAttribute,
+      notFoundMessage = 'Dữ liệu không tồn tại',
+    }: {
+      cacheKey: string;
+      hashAttribute: any;
+      notFoundMessage?: string;
+    },
+    fetcher: () => Promise<T | null>,
+  ): Promise<T> {
+    let data: T | null = await this.redisService.hGet(
+      cacheKey,
+      JSON.stringify(hashAttribute),
+    );
+    if (data) {
+      if (data === 'null') throw new NotFoundException(notFoundMessage);
+      return data;
+    }
+
+    data = await fetcher();
+
+    await this.redisService.hSet(cacheKey, JSON.stringify(hashAttribute), data);
+    if (!data) {
+      throw new NotFoundException(notFoundMessage);
+    }
+
+    return data;
   }
 }

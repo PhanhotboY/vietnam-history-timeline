@@ -1,9 +1,9 @@
-import { Controller, Delete, Get, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Permissions } from '@phanhotboy/nsv-jwt-auth';
 import { Serialize } from '@phanhotboy/nsv-common';
 import type { Request } from 'express';
-import { UserBaseResponseDto } from '@phanhotboy/nsv-common/dto';
+import { UserBaseDto, UserBaseResponseDto } from '@phanhotboy/nsv-common/dto';
 
 @Controller('users')
 export class UserController {
@@ -14,6 +14,12 @@ export class UserController {
   @Serialize(UserBaseResponseDto)
   getMe(@Req() req: Request) {
     return this.userService.findUserById(req.user!.userId);
+  }
+
+  @Post()
+  @Permissions(['user', 'createAny'])
+  createUser(@Body() user: UserBaseDto) {
+    return this.userService.createUser(user);
   }
 
   @Delete(':id')

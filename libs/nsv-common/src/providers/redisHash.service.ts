@@ -53,9 +53,13 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     return this.redisClient.hSet(key, field, JSON.stringify(value as any));
   }
 
-  // Get hash field
+  /**
+   * Custom hGet with JSON parse
+   */
   async hGet(key: string, field: string) {
     const value = await this.redisClient.hGet(key, field);
+    if (value === 'null') return value;
+
     return value ? JSON.parse(value) : null;
   }
 
@@ -92,7 +96,7 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     const values = await this.redisClient.hVals(key);
     return values.map((v: string) => {
       try {
-        return JSON.parse(v);
+        return v === 'null' ? 'null' : JSON.parse(v);
       } catch {
         return v;
       }
@@ -112,6 +116,8 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
 
   async get(key: string) {
     const value = await this.redisClient.get(key);
+    if (value === 'null') return value;
+
     return value ? JSON.parse(value) : null;
   }
 

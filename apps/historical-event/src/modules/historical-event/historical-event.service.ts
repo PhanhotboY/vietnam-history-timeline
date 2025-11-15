@@ -1,7 +1,11 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from '@historical-event/database';
-import { RedisService, type RedisServiceType } from '@phanhotboy/nsv-common';
+import {
+  RedisService,
+  UtilService,
+  type RedisServiceType,
+} from '@phanhotboy/nsv-common';
 import {
   HistoricalEventQueryDto,
   HistoricalEventBriefResponseDto,
@@ -12,13 +16,17 @@ import {
 
 @Injectable()
 export class HistoricalEventService {
-  readonly cachePrefix = 'historical-event-service:';
+  private readonly cachePrefix = 'historical-event';
+  private readonly cacheKey: string;
 
   constructor(
     private readonly prisma: PrismaService,
+    private readonly util: UtilService,
     @Inject(RedisService)
     private readonly redisService: RedisServiceType,
-  ) {}
+  ) {
+    this.cacheKey = this.util.genCacheKey(this.cachePrefix);
+  }
 
   async createEvent(
     authorId: string,
@@ -29,14 +37,12 @@ export class HistoricalEventService {
     });
 
     // Clear cache
-    await this.redisService.del(this.cachePrefix);
+    await this.redisService.del(this.cacheKey);
 
     return role;
   }
 
-  async getEvents(
-    query: HistoricalEventQueryDto,
-  ): Promise<HistoricalEventBriefResponseDto[]> {
+  async getEvents(query: HistoricalEventQueryDto) {
     const {
       page = 1,
       limit = 10,
@@ -50,7 +56,7 @@ export class HistoricalEventService {
       sortOrder = 'desc',
       sortBy = 'fromYear',
     } = query;
-    // const where: HistoricalEventWhereInput = {};
+
     const options: Parameters<typeof this.prisma.historicalEvent.findMany>[0] =
       {
         where: {},
@@ -96,27 +102,32 @@ export class HistoricalEventService {
       options!.where!.toDay = toDay;
     }
 
-    let events: HistoricalEventBriefResponseDto[] =
-      await this.redisService.hGet(this.cachePrefix, JSON.stringify(options));
-    if (events) {
-      return events;
-    }
+    return this.util.handleHashCachingQuery(
+      {
+        cacheKey: this.cacheKey,
+        hashAttribute: options,
+      },
+      async () => {
+        const [events, total] = await Promise.all([
+          this.prisma.historicalEvent.findMany(options),
+          this.prisma.historicalEvent.count({ where: options.where }),
+        ]);
 
-    events = await this.prisma.historicalEvent.findMany(options);
-    this.redisService.hSet(this.cachePrefix, JSON.stringify(options), events);
-
-    return events;
+        return {
+          data: events,
+          pagination: {
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+          },
+        };
+      },
+    );
   }
 
   async getEventById(id: string): Promise<HistoricalEventDetailResponseDto> {
-    const cacheKey = `${this.cachePrefix}${id}`;
-    let event: HistoricalEventDetailResponseDto | undefined | null =
-      await this.redisService.get(cacheKey);
-    if (event) {
-      return event;
-    }
-
-    event = await this.prisma.historicalEvent.findUnique({
+    const options = {
       where: { id },
       include: {
         author: {
@@ -126,37 +137,65 @@ export class HistoricalEventService {
         },
         categories: true,
       },
-    });
+    };
 
-    this.redisService.set(cacheKey, event);
-    if (!event) {
-      throw new NotFoundException('Sự kiện lịch sử không tồn tại');
-    }
+    return await this.util.handleHashCachingQuery(
+      {
+        cacheKey: this.cacheKey,
+        hashAttribute: options,
+        notFoundMessage: 'Sự kiện lịch sử không tồn tại',
+      },
+      () => this.prisma.historicalEvent.findUnique(options),
+    );
+  }
 
-    return event;
+  async getAuthorEventById(
+    id: string,
+    authorId: string,
+  ): Promise<HistoricalEventDetailResponseDto> {
+    const options = {
+      where: { id, authorId },
+      include: {
+        author: {
+          include: {
+            avatar: true,
+          },
+        },
+        categories: true,
+      },
+    } satisfies Parameters<typeof this.prisma.historicalEvent.findUnique>[0];
+
+    return this.util.handleHashCachingQuery(
+      {
+        cacheKey: this.cacheKey,
+        hashAttribute: options,
+        notFoundMessage: 'Sự kiện lịch sử không tồn tại',
+      },
+      () => this.prisma.historicalEvent.findUnique(options),
+    );
   }
 
   async updateEvent(id: string, payload: HistoricalEventBaseUpdateDto) {
-    const event = await this.getEventById(id);
-    if (!event) {
-      throw new NotFoundException('Sự kiện lịch sử không tồn tại');
+    const found = await this.getEventById(id);
+    const cleanPayload =
+      this.util.removeNestedUndefined<HistoricalEventBaseUpdateDto>(payload);
+    if (this.util.isEmptyObj(cleanPayload)) {
+      return found;
     }
+
     const updated = await this.prisma.historicalEvent.update({
       where: { id },
-      data: payload,
+      data: cleanPayload,
     });
 
     // Clear cache
-    await this.redisService.del(this.cachePrefix);
-    await this.redisService.del(`${this.cachePrefix}${id}`);
+    await this.redisService.del(this.cacheKey);
 
     return updated;
   }
 
   async deleteEvent(id: string, userId: string) {
-    const event = await this.prisma.historicalEvent.findUnique({
-      where: { id, authorId: userId },
-    });
+    const event = await this.getAuthorEventById(id, userId);
     if (!event) {
       throw new NotFoundException('Sự kiện lịch sử không tồn tại');
     }
@@ -164,8 +203,7 @@ export class HistoricalEventService {
     await this.prisma.historicalEvent.delete({ where: { id } });
 
     // Clear cache
-    await this.redisService.del(this.cachePrefix);
-    await this.redisService.del(`${this.cachePrefix}${id}`);
+    await this.redisService.del(this.cacheKey);
 
     return { success: true };
   }

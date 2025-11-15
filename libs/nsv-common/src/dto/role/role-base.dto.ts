@@ -1,5 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
-import { IsString, IsUUID } from 'class-validator';
+import { IsString, IsUUID, IsEnum } from 'class-validator';
+import { ROLE } from '../../constants/role.constant';
 
 @Exclude()
 export class RoleBaseDto {
@@ -16,8 +17,8 @@ export class RoleBaseDto {
   slug!: string;
 
   @Expose()
-  @IsString({ message: 'Trạng thái không hợp lệ' })
-  status!: string;
+  @IsEnum(ROLE.STATUS, { message: 'Trạng thái không hợp lệ' })
+  status!: Values<typeof ROLE.STATUS>;
 
   @Expose()
   @IsString({ message: 'Mô tả không hợp lệ' })

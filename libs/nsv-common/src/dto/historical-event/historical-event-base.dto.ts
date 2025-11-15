@@ -34,7 +34,7 @@ export class HistoricalEventBaseDto {
   @IsInt({ message: 'Ngày bắt đầu không hợp lệ' })
   @Min(1, { message: 'Ngày bắt đầu không hợp lệ' })
   @Max(31, { message: 'Ngày bắt đầu không hợp lệ' })
-  @Transform(({ value }) => (value ? parseInt(value, 10) : undefined))
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   fromDay?: number | null;
 
   @Expose()
@@ -42,12 +42,12 @@ export class HistoricalEventBaseDto {
   @IsInt({ message: 'Tháng bắt đầu không hợp lệ' })
   @Min(1, { message: 'Tháng bắt đầu không hợp lệ' })
   @Max(12, { message: 'Tháng bắt đầu không hợp lệ' })
-  @Transform(({ value }) => (value ? parseInt(value, 10) : undefined))
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   fromMonth?: number | null;
 
   @Expose()
   @IsInt({ message: 'Năm bắt đầu không hợp lệ' })
-  @Transform(({ value }) => parseInt(value, 10))
+  @Transform(({ value }) => parseInt(value, 10) || value)
   fromYear!: number;
 
   @Expose()
@@ -55,7 +55,7 @@ export class HistoricalEventBaseDto {
   @IsInt({ message: 'Ngày kết thúc không hợp lệ' })
   @Min(1, { message: 'Ngày kết thúc không hợp lệ' })
   @Max(31, { message: 'Ngày kết thúc không hợp lệ' })
-  @Transform(({ value }) => (value ? parseInt(value, 10) : undefined))
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   toDay?: number | null;
 
   @Expose()
@@ -63,13 +63,13 @@ export class HistoricalEventBaseDto {
   @IsInt({ message: 'Tháng kết thúc không hợp lệ' })
   @Min(1, { message: 'Tháng kết thúc không hợp lệ' })
   @Max(12, { message: 'Tháng kết thúc không hợp lệ' })
-  @Transform(({ value }) => (value ? parseInt(value, 10) : undefined))
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   toMonth?: number | null;
 
   @Expose()
   @IsOptional()
   @IsInt({ message: 'Năm kết thúc không hợp lệ' })
-  @Transform(({ value }) => (value ? parseInt(value, 10) : undefined))
+  @Transform(({ value }) => (value ? parseInt(value, 10) : null))
   toYear?: number | null;
 
   @Expose()
@@ -81,11 +81,6 @@ export class HistoricalEventBaseDto {
   @Expose()
   @IsUUID('4', { message: 'ID tác giả không hợp lệ' })
   authorId: string;
-
-  @Expose()
-  @IsArray({ message: 'Danh sách danh mục không hợp lệ' })
-  @IsUUID('4', { each: true, message: 'ID danh mục không hợp lệ' })
-  categoryIds?: string[];
 
   @Expose()
   createdAt!: string | Date;

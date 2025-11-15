@@ -14,7 +14,7 @@ import { USER } from '../../constants';
 export class UserBaseDto {
   @Expose()
   @IsUUID('4', { message: 'ID không hợp lệ' })
-  id?: string;
+  id!: string;
 
   @Expose()
   @IsEmail({}, { message: 'Email không hợp lệ' })

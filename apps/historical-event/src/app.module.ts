@@ -9,6 +9,7 @@ import {
 import { APP_GUARD } from '@nestjs/core';
 import { HistoricalEventModule } from './modules/historical-event/historical-event.module';
 import { PrismaModule } from './database';
+import { UserModule } from './modules/user';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { PrismaModule } from './database';
     }),
     PrismaModule.forRoot(),
     HistoricalEventModule,
+    UserModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

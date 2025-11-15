@@ -22,7 +22,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   authenticate(req: Request, options?: any): void {
     const { username, password, browserId } = plainToInstance(
       SignInDto,
-      req.body,
+      req.body || {},
     );
     if (!username || !password) {
       throw new BadRequestException('Tên đăng nhập và mật khẩu là bắt buộc!');

@@ -1,12 +1,23 @@
-import { Controller, Delete, Get, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Query, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Permissions } from '@phanhotboy/nsv-jwt-auth';
-import { Serialize, UserFullResponseDto } from '@phanhotboy/nsv-common';
+import {
+  Serialize,
+  UserFullResponseDto,
+  UserQueryDto,
+} from '@phanhotboy/nsv-common';
 import type { Request } from 'express';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get()
+  @Permissions(['user', 'readAny'])
+  @Serialize(UserFullResponseDto)
+  getAllUsers(@Query() query: UserQueryDto) {
+    return this.userService.queryUsers(query);
+  }
 
   @Get('me')
   @Permissions(['user', 'readOwn'])

@@ -5,8 +5,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import { CreateRoleDto, GrantDto } from '@auth/modules/role/dto';
 import { isUUID } from 'class-validator';
+import {
+  GrantBaseCreateDto,
+  RoleBaseCreateDto,
+  RoleBaseUpdateDto,
+} from '@phanhotboy/nsv-common/dto';
 
 @Injectable()
 export class RoleService {
@@ -39,7 +43,7 @@ export class RoleService {
     }
   };
 
-  createRole = async (roleData: CreateRoleDto) => {
+  createRole = async (roleData: RoleBaseCreateDto) => {
     try {
       const { grants, ...role } = roleData;
       const foundRole = await this.prisma.role.findFirst({
@@ -86,12 +90,17 @@ export class RoleService {
     return role;
   };
 
-  updateRole = async (roleId: string, roleData: Partial<any>) => {
-    const role = await this.prisma.role.findUnique({
-      where: { id: roleId },
-    });
+  updateRole = async (roleId: string, roleData: RoleBaseUpdateDto) => {
+    const role = await this.getRoleById(roleId);
     if (!role) throw new NotFoundException('Role not found');
-    return role;
+    await this.prisma.role.update({
+      where: { id: role.id },
+      data: {
+        ...roleData,
+        grants: undefined,
+        status: roleData.status ?? role.status,
+      },
+    });
   };
 
   deleteRole = async (roleId: string) => {
@@ -102,7 +111,7 @@ export class RoleService {
     return role;
   };
 
-  addRoleGrants = async (roleId: string, newGrants: GrantDto[]) => {
+  addRoleGrants = async (roleId: string, newGrants: GrantBaseCreateDto[]) => {
     if (!newGrants || newGrants.length === 0) {
       throw new BadRequestException('No grants provided');
     }
@@ -137,7 +146,6 @@ export class RoleService {
       };
     });
 
-    console.log(grantsToAdd);
     if (grantsToAdd.length === 0) {
       throw new BadRequestException('All provided grants are duplicates');
     }

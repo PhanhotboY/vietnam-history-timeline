@@ -60,9 +60,9 @@ model HistoricalEvent {
 }
 
 model EventCategory {
-  id          String @id @db.Uuid @default(uuid())
-  name        String @unique @db.VarChar(255)
-  slug        String @unique @db.VarChar(255) 
+  id          String  @id @db.Uuid @default(uuid())
+  name        String  @unique @db.VarChar(255)
+  slug        String  @unique @db.VarChar(255) 
   description String? @db.Text
 
   events      EventCategories[] 
@@ -91,25 +91,25 @@ model EventEdit {
   editorId  String    @db.Uuid
   editedAt  DateTime  @default(now()) @db.Timestamp(6)
 
-  prevContent String  @db.Text
-  newContent  String  @db.Text
+  prevContent String? @db.Text
+  newContent  String? @db.Text
   
-  prevFromYear  Int @db.SmallInt
-  prevFromMonth Int? @db.SmallInt
-  prevFromDay   Int? @db.SmallInt
-  prevToYear    Int? @db.SmallInt
-  prevToMonth   Int? @db.SmallInt
-  prevToDay     Int? @db.SmallInt
+  prevFromYear  Int   @db.SmallInt
+  prevFromMonth Int?  @db.SmallInt
+  prevFromDay   Int?  @db.SmallInt
+  prevToYear    Int?  @db.SmallInt
+  prevToMonth   Int?  @db.SmallInt
+  prevToDay     Int?  @db.SmallInt
   
-  newFromYear   Int? @db.SmallInt
-  newFromMonth  Int? @db.SmallInt
-  newFromDay    Int? @db.SmallInt
-  newToYear     Int? @db.SmallInt
-  newToMonth    Int? @db.SmallInt
-  newToDay      Int? @db.SmallInt
+  newFromYear   Int?  @db.SmallInt
+  newFromMonth  Int?  @db.SmallInt
+  newFromDay    Int?  @db.SmallInt
+  newToYear     Int?  @db.SmallInt
+  newToMonth    Int?  @db.SmallInt
+  newToDay      Int?  @db.SmallInt
 
   event     HistoricalEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  editor    User      @relation(fields: [editorId], references: [id], onDelete: Cascade)
+  editor    User            @relation(fields: [editorId], references: [id], onDelete: Cascade)
 
   @@index([eventId], name: "idx_edit_event")
   @@index([editorId], name: "idx_edit_editor")
@@ -118,22 +118,23 @@ model EventEdit {
 model EventPeriod {
   id          String @id @db.Uuid @default(uuid())
 
-  fromYear    Int @db.SmallInt
-  fromMonth   Int? @db.SmallInt
-  fromDay     Int? @db.SmallInt 
+  fromYear    Int   @db.SmallInt
+  fromMonth   Int?  @db.SmallInt
+  fromDay     Int?  @db.SmallInt 
 
-  toYear      Int @db.SmallInt
-  toMonth     Int? @db.SmallInt
-  toDay       Int? @db.SmallInt
+  toYear      Int   @db.SmallInt
+  toMonth     Int?  @db.SmallInt
+  toDay       Int?  @db.SmallInt
 
-  name        String @unique @db.VarChar(255)
-  slug        String @unique @db.VarChar(255) 
+  name        String  @unique @db.VarChar(255)
+  slug        String  @unique @db.VarChar(255) 
   description String? @db.Text
 }
 
 model Image {
   id          String  @id @db.Uuid @default(uuid())
   caption     String? @db.Text
+  description String? @db.Text
   publicUrl   String  @db.VarChar(255) // actual image url
 
   users       User[]  @relation("UserAvatar")
