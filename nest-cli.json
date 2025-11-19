@@ -10,7 +10,8 @@
     "deleteOutDir": true,
     "webpack": true,
     "tsConfigPath": "tsconfig.build.json",
-    "webpackConfigPath": "webpack.config.js"
+    "webpackConfigPath": "webpack.config.js",
+    "plugins": ["@nestjs/swagger"]
   },
   "monorepo": true,
   "root": "apps/auth",

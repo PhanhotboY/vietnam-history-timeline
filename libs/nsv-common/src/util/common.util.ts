@@ -23,7 +23,10 @@ const genConfiguration = function <D extends Object, T extends Object>(
 ): () => D & T {
   return () => {
     const env = process.env.NODE_ENV || 'development';
-    const envConfig = configs[env] || configs['development'];
+    const envConfig = configs[env];
+    if (!envConfig) {
+      throw new Error(`Configuration for environment "${env}" is not defined.`);
+    }
 
     return merge(defaultConfig, envConfig);
   };

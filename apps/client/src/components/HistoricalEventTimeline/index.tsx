@@ -10,12 +10,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import './index.css';
 import { VisItem } from '@/interfaces/vis.interface';
 import { EventDetailDialog } from './EventDetailDialog';
-import { HistoricalEventDetailResponseDto } from '@nsv-common/dto/historical-event';
+import { components } from '@nsv-interfaces/historical-event';
 
 export function HistoricalEventTimeline({
   events,
 }: {
-  events: HistoricalEventDetailResponseDto[];
+  events: components['schemas']['HistoricalEventDetailResponseDto'][];
 }) {
   const timelineRef = useRef<HTMLDivElement>(null);
   const [timeline, setTimeline] = useState<Timeline | null>(null);
@@ -62,7 +62,6 @@ export function HistoricalEventTimeline({
           className: event.categories
             .map((c: any) => c.category.slug)
             .join(' '),
-          group: event.categories[0]?.category.name, // Optional grouping
         };
       }),
     );

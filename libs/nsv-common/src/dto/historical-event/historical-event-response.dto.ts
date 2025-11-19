@@ -1,9 +1,12 @@
 import { Exclude, Expose, Type } from 'class-transformer';
-import { EventCategoryBriefResponseDto } from '../event-category/event-category-response.dto';
 import { PickType } from '@nestjs/swagger';
 import { HistoricalEventBaseDto } from './historical-event-base.dto';
 import { ImageBriefResponseDto } from '../image';
 import { UserBaseResponseDto } from '../user/user-base-response.dto';
+import {
+  EventCategoriesBaseDto,
+  EventCategoriesBriefResponseDto,
+} from '../event-categories';
 
 // DTO for response historical event
 @Exclude()
@@ -31,8 +34,8 @@ export class HistoricalEventPreviewResponseDto extends HistoricalEventBriefRespo
   author!: UserBaseResponseDto;
 
   @Expose()
-  @Type(() => EventCategoryBriefResponseDto)
-  categories!: any;
+  @Type(() => EventCategoriesBaseDto)
+  categories!: EventCategoriesBaseDto[];
 }
 
 @Exclude()

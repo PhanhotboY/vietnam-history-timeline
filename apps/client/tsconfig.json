@@ -23,7 +23,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@public/*": ["./public/*"],
-      "@nsv-common/*": ["../../libs/nsv-common/src/*"]
+      "@nsv-interfaces/*": ["../../libs/nsv-interfaces/*"]
     },
     "typeRoots": ["src/types/global.d.ts"]
   },

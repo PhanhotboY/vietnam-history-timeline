@@ -1,14 +1,5 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import {
-  IsString,
-  IsOptional,
-  IsInt,
-  IsUUID,
-  IsArray,
-  Min,
-  Max,
-  MinLength,
-} from 'class-validator';
+import { IsString, IsUUID, MinLength } from 'class-validator';
 
 // DTO for creating historical event
 @Exclude()

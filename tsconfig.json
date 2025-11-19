@@ -19,6 +19,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
+    "noUncheckedIndexedAccess": true,
     "paths": {
       "@auth-prisma": ["apps/auth/generated/prisma"],
       "@auth-prisma/*": ["apps/auth/generated/prisma/*"],

@@ -24,14 +24,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Ancient Kingdom',
-          slug: 'ancient-kingdom',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '2',
@@ -46,14 +39,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Ancient Kingdom',
-          slug: 'ancient-kingdom',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '3',
@@ -71,14 +57,7 @@ const events = [
     thumbnail: {
       publicUrl: 'https://picsum.photos/200/300?random=1',
     },
-    categories: [
-      {
-        category: {
-          name: 'Battle',
-          slug: 'battle',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '4',
@@ -96,14 +75,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Dynasty',
-          slug: 'dynasty',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '5',
@@ -121,14 +93,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Dynasty',
-          slug: 'dynasty',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '6',
@@ -146,14 +111,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Battle',
-          slug: 'battle',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '7',
@@ -171,14 +129,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Dynasty',
-          slug: 'dynasty',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '8',
@@ -196,14 +147,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Dynasty',
-          slug: 'dynasty',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '9',
@@ -220,14 +164,7 @@ const events = [
     },
     content:
       'Pháp bắt đầu xâm lược Việt Nam, dần dần biến nước ta thành thuộc địa. Thời kỳ này kéo dài gần 90 năm với nhiều cuộc khởi nghĩa chống thực dân.',
-    categories: [
-      {
-        category: {
-          name: 'Colonial Period',
-          slug: 'colonial-period',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '10',
@@ -246,14 +183,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Political Event',
-          slug: 'political-event',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '11',
@@ -272,14 +202,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Revolution',
-          slug: 'revolution',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '12',
@@ -298,14 +221,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Independence',
-          slug: 'independence',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '13',
@@ -324,14 +240,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Battle',
-          slug: 'battle',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '14',
@@ -350,14 +259,7 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'War Victory',
-          slug: 'war-victory',
-        },
-      },
-    ],
+    categories: [],
   },
   {
     id: '15',
@@ -375,13 +277,6 @@ const events = [
       id: 'admin-1',
       slug: 'admin-user',
     },
-    categories: [
-      {
-        category: {
-          name: 'Economic Reform',
-          slug: 'economic-reform',
-        },
-      },
-    ],
+    categories: [],
   },
 ];

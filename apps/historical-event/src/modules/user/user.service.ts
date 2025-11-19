@@ -3,7 +3,6 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { isUUID } from 'class-validator';
 
-import { User } from '@historical-event-prisma';
 import {
   RedisService,
   type RedisServiceType,
@@ -35,7 +34,7 @@ export class UserService {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
-        slug: user.slug || user.email.split('@')[0],
+        slug: user.slug || user.email.split('@')[0]!,
         avatarId: user.avatarId,
       },
     });
@@ -48,8 +47,8 @@ export class UserService {
   async handleUserRegister(data: UserBaseDto) {
     return await this.createUser({
       ...data,
-      slug: data.email.split('@')[0],
-      firstName: data.email.split('@')[0],
+      slug: data.email.split('@')[0]!,
+      firstName: data.email.split('@')[0]!,
     });
   }
 
