@@ -1,5 +1,5 @@
 import { HistoricalEventTimeline } from '@/components/HistoricalEventTimeline';
-import { HistoricalEventDetailResponseDto } from '@nsv-common/dto';
+// import { HistoricalEventDetailResponseDto } from '@nsv-common/dto';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
   );
 }
 
-const events: HistoricalEventDetailResponseDto[] = [
+const events = [
   {
     id: '1',
     fromYear: -2879,

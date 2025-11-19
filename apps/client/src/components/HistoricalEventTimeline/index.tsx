@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import './index.css';
 import { VisItem } from '@/interfaces/vis.interface';
 import { EventDetailDialog } from './EventDetailDialog';
-import { HistoricalEventDetailResponseDto } from '@nsv-common/dto';
+import { HistoricalEventDetailResponseDto } from '@nsv-common/dto/historical-event';
 
 export function HistoricalEventTimeline({
   events,

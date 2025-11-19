@@ -80,7 +80,7 @@ export class HistoricalEventBaseDto {
 
   @Expose()
   @IsUUID('4', { message: 'ID tác giả không hợp lệ' })
-  authorId: string;
+  authorId!: string;
 
   @Expose()
   createdAt!: string | Date;

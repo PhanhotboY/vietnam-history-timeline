@@ -14,6 +14,7 @@
     "jsx": "react-jsx",
     "incremental": true,
     "sourceMap": true,
+    "experimentalDecorators": true,
     "plugins": [
       {
         "name": "next"
@@ -23,7 +24,8 @@
       "@/*": ["./src/*"],
       "@public/*": ["./public/*"],
       "@nsv-common/*": ["../../libs/nsv-common/src/*"]
-    }
+    },
+    "typeRoots": ["src/types/global.d.ts"]
   },
   "include": [
     "next-env.d.ts",
