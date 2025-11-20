@@ -42,7 +42,5 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     // }
   }
 
-  const defaultTab = params.tab || 'ungvien';
-
-  return <LoginClient defaultTab={defaultTab} redirectUrl={redirectUrl} />;
+  return <LoginClient redirectUrl={redirectUrl} />;
 }

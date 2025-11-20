@@ -1,18 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { useRef, useState, useTransition } from 'react';
 import { toast } from 'react-toastify';
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Briefcase, Eye, EyeOff, Grid, User } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -21,21 +19,20 @@ import Link from 'next/link';
 // import BookingForm from '@/components/website/BookingForm';
 
 interface LoginClientProps {
-  defaultTab: string;
   redirectUrl: string;
 }
 
-export function LoginClient({ defaultTab, redirectUrl }: LoginClientProps) {
+export function LoginClient({ redirectUrl }: LoginClientProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isPending, startTransition] = useTransition();
-  const [activeTab, setActiveTab] = useState(defaultTab);
-  const [fingerprint, setFingerprint] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const toastIdRef = useRef<any>(null);
 
-  useEffect(() => {
-    import('@fingerprintjs/fingerprintjs')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const fingerprint = await import('@fingerprintjs/fingerprintjs')
       .then((FingerprintJS) => {
         return FingerprintJS.load();
       })
@@ -43,18 +40,17 @@ export function LoginClient({ defaultTab, redirectUrl }: LoginClientProps) {
         return fp.get();
       })
       .then((result) => {
-        setFingerprint(result.visitorId);
+        return result.visitorId;
       })
       .catch((error) => {
         console.error('Error getting fingerprint:', error);
+        toast.error('Có lỗi xảy ra khi dangd nhập. Vui lòng thử lại.');
+        throw error;
       });
-  }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.target as HTMLFormElement);
     formData.append('redirectUrl', redirectUrl);
+    formData.append('fingerprint', fingerprint);
 
     startTransition(async () => {
       toastIdRef.current = toast.loading('Đang đăng nhập...', {
@@ -96,8 +92,6 @@ export function LoginClient({ defaultTab, redirectUrl }: LoginClientProps) {
 
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-5">
-            <input type="hidden" name="fingerprint" value={fingerprint} />
-
             <div className="grid gap-2">
               <Label htmlFor="username">Tên đăng nhập</Label>
               <Input
@@ -127,7 +121,7 @@ export function LoginClient({ defaultTab, redirectUrl }: LoginClientProps) {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/80 hover:text-foreground/60"
                 >
                   {showPassword ? <Eye /> : <EyeOff />}
                 </button>

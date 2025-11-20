@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/context/theme-provider';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ScrollToTop } from '@/components/ScrollToTop';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,20 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
 
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            closeButton={true}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
           <ScrollToTop />
         </ThemeProvider>
       </body>
