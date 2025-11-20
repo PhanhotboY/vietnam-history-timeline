@@ -1,31 +1,34 @@
 {
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Nest.js API",
-      "runtimeExecutable": "/home/phanhotboy/.nvm/versions/node/v22.18.0/bin/pnpm",
-      "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
-      "autoAttachChildProcesses": true,
-      "restart": true,
-      "sourceMaps": true,
-      "stopOnEntry": false,
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/apps/server"
+      "name": "User Service",
+      "runtimeExecutable": "nest",
+      "cwd": "${workspaceFolder}",
+      "args": ["start", "--watch", "user"],
+      "sourceMapPathOverrides": {
+        "meteor://💻app/*": "${workspaceFolder}/*",
+        "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+        "webpack://?:*/*": "${workspaceFolder}/*"
+      }
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Next.js App",
-      "runtimeExecutable": "/home/phanhotboy/.nvm/versions/node/v22.18.0/bin/pnpm",
-      "runtimeArgs": ["run", "start:debug", "--", "--inspect-brk"],
-      "autoAttachChildProcesses": true,
-      "restart": true,
-      "sourceMaps": true,
-      "stopOnEntry": false,
-      "console": "integratedTerminal",
-      "cwd": "${workspaceFolder}/apps/client"
+      "name": "Auth Service",
+      "runtimeExecutable": "nest",
+      "cwd": "${workspaceFolder}",
+      "args": ["start", "--watch", "auth"],
+      "sourceMapPathOverrides": {
+        "meteor://💻app/*": "${workspaceFolder}/*",
+        "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+        "webpack://?:*/*": "${workspaceFolder}/*"
+      }
     }
   ]
 }
