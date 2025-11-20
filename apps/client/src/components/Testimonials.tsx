@@ -64,7 +64,7 @@ export const Testimonials = () => {
     <section id="testimonials" className="container py-24 sm:py-32">
       <h2 className="text-3xl md:text-4xl font-bold">
         Discover Why
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+        <span className="bg-gradient-to-b from-secondary/60 to-secondary text-transparent bg-clip-text">
           {' '}
           People Love{' '}
         </span>
@@ -81,10 +81,10 @@ export const Testimonials = () => {
           ({ image, name, userName, comment }: TestimonialProps) => (
             <Card
               key={userName}
-              className="md:break-inside-avoid overflow-hidden"
+              className="md:break-inside-avoid overflow-hidden gap-2"
             >
-              <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <Avatar>
+              <CardHeader className="flex flex-row items-center gap-4">
+                <Avatar className="size-10">
                   <AvatarImage alt="" src={image} />
                   <AvatarFallback>OM</AvatarFallback>
                 </Avatar>

@@ -4,71 +4,7 @@
  */
 
 export interface paths {
-    "/historical-events": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["HistoricalEventController_getAllHistoricalEvents"];
-        put?: never;
-        post: operations["HistoricalEventController_createHistoricalEvent"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/historical-events/{id}/preview": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["HistoricalEventController_getHistoricalEventPreviewById"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/historical-events/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["HistoricalEventController_getHistoricalEventById"];
-        put: operations["HistoricalEventController_updateHistoricalEvent"];
-        post?: never;
-        delete: operations["HistoricalEventController_deleteHistoricalEvent"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["UserController_getMe"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users": {
+    "/auth/signup": {
         parameters: {
             query?: never;
             header?: never;
@@ -77,14 +13,94 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["UserController_createUser"];
+        post: operations["AuthController_signUp"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/users/{id}": {
+    "/auth/signin": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AuthController_signIn"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/verify-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["AuthController_verifyEmailToken"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/roles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["RoleController_getRoles"];
+        put?: never;
+        post: operations["RoleController_createRole"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/roles/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["RoleController_getRoleById"];
+        put?: never;
+        post?: never;
+        delete: operations["RoleController_deleteRole"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/roles/{id}/grants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RoleController_addGrants"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/roles/{roleId}/grants/{resourceId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -94,7 +110,39 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["UserController_deleteUser"];
+        delete: operations["RoleController_deleteRoleGrant"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/resources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ResourceController_findAll"];
+        put?: never;
+        post: operations["ResourceController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/resources/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ResourceController_findOne"];
+        put?: never;
+        post?: never;
+        delete: operations["ResourceController_remove"];
         options?: never;
         head?: never;
         patch?: never;
@@ -104,93 +152,34 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        HistoricalEventBaseCreateDto: {
-            /** Format: uuid */
-            authorId: string;
-            name: string;
-            /** Format: uuid */
-            thumbnailId?: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content: string;
-        };
-        ImageBriefResponseDto: {
-            /** Format: uuid */
-            id?: string;
-            caption?: string;
-            /** Format: uri */
-            publicUrl: string;
-            /** Format: uri */
-            redirectLink?: string;
-            type?: string;
-        };
-        HistoricalEventBriefResponseDto: {
-            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-        };
-        UserBaseResponseDto: {
-            /** Format: uuid */
-            id: string;
-            firstName: string;
-            lastName?: string | null;
-            slug: string;
-        };
-        EventCategoriesBaseDto: {
-            eventId: string;
-            categoryId: string;
-        };
-        HistoricalEventDetailResponseDto: {
-            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content: string;
-            author: components["schemas"]["UserBaseResponseDto"];
-            categories: components["schemas"]["EventCategoriesBaseDto"][];
-        };
-        HistoricalEventBaseUpdateDto: {
-            name?: string;
-            /** Format: uuid */
-            thumbnailId?: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear?: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content?: string;
-            /** Format: uuid */
-            authorId?: string;
-        };
-        UserBaseDto: {
-            /** Format: uuid */
-            id: string;
+        SignUpDto: {
             /** Format: email */
             email: string;
-            slug: string;
-            firstName: string;
-            lastName?: string | null;
+        };
+        SignInDto: {
+            username: string;
+            password: string;
+            browserId: string;
+        };
+        GrantBaseCreateDto: {
             /** Format: uuid */
-            avatarId?: string;
+            roleId: string;
+            /** Format: uuid */
+            resourceId: string;
+            action: string;
+            attribute?: string;
+        };
+        RoleBaseCreateDto: {
             status: Record<string, never>;
+            grants?: components["schemas"]["GrantBaseCreateDto"][];
+            name: string;
+            slug: string;
+            description: string;
+        };
+        CreateResourceDto: {
+            name: string;
+            slug: string;
+            description?: string;
         };
         UserDeleteDto: {
             /** Format: uuid */
@@ -216,6 +205,25 @@ export interface components {
             createdAtFrom?: string;
             /** Format: date-time */
             createdAtTo?: string;
+        };
+        UserBaseDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: email */
+            email: string;
+            slug: string;
+            firstName: string;
+            lastName?: string | null;
+            /** Format: uuid */
+            avatarId?: string;
+            status: Record<string, never>;
+        };
+        UserBaseResponseDto: {
+            /** Format: uuid */
+            id: string;
+            firstName: string;
+            lastName?: string | null;
+            slug: string;
         };
         UserFullDto: {
             /** Format: uuid */
@@ -354,15 +362,6 @@ export interface components {
             user: components["schemas"]["UserPayloadDto"];
             tokens: components["schemas"]["TokenPairDto"];
         };
-        SignInDto: {
-            username: string;
-            password: string;
-            browserId: string;
-        };
-        SignUpDto: {
-            /** Format: email */
-            email: string;
-        };
         JwtPermissionDto: {
             role: string;
             resource: string;
@@ -454,6 +453,16 @@ export interface components {
             /** Format: uuid */
             uploaderId?: string;
         };
+        ImageBriefResponseDto: {
+            /** Format: uuid */
+            id?: string;
+            caption?: string;
+            /** Format: uri */
+            publicUrl: string;
+            /** Format: uri */
+            redirectLink?: string;
+            type?: string;
+        };
         EventCategoryBriefResponseDto: {
             /** Format: uuid */
             id: string;
@@ -493,6 +502,34 @@ export interface components {
             createdAt: Record<string, never>;
             updatedAt: Record<string, never>;
         };
+        HistoricalEventBaseCreateDto: {
+            /** Format: uuid */
+            authorId: string;
+            name: string;
+            /** Format: uuid */
+            thumbnailId?: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            content: string;
+        };
+        HistoricalEventBaseUpdateDto: {
+            name?: string;
+            /** Format: uuid */
+            thumbnailId?: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear?: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            content?: string;
+            /** Format: uuid */
+            authorId?: string;
+        };
         HistoricalEventQueryDto: {
             page?: number;
             limit?: number;
@@ -522,6 +559,22 @@ export interface components {
         HistoricalEventBulkDeleteDto: {
             eventIds: string[];
         };
+        HistoricalEventBriefResponseDto: {
+            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
+            /** Format: uuid */
+            id: string;
+            name: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+        };
+        EventCategoriesBaseDto: {
+            eventId: string;
+            categoryId: string;
+        };
         HistoricalEventPreviewResponseDto: {
             thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
             /** Format: uuid */
@@ -536,20 +589,20 @@ export interface components {
             author: components["schemas"]["UserBaseResponseDto"];
             categories: components["schemas"]["EventCategoriesBaseDto"][];
         };
-        GrantBaseCreateDto: {
+        HistoricalEventDetailResponseDto: {
+            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
             /** Format: uuid */
-            roleId: string;
-            /** Format: uuid */
-            resourceId: string;
-            action: string;
-            attribute?: string;
-        };
-        RoleBaseCreateDto: {
-            status: Record<string, never>;
-            grants?: components["schemas"]["GrantBaseCreateDto"][];
+            id: string;
             name: string;
-            slug: string;
-            description: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            author: components["schemas"]["UserBaseResponseDto"];
+            categories: components["schemas"]["EventCategoriesBaseDto"][];
+            content: string;
         };
         RoleBaseUpdateDto: {
             name?: string;
@@ -585,27 +638,54 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    HistoricalEventController_getAllHistoricalEvents: {
+    AuthController_signUp: {
         parameters: {
-            query?: {
-                page?: number;
-                limit?: number;
-                search?: string;
-                sortBy?: string;
-                sortOrder?: "asc" | "desc";
-                authorId?: string;
-                categoryIds?: string[];
-                fromYear?: number;
-                fromMonth?: number;
-                fromDay?: number;
-                toYear?: number;
-                toMonth?: number;
-                toDay?: number;
-                searchYear?: number;
-                createdAtFrom?: string;
-                createdAtTo?: string;
-                updatedAtFrom?: string;
-                updatedAtTo?: string;
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignUpDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AuthController_signIn: {
+        parameters: {
+            query?: never;
+            header: {
+                "x-refresh-token": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignInDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AuthController_verifyEmailToken: {
+        parameters: {
+            query: {
+                token: string;
             };
             header?: never;
             path?: never;
@@ -621,7 +701,26 @@ export interface operations {
             };
         };
     };
-    HistoricalEventController_createHistoricalEvent: {
+    RoleController_getRoles: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>[];
+                };
+            };
+        };
+    };
+    RoleController_createRole: {
         parameters: {
             query?: never;
             header?: never;
@@ -630,7 +729,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["HistoricalEventBaseCreateDto"];
+                "application/json": components["schemas"]["RoleBaseCreateDto"];
             };
         };
         responses: {
@@ -638,13 +737,11 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventBriefResponseDto"];
-                };
+                content?: never;
             };
         };
     };
-    HistoricalEventController_getHistoricalEventPreviewById: {
+    RoleController_getRoleById: {
         parameters: {
             query?: never;
             header?: never;
@@ -654,52 +751,6 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventDetailResponseDto"];
-                };
-            };
-        };
-    };
-    HistoricalEventController_getHistoricalEventById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventDetailResponseDto"];
-                };
-            };
-        };
-    };
-    HistoricalEventController_updateHistoricalEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["HistoricalEventBaseUpdateDto"];
-            };
-        };
         responses: {
             200: {
                 headers: {
@@ -711,7 +762,7 @@ export interface operations {
             };
         };
     };
-    HistoricalEventController_deleteHistoricalEvent: {
+    RoleController_deleteRole: {
         parameters: {
             query?: never;
             header?: never;
@@ -730,7 +781,54 @@ export interface operations {
             };
         };
     };
-    UserController_getMe: {
+    RoleController_addGrants: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": string[];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    RoleController_deleteRoleGrant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                roleId: string;
+                resourceId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    ResourceController_findAll: {
         parameters: {
             query?: never;
             header?: never;
@@ -747,7 +845,7 @@ export interface operations {
             };
         };
     };
-    UserController_createUser: {
+    ResourceController_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -756,7 +854,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UserBaseDto"];
+                "application/json": components["schemas"]["CreateResourceDto"];
             };
         };
         responses: {
@@ -768,11 +866,32 @@ export interface operations {
             };
         };
     };
-    UserController_deleteUser: {
+    ResourceController_findOne: {
         parameters: {
             query?: never;
             header?: never;
-            path?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ResourceController_remove: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
             cookie?: never;
         };
         requestBody?: never;

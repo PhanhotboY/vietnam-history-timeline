@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { middleware } from './app.middleware';
 import { RmqService } from '@phanhotboy/nsv-common';
+import { initSwagger } from '@phanhotboy/nsv-common/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,6 +11,8 @@ async function bootstrap() {
   app.connectMicroservice(rmqService.getOptions('user_queue', false));
 
   middleware(app);
+  initSwagger(app, 'User Service', true);
+
   app.setGlobalPrefix('/api/v1');
 
   app.enableShutdownHooks();

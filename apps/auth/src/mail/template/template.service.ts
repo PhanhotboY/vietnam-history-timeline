@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  emailVerificationEmailTemplate,
-  tempPasswordEmailTemplate,
-} from '.';
+import { emailVerificationEmailTemplate, tempPasswordEmailTemplate } from '.';
 
 const templates = {
   'verify-email': emailVerificationEmailTemplate,
@@ -25,7 +22,7 @@ export class TemplateService {
   ) {
     return Object.keys(placeholders).reduce(
       (acc, key) =>
-        acc.replace(new RegExp(`{{${key}}}`, 'g'), placeholders[key]),
+        acc.replace(new RegExp(`{{${key}}}`, 'g'), placeholders[key]!),
       template,
     );
   }

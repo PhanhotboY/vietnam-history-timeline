@@ -20,7 +20,7 @@ JSONS := $(wildcard $(OPENAPI_DIR)/*.json)
 TS_OUTPUTS := $(patsubst $(OPENAPI_DIR)/%.json,$(OUTPUT_DIR)/%.ts,$(JSONS))
 
 # Default target: generate all
-gen-types: $(TS_OUTPUTS)
+gen-types: clean-types $(TS_OUTPUTS)
 
 # Rule: convert one .json → one .ts
 $(OUTPUT_DIR)/%.ts: $(OPENAPI_DIR)/%.json
@@ -29,6 +29,6 @@ $(OUTPUT_DIR)/%.ts: $(OPENAPI_DIR)/%.json
 
 # Clean generated files
 clean-types:
-	rm -f $(OUTPUT_DIR)/*.ts
+	@rm -f $(OUTPUT_DIR)/*.ts
 
 .PHONY: gen-types clean-types

@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { INestApplication } from '@nestjs/common';
+import * as AuthDto from '../dto';
 
 export function initSwagger(
   app: INestApplication,
@@ -13,7 +14,9 @@ export function initSwagger(
     .setVersion('1.0')
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, config, {
+    extraModels: Object.values(AuthDto),
+  });
 
   // Save OpenAPI JSON into monorepo
   if (existsSync('openapi') === false) {

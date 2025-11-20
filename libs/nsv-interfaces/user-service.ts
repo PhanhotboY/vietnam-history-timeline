@@ -4,49 +4,17 @@
  */
 
 export interface paths {
-    "/historical-events": {
+    "/users": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["HistoricalEventController_getAllHistoricalEvents"];
-        put?: never;
-        post: operations["HistoricalEventController_createHistoricalEvent"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/historical-events/{id}/preview": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["HistoricalEventController_getHistoricalEventPreviewById"];
+        get: operations["UserController_getAllUsers"];
         put?: never;
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/historical-events/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["HistoricalEventController_getHistoricalEventById"];
-        put: operations["HistoricalEventController_updateHistoricalEvent"];
-        post?: never;
-        delete: operations["HistoricalEventController_deleteHistoricalEvent"];
         options?: never;
         head?: never;
         patch?: never;
@@ -62,22 +30,6 @@ export interface paths {
         get: operations["UserController_getMe"];
         put?: never;
         post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["UserController_createUser"];
         delete?: never;
         options?: never;
         head?: never;
@@ -104,82 +56,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        HistoricalEventBaseCreateDto: {
-            /** Format: uuid */
-            authorId: string;
-            name: string;
-            /** Format: uuid */
-            thumbnailId?: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content: string;
-        };
-        ImageBriefResponseDto: {
-            /** Format: uuid */
-            id?: string;
-            caption?: string;
-            /** Format: uri */
-            publicUrl: string;
-            /** Format: uri */
-            redirectLink?: string;
-            type?: string;
-        };
-        HistoricalEventBriefResponseDto: {
-            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-        };
-        UserBaseResponseDto: {
-            /** Format: uuid */
-            id: string;
-            firstName: string;
-            lastName?: string | null;
-            slug: string;
-        };
-        EventCategoriesBaseDto: {
-            eventId: string;
-            categoryId: string;
-        };
-        HistoricalEventDetailResponseDto: {
-            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content: string;
-            author: components["schemas"]["UserBaseResponseDto"];
-            categories: components["schemas"]["EventCategoriesBaseDto"][];
-        };
-        HistoricalEventBaseUpdateDto: {
-            name?: string;
-            /** Format: uuid */
-            thumbnailId?: string;
-            fromDay?: number | null;
-            fromMonth?: number | null;
-            fromYear?: number;
-            toDay?: number | null;
-            toMonth?: number | null;
-            toYear?: number | null;
-            content?: string;
-            /** Format: uuid */
-            authorId?: string;
-        };
         UserBaseDto: {
             /** Format: uuid */
             id: string;
@@ -216,6 +92,13 @@ export interface components {
             createdAtFrom?: string;
             /** Format: date-time */
             createdAtTo?: string;
+        };
+        UserBaseResponseDto: {
+            /** Format: uuid */
+            id: string;
+            firstName: string;
+            lastName?: string | null;
+            slug: string;
         };
         UserFullDto: {
             /** Format: uuid */
@@ -454,6 +337,16 @@ export interface components {
             /** Format: uuid */
             uploaderId?: string;
         };
+        ImageBriefResponseDto: {
+            /** Format: uuid */
+            id?: string;
+            caption?: string;
+            /** Format: uri */
+            publicUrl: string;
+            /** Format: uri */
+            redirectLink?: string;
+            type?: string;
+        };
         EventCategoryBriefResponseDto: {
             /** Format: uuid */
             id: string;
@@ -493,6 +386,34 @@ export interface components {
             createdAt: Record<string, never>;
             updatedAt: Record<string, never>;
         };
+        HistoricalEventBaseCreateDto: {
+            /** Format: uuid */
+            authorId: string;
+            name: string;
+            /** Format: uuid */
+            thumbnailId?: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            content: string;
+        };
+        HistoricalEventBaseUpdateDto: {
+            name?: string;
+            /** Format: uuid */
+            thumbnailId?: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear?: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            content?: string;
+            /** Format: uuid */
+            authorId?: string;
+        };
         HistoricalEventQueryDto: {
             page?: number;
             limit?: number;
@@ -522,6 +443,22 @@ export interface components {
         HistoricalEventBulkDeleteDto: {
             eventIds: string[];
         };
+        HistoricalEventBriefResponseDto: {
+            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
+            /** Format: uuid */
+            id: string;
+            name: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+        };
+        EventCategoriesBaseDto: {
+            eventId: string;
+            categoryId: string;
+        };
         HistoricalEventPreviewResponseDto: {
             thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
             /** Format: uuid */
@@ -535,6 +472,21 @@ export interface components {
             toYear?: number | null;
             author: components["schemas"]["UserBaseResponseDto"];
             categories: components["schemas"]["EventCategoriesBaseDto"][];
+        };
+        HistoricalEventDetailResponseDto: {
+            thumbnail?: components["schemas"]["ImageBriefResponseDto"] | null;
+            /** Format: uuid */
+            id: string;
+            name: string;
+            fromDay?: number | null;
+            fromMonth?: number | null;
+            fromYear: number;
+            toDay?: number | null;
+            toMonth?: number | null;
+            toYear?: number | null;
+            author: components["schemas"]["UserBaseResponseDto"];
+            categories: components["schemas"]["EventCategoriesBaseDto"][];
+            content: string;
         };
         GrantBaseCreateDto: {
             /** Format: uuid */
@@ -585,7 +537,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    HistoricalEventController_getAllHistoricalEvents: {
+    UserController_getAllUsers: {
         parameters: {
             query?: {
                 page?: number;
@@ -593,131 +545,15 @@ export interface operations {
                 search?: string;
                 sortBy?: string;
                 sortOrder?: "asc" | "desc";
-                authorId?: string;
-                categoryIds?: string[];
-                fromYear?: number;
-                fromMonth?: number;
-                fromDay?: number;
-                toYear?: number;
-                toMonth?: number;
-                toDay?: number;
-                searchYear?: number;
+                status?: string;
+                sex?: string;
+                birthdateFrom?: string;
+                birthdateTo?: string;
                 createdAtFrom?: string;
                 createdAtTo?: string;
-                updatedAtFrom?: string;
-                updatedAtTo?: string;
             };
             header?: never;
             path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    HistoricalEventController_createHistoricalEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["HistoricalEventBaseCreateDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventBriefResponseDto"];
-                };
-            };
-        };
-    };
-    HistoricalEventController_getHistoricalEventPreviewById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventDetailResponseDto"];
-                };
-            };
-        };
-    };
-    HistoricalEventController_getHistoricalEventById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HistoricalEventDetailResponseDto"];
-                };
-            };
-        };
-    };
-    HistoricalEventController_updateHistoricalEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["HistoricalEventBaseUpdateDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-        };
-    };
-    HistoricalEventController_deleteHistoricalEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
             cookie?: never;
         };
         requestBody?: never;
@@ -740,27 +576,6 @@ export interface operations {
         requestBody?: never;
         responses: {
             200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    UserController_createUser: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UserBaseDto"];
-            };
-        };
-        responses: {
-            201: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -18,7 +18,7 @@ import { Testimonials } from '@/components/Testimonials';
 
 export default function App() {
   return (
-    <main className="container">
+    <main>
       <Hero />
       <Sponsors />
       <About />

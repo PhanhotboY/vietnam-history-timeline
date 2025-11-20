@@ -30,7 +30,7 @@ export class UserService {
 
   async createUser(user: UserFullCreateDto) {
     return await this.prisma.user.create({
-      data: { ...user, slug: user.slug || user.email.split('@')[0] },
+      data: { ...user, slug: user.slug || user.email.split('@')[0]! },
     });
   }
 
@@ -38,7 +38,7 @@ export class UserService {
     return await this.createUser({
       ...data,
       avatarId: '',
-      firstName: data.email.split('@')[0],
+      firstName: data.email.split('@')[0]!,
     });
   }
 

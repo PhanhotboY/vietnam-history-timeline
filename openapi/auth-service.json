@@ -1,174 +1,72 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/historical-events": {
-      "get": {
-        "operationId": "HistoricalEventController_getAllHistoricalEvents",
-        "parameters": [
-          {
-            "name": "page",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "type": "number"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortBy",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortOrder",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
-          },
-          {
-            "name": "authorId",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          {
-            "name": "categoryIds",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
+    "/auth/signup": {
+      "post": {
+        "operationId": "AuthController_signUp",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpDto"
               }
             }
-          },
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "operationId": "AuthController_signIn",
+        "parameters": [
           {
-            "name": "fromYear",
-            "required": false,
-            "in": "query",
+            "name": "x-refresh-token",
+            "required": true,
+            "in": "header",
             "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "fromMonth",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 12,
-              "type": "number"
-            }
-          },
-          {
-            "name": "fromDay",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 31,
-              "type": "number"
-            }
-          },
-          {
-            "name": "toYear",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "toMonth",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 12,
-              "type": "number"
-            }
-          },
-          {
-            "name": "toDay",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 31,
-              "type": "number"
-            }
-          },
-          {
-            "name": "searchYear",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "createdAtFrom",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "date-time",
               "type": "string"
             }
-          },
-          {
-            "name": "createdAtTo",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInDto"
+              }
             }
-          },
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/verify-email": {
+      "get": {
+        "operationId": "AuthController_verifyEmailToken",
+        "parameters": [
           {
-            "name": "updatedAtFrom",
-            "required": false,
+            "name": "token",
+            "required": true,
             "in": "query",
             "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedAtTo",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "date-time",
               "type": "string"
             }
           }
@@ -179,100 +77,59 @@
           }
         },
         "tags": [
-          "HistoricalEvent"
+          "Auth"
         ]
-      },
+      }
+    },
+    "/roles": {
       "post": {
-        "operationId": "HistoricalEventController_createHistoricalEvent",
+        "operationId": "RoleController_createRole",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/HistoricalEventBaseCreateDto"
+                "$ref": "#/components/schemas/RoleBaseCreateDto"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventBriefResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
-          "HistoricalEvent"
-        ]
-      }
-    },
-    "/historical-events/{id}/preview": {
-      "get": {
-        "operationId": "HistoricalEventController_getHistoricalEventPreviewById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventDetailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      }
-    },
-    "/historical-events/{id}": {
-      "get": {
-        "operationId": "HistoricalEventController_getHistoricalEventById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventDetailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
+          "Role"
         ]
       },
-      "put": {
-        "operationId": "HistoricalEventController_updateHistoricalEvent",
+      "get": {
+        "operationId": "RoleController_getRoles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/roles/{id}": {
+      "get": {
+        "operationId": "RoleController_getRoleById",
         "parameters": [
           {
             "name": "id",
@@ -283,16 +140,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricalEventBaseUpdateDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
@@ -306,11 +153,11 @@
           }
         },
         "tags": [
-          "HistoricalEvent"
+          "Role"
         ]
       },
       "delete": {
-        "operationId": "HistoricalEventController_deleteHistoricalEvent",
+        "operationId": "RoleController_deleteRole",
         "parameters": [
           {
             "name": "id",
@@ -327,34 +174,101 @@
           }
         },
         "tags": [
-          "HistoricalEvent"
+          "Role"
         ]
       }
     },
-    "/users/me": {
-      "get": {
-        "operationId": "UserController_getMe",
-        "parameters": [],
+    "/roles/{id}/grants": {
+      "post": {
+        "operationId": "RoleController_addGrants",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "responses": {
-          "200": {
-            "description": ""
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         },
         "tags": [
-          "User"
+          "Role"
         ]
       }
     },
-    "/users": {
+    "/roles/{roleId}/grants/{resourceId}": {
+      "delete": {
+        "operationId": "RoleController_deleteRoleGrant",
+        "parameters": [
+          {
+            "name": "roleId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/resources": {
       "post": {
-        "operationId": "UserController_createUser",
+        "operationId": "ResourceController_create",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserBaseDto"
+                "$ref": "#/components/schemas/CreateResourceDto"
               }
             }
           }
@@ -365,13 +279,11 @@
           }
         },
         "tags": [
-          "User"
+          "Resource"
         ]
-      }
-    },
-    "/users/{id}": {
-      "delete": {
-        "operationId": "UserController_deleteUser",
+      },
+      "get": {
+        "operationId": "ResourceController_findAll",
         "parameters": [],
         "responses": {
           "200": {
@@ -379,14 +291,58 @@
           }
         },
         "tags": [
-          "User"
+          "Resource"
+        ]
+      }
+    },
+    "/resources/{id}": {
+      "get": {
+        "operationId": "ResourceController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Resource"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Resource"
         ]
       }
     }
   },
   "info": {
-    "title": "NSV - Historical Event API",
-    "description": "The Historical Event API description",
+    "title": "NSV - Auth Service API",
+    "description": "The Auth Service API description",
     "version": "1.0",
     "contact": {}
   },
@@ -394,348 +350,106 @@
   "servers": [],
   "components": {
     "schemas": {
-      "HistoricalEventBaseCreateDto": {
+      "SignUpDto": {
         "type": "object",
         "properties": {
-          "authorId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "thumbnailId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "required": [
-          "authorId",
-          "name",
-          "fromYear",
-          "content"
-        ]
-      },
-      "ImageBriefResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "caption": {
-            "type": "string"
-          },
-          "publicUrl": {
-            "type": "string",
-            "format": "uri"
-          },
-          "redirectLink": {
-            "type": "string",
-            "format": "uri"
-          },
-          "type": {
-            "type": "string",
-            "maxLength": 100
-          }
-        },
-        "required": [
-          "publicUrl"
-        ]
-      },
-      "HistoricalEventBriefResponseDto": {
-        "type": "object",
-        "properties": {
-          "thumbnail": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageBriefResponseDto"
-              }
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "fromYear"
-        ]
-      },
-      "UserBaseResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string",
-            "minLength": 1
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "slug": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "firstName",
-          "slug"
-        ]
-      },
-      "EventCategoriesBaseDto": {
-        "type": "object",
-        "properties": {
-          "eventId": {
-            "type": "string"
-          },
-          "categoryId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "eventId",
-          "categoryId"
-        ]
-      },
-      "HistoricalEventDetailResponseDto": {
-        "type": "object",
-        "properties": {
-          "thumbnail": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageBriefResponseDto"
-              }
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string"
-          },
-          "author": {
-            "$ref": "#/components/schemas/UserBaseResponseDto"
-          },
-          "categories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventCategoriesBaseDto"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "fromYear",
-          "content",
-          "author",
-          "categories"
-        ]
-      },
-      "HistoricalEventBaseUpdateDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "thumbnailId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string",
-            "minLength": 1
-          },
-          "authorId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
-      "UserBaseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "email": {
             "type": "string",
             "format": "email"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "SignInDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "browserId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password",
+          "browserId"
+        ]
+      },
+      "GrantBaseCreateDto": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "resourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "action": {
+            "type": "string"
+          },
+          "attribute": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "roleId",
+          "resourceId",
+          "action"
+        ]
+      },
+      "RoleBaseCreateDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object"
+          },
+          "grants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GrantBaseCreateDto"
+            }
+          },
+          "name": {
+            "type": "string"
           },
           "slug": {
             "type": "string"
           },
-          "firstName": {
-            "type": "string",
-            "minLength": 1
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "avatarId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "type": "object"
+          "description": {
+            "type": "string"
           }
         },
         "required": [
-          "id",
-          "email",
+          "status",
+          "name",
           "slug",
-          "firstName",
-          "status"
+          "description"
+        ]
+      },
+      "CreateResourceDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "slug"
         ]
       },
       "UserDeleteDto": {
@@ -813,6 +527,69 @@
             "type": "string"
           }
         }
+      },
+      "UserBaseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatarId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "slug",
+          "firstName",
+          "status"
+        ]
+      },
+      "UserBaseResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "slug"
+        ]
       },
       "UserFullDto": {
         "type": "object",
@@ -1264,37 +1041,6 @@
           "tokens"
         ]
       },
-      "SignInDto": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "browserId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "username",
-          "password",
-          "browserId"
-        ]
-      },
-      "SignUpDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
       "JwtPermissionDto": {
         "type": "object",
         "properties": {
@@ -1550,6 +1296,33 @@
           }
         }
       },
+      "ImageBriefResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "publicUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "redirectLink": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "publicUrl"
+        ]
+      },
       "EventCategoryBriefResponseDto": {
         "type": "object",
         "properties": {
@@ -1695,6 +1468,116 @@
           "updatedAt"
         ]
       },
+      "HistoricalEventBaseCreateDto": {
+        "type": "object",
+        "properties": {
+          "authorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "thumbnailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "authorId",
+          "name",
+          "fromYear",
+          "content"
+        ]
+      },
+      "HistoricalEventBaseUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "thumbnailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authorId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "HistoricalEventQueryDto": {
         "type": "object",
         "properties": {
@@ -1793,6 +1676,78 @@
           "eventIds"
         ]
       },
+      "HistoricalEventBriefResponseDto": {
+        "type": "object",
+        "properties": {
+          "thumbnail": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImageBriefResponseDto"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "fromYear"
+        ]
+      },
+      "EventCategoriesBaseDto": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string"
+          },
+          "categoryId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "eventId",
+          "categoryId"
+        ]
+      },
       "HistoricalEventPreviewResponseDto": {
         "type": "object",
         "properties": {
@@ -1861,57 +1816,76 @@
           "categories"
         ]
       },
-      "GrantBaseCreateDto": {
+      "HistoricalEventDetailResponseDto": {
         "type": "object",
         "properties": {
-          "roleId": {
+          "thumbnail": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImageBriefResponseDto"
+              }
+            ]
+          },
+          "id": {
             "type": "string",
             "format": "uuid"
-          },
-          "resourceId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "action": {
-            "type": "string"
-          },
-          "attribute": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "roleId",
-          "resourceId",
-          "action"
-        ]
-      },
-      "RoleBaseCreateDto": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "object"
-          },
-          "grants": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GrantBaseCreateDto"
-            }
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
-          "slug": {
-            "type": "string"
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
           },
-          "description": {
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/UserBaseResponseDto"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventCategoriesBaseDto"
+            }
+          },
+          "content": {
             "type": "string"
           }
         },
         "required": [
-          "status",
+          "id",
           "name",
-          "slug",
-          "description"
+          "fromYear",
+          "author",
+          "categories",
+          "content"
         ]
       },
       "RoleBaseUpdateDto": {

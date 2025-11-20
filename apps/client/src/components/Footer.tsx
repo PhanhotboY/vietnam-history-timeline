@@ -158,7 +158,7 @@ export const Footer = () => {
             rel="noreferrer noopener"
             target="_blank"
             href="https://www.linkedin.com/in/leopoldo-miranda/"
-            className="text-primary transition-all border-primary hover:border-b-2"
+            className="text-secondary transition-all border-primary hover:border-b-2"
           >
             Leo Miranda
           </Link>

@@ -43,7 +43,7 @@ export const HeroCards = () => {
             className="absolute grayscale-[0%] -top-12 rounded-full w-24 h-24 aspect-square object-cover"
           />
           <CardTitle className="text-center">Leo Miranda</CardTitle>
-          <CardDescription className="font-normal text-primary">
+          <CardDescription className="font-normal text-secondary">
             Frontend Developer
           </CardDescription>
         </CardHeader>
@@ -111,7 +111,7 @@ export const HeroCards = () => {
         <CardHeader>
           <CardTitle className="flex item-center justify-between">
             Free
-            <Badge variant="secondary" className="text-sm text-primary">
+            <Badge variant="secondary" className="text-sm">
               Most popular
             </Badge>
           </CardTitle>

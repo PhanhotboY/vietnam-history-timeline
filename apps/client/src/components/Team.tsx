@@ -111,7 +111,7 @@ export const Team = () => {
   return (
     <section id="team" className="container py-24 sm:py-32">
       <h2 className="text-3xl md:text-4xl font-bold">
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+        <span className="bg-gradient-to-b from-secondary/60 to-secondary text-transparent bg-clip-text">
           Our Dedicated{' '}
         </span>
         Crew
@@ -136,7 +136,7 @@ export const Team = () => {
                   className="absolute -top-12 rounded-full w-24 h-24 aspect-square object-cover"
                 />
                 <CardTitle className="text-center">{name}</CardTitle>
-                <CardDescription className="text-primary">
+                <CardDescription className="text-secondary">
                   {position}
                 </CardDescription>
               </CardHeader>

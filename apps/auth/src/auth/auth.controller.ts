@@ -12,7 +12,7 @@ import {
 import type { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
-import { SignUpDto } from '@phanhotboy/nsv-common/dto';
+import { SignInDto, SignUpDto } from '@phanhotboy/nsv-common/dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { ConfigService, APP, HEADER } from '@phanhotboy/nsv-common';
 import { Config } from '@auth/config';
@@ -37,6 +37,7 @@ export class AuthController {
   async signIn(
     @Req() req: Request,
     @Headers(HEADER.REFRESH_TOKEN) refreshToken?: string,
+    @Body() body?: SignInDto, // for swagger doc only
   ) {
     return await this.authService.signIn(req.user!, refreshToken);
   }

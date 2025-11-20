@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/historical-events": {
+    "/users": {
       "get": {
-        "operationId": "HistoricalEventController_getAllHistoricalEvents",
+        "operationId": "UserController_getAllUsers",
         "parameters": [
           {
             "name": "page",
@@ -52,88 +52,37 @@
             }
           },
           {
-            "name": "authorId",
+            "name": "status",
             "required": false,
             "in": "query",
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
           {
-            "name": "categoryIds",
+            "name": "sex",
             "required": false,
             "in": "query",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
-              }
+              "type": "string"
             }
           },
           {
-            "name": "fromYear",
+            "name": "birthdateFrom",
             "required": false,
             "in": "query",
             "schema": {
-              "type": "number"
+              "format": "date-time",
+              "type": "string"
             }
           },
           {
-            "name": "fromMonth",
+            "name": "birthdateTo",
             "required": false,
             "in": "query",
             "schema": {
-              "minimum": 1,
-              "maximum": 12,
-              "type": "number"
-            }
-          },
-          {
-            "name": "fromDay",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 31,
-              "type": "number"
-            }
-          },
-          {
-            "name": "toYear",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "toMonth",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 12,
-              "type": "number"
-            }
-          },
-          {
-            "name": "toDay",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 31,
-              "type": "number"
-            }
-          },
-          {
-            "name": "searchYear",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "number"
+              "format": "date-time",
+              "type": "string"
             }
           },
           {
@@ -153,188 +102,8 @@
               "format": "date-time",
               "type": "string"
             }
-          },
-          {
-            "name": "updatedAtFrom",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedAtTo",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
           }
         ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      },
-      "post": {
-        "operationId": "HistoricalEventController_createHistoricalEvent",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricalEventBaseCreateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventBriefResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      }
-    },
-    "/historical-events/{id}/preview": {
-      "get": {
-        "operationId": "HistoricalEventController_getHistoricalEventPreviewById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventDetailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      }
-    },
-    "/historical-events/{id}": {
-      "get": {
-        "operationId": "HistoricalEventController_getHistoricalEventById",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HistoricalEventDetailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      },
-      "put": {
-        "operationId": "HistoricalEventController_updateHistoricalEvent",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HistoricalEventBaseUpdateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      },
-      "delete": {
-        "operationId": "HistoricalEventController_deleteHistoricalEvent",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "HistoricalEvent"
-        ]
-      }
-    },
-    "/users/me": {
-      "get": {
-        "operationId": "UserController_getMe",
-        "parameters": [],
         "responses": {
           "200": {
             "description": ""
@@ -345,22 +114,12 @@
         ]
       }
     },
-    "/users": {
-      "post": {
-        "operationId": "UserController_createUser",
+    "/users/me": {
+      "get": {
+        "operationId": "UserController_getMe",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserBaseDto"
-              }
-            }
-          }
-        },
         "responses": {
-          "201": {
+          "200": {
             "description": ""
           }
         },
@@ -385,8 +144,8 @@
     }
   },
   "info": {
-    "title": "NSV - Historical Event API",
-    "description": "The Historical Event API description",
+    "title": "NSV - User Service API",
+    "description": "The User Service API description",
     "version": "1.0",
     "contact": {}
   },
@@ -394,312 +153,6 @@
   "servers": [],
   "components": {
     "schemas": {
-      "HistoricalEventBaseCreateDto": {
-        "type": "object",
-        "properties": {
-          "authorId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "thumbnailId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "required": [
-          "authorId",
-          "name",
-          "fromYear",
-          "content"
-        ]
-      },
-      "ImageBriefResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "caption": {
-            "type": "string"
-          },
-          "publicUrl": {
-            "type": "string",
-            "format": "uri"
-          },
-          "redirectLink": {
-            "type": "string",
-            "format": "uri"
-          },
-          "type": {
-            "type": "string",
-            "maxLength": 100
-          }
-        },
-        "required": [
-          "publicUrl"
-        ]
-      },
-      "HistoricalEventBriefResponseDto": {
-        "type": "object",
-        "properties": {
-          "thumbnail": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageBriefResponseDto"
-              }
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "fromYear"
-        ]
-      },
-      "UserBaseResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "firstName": {
-            "type": "string",
-            "minLength": 1
-          },
-          "lastName": {
-            "type": "string",
-            "nullable": true
-          },
-          "slug": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "firstName",
-          "slug"
-        ]
-      },
-      "EventCategoriesBaseDto": {
-        "type": "object",
-        "properties": {
-          "eventId": {
-            "type": "string"
-          },
-          "categoryId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "eventId",
-          "categoryId"
-        ]
-      },
-      "HistoricalEventDetailResponseDto": {
-        "type": "object",
-        "properties": {
-          "thumbnail": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ImageBriefResponseDto"
-              }
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string"
-          },
-          "author": {
-            "$ref": "#/components/schemas/UserBaseResponseDto"
-          },
-          "categories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventCategoriesBaseDto"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "fromYear",
-          "content",
-          "author",
-          "categories"
-        ]
-      },
-      "HistoricalEventBaseUpdateDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1
-          },
-          "thumbnailId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fromDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "fromMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "fromYear": {
-            "type": "number"
-          },
-          "toDay": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 31
-          },
-          "toMonth": {
-            "type": "number",
-            "nullable": true,
-            "minimum": 1,
-            "maximum": 12
-          },
-          "toYear": {
-            "type": "number",
-            "nullable": true
-          },
-          "content": {
-            "type": "string",
-            "minLength": 1
-          },
-          "authorId": {
-            "type": "string",
-            "format": "uuid"
-          }
-        }
-      },
       "UserBaseDto": {
         "type": "object",
         "properties": {
@@ -813,6 +266,31 @@
             "type": "string"
           }
         }
+      },
+      "UserBaseResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "slug"
+        ]
       },
       "UserFullDto": {
         "type": "object",
@@ -1550,6 +1028,33 @@
           }
         }
       },
+      "ImageBriefResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "publicUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "redirectLink": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "publicUrl"
+        ]
+      },
       "EventCategoryBriefResponseDto": {
         "type": "object",
         "properties": {
@@ -1695,6 +1200,116 @@
           "updatedAt"
         ]
       },
+      "HistoricalEventBaseCreateDto": {
+        "type": "object",
+        "properties": {
+          "authorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "thumbnailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "authorId",
+          "name",
+          "fromYear",
+          "content"
+        ]
+      },
+      "HistoricalEventBaseUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "thumbnailId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authorId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "HistoricalEventQueryDto": {
         "type": "object",
         "properties": {
@@ -1793,6 +1408,78 @@
           "eventIds"
         ]
       },
+      "HistoricalEventBriefResponseDto": {
+        "type": "object",
+        "properties": {
+          "thumbnail": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImageBriefResponseDto"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "fromYear"
+        ]
+      },
+      "EventCategoriesBaseDto": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string"
+          },
+          "categoryId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "eventId",
+          "categoryId"
+        ]
+      },
       "HistoricalEventPreviewResponseDto": {
         "type": "object",
         "properties": {
@@ -1859,6 +1546,78 @@
           "fromYear",
           "author",
           "categories"
+        ]
+      },
+      "HistoricalEventDetailResponseDto": {
+        "type": "object",
+        "properties": {
+          "thumbnail": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImageBriefResponseDto"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fromDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "fromMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "fromYear": {
+            "type": "number"
+          },
+          "toDay": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 31
+          },
+          "toMonth": {
+            "type": "number",
+            "nullable": true,
+            "minimum": 1,
+            "maximum": 12
+          },
+          "toYear": {
+            "type": "number",
+            "nullable": true
+          },
+          "author": {
+            "$ref": "#/components/schemas/UserBaseResponseDto"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventCategoriesBaseDto"
+            }
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "fromYear",
+          "author",
+          "categories",
+          "content"
         ]
       },
       "GrantBaseCreateDto": {

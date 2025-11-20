@@ -48,7 +48,7 @@
 
 /* Time axis styling */
 .vis-time-axis .vis-text {
-  color: #666;
+  color: var(--foreground);
   padding: 5px 0;
   font-variant-numeric: lining-nums;
 }
@@ -122,7 +122,7 @@
 }
 
 .vis-label.vis-group-level-0:hover {
-  background-color: #eaeaea;
+  background-color: var(--foreground);
 }
 
 /* Animation for expanding/collapsing */
@@ -139,5 +139,18 @@
   &.vis-point {
     background: var(--accent);
     color: var(--accent-foreground);
+  }
+}
+
+.dark {
+  .vis-item {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+
+    &.vis-point {
+      background: oklch(from var(--accent) l c h / 0.5);
+      color: var(--accent-foreground);
+    }
   }
 }

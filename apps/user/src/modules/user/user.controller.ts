@@ -29,6 +29,6 @@ export class UserController {
   @Delete(':id')
   @Permissions(['user', 'deleteAny'])
   deleteUser(@Req() req: Request) {
-    return this.userService.deleteUser(req.params.id);
+    return this.userService.deleteUser(req.params.id!);
   }
 }
